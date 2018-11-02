@@ -12,6 +12,7 @@ App({
     console.log('App Hide');
   },
   globalData: {
-    corpId:''
+    corpId: '',
+    domain: 'https://easy-mock.com/mock/5bdaaea365346e4f101027ce/simple-demo'
   }
 });

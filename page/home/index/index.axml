@@ -1,0 +1,30 @@
+<view class="page">
+  <view class="top"></view>
+  <view class="content"></view>
+  <list className="list">
+    <view solt="header" class="list-header">积分动态</view>
+    <block a:for="{{items}}" class="list-block">
+      <list-item
+        className="list-item"
+        key="item-{{index}}"
+        index="{{index}}"
+        last="{{index === (items.length - 1)}}"
+        thumb="{{item.thumb ? item.thumb : 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1541159022813&di=285917cd1f1b7deabe424572b8d3a3a5&imgtype=0&src=http%3A%2F%2Fimg1.gamersky.com%2Fimage2014%2F01%2F20140123ge_11%2Fimage031_S.jpg'}}"
+        arrow="{{item.arrow}}"
+        align="{{item.align}}"
+        onClick="onItemClick"
+        multipleLine="{{true}}"
+        wrap="{{true}}"
+      >
+        {{item.name}}
+        <view class="brief">
+          <text class="brief-title">{{item.brief.title}}</text>
+          <text class="brief-content">{{item.brief.content}}</text>
+        </view>
+        <view slot="extra" class="extra">
+          {{item.extra.points>0 ? '+' : ''}}{{item.extra.points}}    {{item.extra.type}}
+        </view>
+      </list-item>
+    </block> 
+  </list>
+</view>

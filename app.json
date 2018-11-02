@@ -1,13 +1,18 @@
 {
   "pages": [
-    "page/index/index"
+    "page/register/index/index",
+    "page/index/index",
+    "page/home/index/index",
+    "page/work/index/index",
+    "page/rank/index/index",
+    "page/personal/index/index"
   ],
   "window": {
     "enableWK": "YES",
     "enableDSL": true,
-    "defaultTitle": "企业内部E应用1.1",
+    "defaultTitle": "积分前台应用",
     "backgroundColor": "#F5F5F9",
-    "pullRefresh": false,
+    "pullRefresh": true,
     "allowsBounceVertical": true
   },
   "tabBar": {
@@ -15,7 +20,22 @@
     "selectedColor": "#108ee9",
     "backgroundColor": "#F5F5F9",
     "items": [
-      
+      {
+        "pagePath": "page/home/index/index",
+        "name": "首页"
+      },
+      {
+        "pagePath": "page/work/index/index",
+        "name": "工作台"
+      },
+      {
+        "pagePath": "page/rank/index/index",
+        "name": "积分榜"
+      },
+      {
+        "pagePath": "page/personal/index/index",
+        "name": "个人中心"
+      }
     ]
   },
   "debug": true

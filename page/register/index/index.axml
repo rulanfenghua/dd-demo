@@ -1,0 +1,25 @@
+<view class="page" hidden="{{hideList}}">
+  <view class="title"></view>
+  <form class="form" onSubmit="formSubmit">
+    <view class="input">
+    <input-item
+      className="phone"
+      name="phone"
+      type="number"
+      placeholder="输入您的手机号"
+    >
+    </input-item>
+    <input-item
+      className="password"
+      name="password"
+      placeholder="输入您的密码"
+      password="true"
+      onConfirm="login"
+    >
+    </input-item>
+    </view>
+    <view class="button"> 
+      <button type="primary" formType="submit"> 登陆</button>
+    </view>
+  </form>
+</view>
