@@ -4,7 +4,9 @@ let app = getApp();
 //内网穿透工具介绍:
 // https://open-doc.dingtalk.com/microapp/debug/ucof2g
 //替换成开发者后台设置的安全域名
-let domain = "http://localhost:3000";
+// let domain = "http://localhost:3000";
+// let domain = "http://192.168.0.103:8080";
+let domain = " https://easy-mock.com/mock/5bdaaea365346e4f101027ce/simple-demo";
 let url = domain + '/login';
 
 Page({
