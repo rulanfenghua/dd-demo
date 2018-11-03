@@ -5,7 +5,9 @@
     "page/home/index/index",
     "page/work/index/index",
     "page/rank/index/index",
-    "page/personal/index/index"
+    "page/personal/index/index",
+
+    "page/work/declare/index"
   ],
   "window": {
     "enableWK": "YES",

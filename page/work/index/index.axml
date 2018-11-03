@@ -1,0 +1,32 @@
+<view>
+  <view class="top" style="background:url({{data.picture}})"></view>
+  <view class="content">
+    <view class="content-title">审批日记</view>
+    <view class="content-list">
+      <view class="number">
+        <text class="number-amount" onTap="logs">{{data.approve.logs}}</text>
+        <text class="number-text">审批日志</text>
+      </view>
+      <view class="number">
+        <text class="number-amount" onTap="wait">{{data.approve.wait}}</text>
+        <text class="number-text">待我审批</text>
+      </view>
+      <view class="number">
+        <text class="number-amount" onTap="initiate">{{data.approve.initiate}}</text>
+        <text class="number-text">我发起的</text>
+      </view>
+      <view class="number">
+        <text class="number-amount" onTap="copy">{{data.approve.copy}}</text>
+        <text class="number-text">抄送我的</text>
+      </view>
+    </view>
+  </view>
+  <view class="content2" hidden="{{hidden}}">
+    <view class="content2-title">管理应用</view>
+    <grid class="content-grid" columnNum="{{4}}" list="{{listContent}}" onGridItemClick="onContentClick"></grid>
+  </view>
+  <view class="main">
+    <view class="main-title">日常积分</view>
+    <grid class="main-grid" columnNum="{{4}}" list="{{listMain}}" onGridItemClick="onMainClick"></grid>
+  </view>
+</view>

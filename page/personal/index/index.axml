@@ -1,0 +1,25 @@
+<view class="page">
+  <card
+    thumb="{{data.avatar}}"
+    title="{{data.name}}"
+    subTitle="{{data.info}}"
+    onClick="onCardClick"
+    footer="积分：{{data.amount}}  基础积分：{{data.base}}"
+  />
+  <view class="chart"></view>
+  <view class="content">
+    <view class="content-item" onTap="toFrame">
+      <text class="content-item-text">企业组织架构</text>
+      <text class="right-arrow"></text>
+    </view>
+    <view class="content-item" onTap="toTask">
+      <text class="content-item-text">我的任务</text>
+      <text class="right-arrow"></text>
+    </view>
+    <view class="content-item" onTap="toDiary">
+      <text class="content-item-text">我的日记</text>
+      <text class="right-arrow"></text>
+    </view>
+  </view>
+  <button type="default" plain>退出登录</button>
+</view>
