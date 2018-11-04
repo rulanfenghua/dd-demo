@@ -17,6 +17,7 @@ Page({
           dataType: 'json',
           success: (res) => {
             console.log('successAuto----', res)
+            app.globalData.level = res.level
             dd.switchTab({
               url: '/page/home/index/index'
             })
@@ -57,6 +58,7 @@ Page({
       dataType: 'json',
       success: (res) => {
         console.log('success----', res)
+        app.globalData.level = res.level
         dd.switchTab({
           url: '/page/home/index/index'
         })

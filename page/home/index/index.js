@@ -2,8 +2,8 @@ let app = getApp()
 
 Page({
   data: {
-    data: {},
-    items: []
+    items: [],
+    data: {}
   },
   onShow() {
     dd.showLoading()

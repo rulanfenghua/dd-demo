@@ -1,16 +1,23 @@
 <view class="page">
-  <view class="top"></view>
+  <view class="top" style="background:url({{data.picture}})"></view>
   <view class="content">
-    <view class="content-title"></view>
-    <view class="content-mian">
-      <view class="number"></view>
-      <view class="number"></view>
+    <view class="content-title">
+      <text>今日积分排名</text>
     </view>
-    <view class="content-bottom" onTap="rankTo">
-      <text class="">
-        
-      </text>
-      <text class="">></text>
+    <view class="content-main">
+      <view class="number">
+        <text class="number-amount">{{data.rank}}</text>
+        <text class="number-text">排名</text>
+      </view>
+      <view class="number">
+        <text class="number-amount">{{data.amount}}</text>
+        <text class="number-text">今日积分</text>
+      </view>
+    </view>
+    <view class="content-bottom">
+      <image src="{{data.top.image}}" class="content-bottom-image">
+      <text class="content-bottom-text">{{data.top.name}}获得今日的积分冠军</text>
+      <text class="right-arrow"></text>
     </view>
   </view>
   <list className="list">
