@@ -2,18 +2,22 @@ let app = getApp()
 
 Page({
   data: {
+    data: {},
     items: []
   },
   onShow() {
     dd.showLoading()
+    var home = false
+    var list = false
+
     dd.httpRequest({
-      url: app.globalData.domain + '/home/list',
+      url: app.globalData.domain + '/home',
       method: 'POST',
       dataType: 'json',
       success: (res) => {
         console.log('successHome----', res)
         this.setData({
-          items: res.data.data
+          data: res.data.data
         })
       },
       fail: (res) => {
@@ -23,7 +27,33 @@ Page({
         })
       },
       complete: () => {
-        dd.hideLoading()
+        home = true
+        if (home && list) {
+          dd.hideLoading()
+        }
+      }
+    })
+    dd.httpRequest({
+      url: app.globalData.domain + '/home/list',
+      method: 'POST',
+      dataType: 'json',
+      success: (res) => {
+        console.log('successHomeList----', res)
+        this.setData({
+          items: res.data.data
+        })
+      },
+      fail: (res) => {
+        console.log("httpRequestFailHomeList---", res)
+        dd.alert({
+          content: JSON.stringify(err)
+        })
+      },
+      complete: () => {
+        list = true
+        if (home && list) {
+          dd.hideLoading()
+        }
       }
     })
   },

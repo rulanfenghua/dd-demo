@@ -1,8 +1,20 @@
 <view class="page">
   <view class="top"></view>
-  <view class="content"></view>
+  <view class="content">
+    <view class="content-title"></view>
+    <view class="content-mian">
+      <view class="number"></view>
+      <view class="number"></view>
+    </view>
+    <view class="content-bottom" onTap="rankTo">
+      <text class="">
+        
+      </text>
+      <text class="">></text>
+    </view>
+  </view>
   <list className="list">
-    <view solt="header" class="list-header">积分动态</view>
+    <view solt="header" class="list-header" onTap="personalTo">积分动态</view>
     <block a:for="{{items}}" class="list-block">
       <list-item
         className="list-item"
