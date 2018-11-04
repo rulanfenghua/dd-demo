@@ -76,7 +76,7 @@ Page({
   },
   onShow() {
     if (app.globalData.level == '0') {
-      dd.setData({
+      this.setData({
         hidden: false
       })
     }
@@ -89,7 +89,7 @@ Page({
       success: (res) => {
         console.log('successWork----', res)
         this.setData({
-          items: res.data.data
+          data: res.data.data
         })
       },
       fail: (res) => {
@@ -111,7 +111,12 @@ Page({
     console.log(e.detail)
 
     switch (e.detail.index) {
-      case '3': dd.navigateTo({url: '../declare/index'})
+      case 3:
+        dd.navigateTo({url: '../declare/index'});
+        break;
+      case 10:
+        dd.navigateTo({url: '../market/index'});
+        break;
     }
   },
   logs() {

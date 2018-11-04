@@ -23,10 +23,10 @@
   </view>
   <view class="content2" hidden="{{hidden}}">
     <view class="content2-title">管理应用</view>
-    <grid class="content-grid" columnNum="{{4}}" list="{{listContent}}" onGridItemClick="onContentClick"></grid>
+    <grid class="content-grid" columnNum="{{4}}" list="{{listContent}}" onGridItemClick="onContentClick" hasLine="{{true}}"></grid>
   </view>
   <view class="main">
     <view class="main-title">日常积分</view>
-    <grid class="main-grid" columnNum="{{4}}" list="{{listMain}}" onGridItemClick="onMainClick"></grid>
+    <grid class="main-grid" columnNum="{{4}}" list="{{listMain}}" onGridItemClick="onMainClick" hasLine="{{true}}"></grid>
   </view>
 </view>

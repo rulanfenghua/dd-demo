@@ -13,7 +13,7 @@ App({
   },
   globalData: {
     corpId: '',
-    level = '',
+    level: 1,
     domain: 'https://easy-mock.com/mock/5bdaaea365346e4f101027ce/simple-demo'
   }
 });

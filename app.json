@@ -7,14 +7,15 @@
     "page/rank/index/index",
     "page/personal/index/index",
 
-    "page/work/declare/index"
+    "page/work/declare/index",
+    "page/work/market/index"
   ],
   "window": {
     "enableWK": "YES",
     "enableDSL": true,
     "defaultTitle": "积分前台应用",
     "backgroundColor": "#F5F5F9",
-    "pullRefresh": true,
+    "pullRefresh": false,
     "allowsBounceVertical": true
   },
   "tabBar": {

@@ -1,0 +1,24 @@
+<view class="page">
+  <view class="top"></view>
+  <view class="content">
+    <text class="content-left">
+      可用积分
+      <text>{{data.points}}</text>
+    </text>
+    <text class="content-right">兑换记录</text>
+  </view>
+  <view class="title">
+    <text class="title-up">他们都在兑</text>
+    <text class="title-dwon">每个职位兑换积分不一样哦</text>
+  </view>
+  <view class="main">
+    <view a:for="{{items}}" class="item" style="width: {{width}};height: {{height}};display: inline-block">
+      <image src="{{item.picture}}" class="item-picture" style="width: {{width}};height: {{width}}"></image>
+      <view class="item-title"></view>
+      <view class="item-bottom">
+        <text class="item-bottom-left">{{item.price}}积分</text>
+        <text class="item-bottom-right">兑换</text>
+      </view>
+    </view>
+  </view>
+</view>
