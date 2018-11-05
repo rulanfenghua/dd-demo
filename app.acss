@@ -5,7 +5,8 @@ page {
 }
 
 .page {
-  font-family: -apple-system-font,Helvetica Neue,Helvetica,sans-serif;
+  background-color: #F7F7F7;
+  font-family: -apple-system-font,Helvetica Neue,Helvetica,sans-serif,"microsoft yahei";
   font-size: 24rpx;
   padding: 32rpx;
   flex: 1;
@@ -102,4 +103,16 @@ button {
   padding: 4rpx 0;
   border: 0;
   line-height: 1;
+}
+
+.right-arrow::after {
+  content: "";
+  display: inline-block;
+  height: 7px;
+  width: 7px;
+  border-width: 2px 2px 0 0;
+  border-color: #999;
+  border-style: solid;
+  -webkit-transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+  transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
 }

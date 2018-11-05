@@ -25,19 +25,27 @@
     "items": [
       {
         "pagePath": "page/home/index/index",
-        "name": "首页"
+        "name": "首页",
+        "icon": "image/home.png",
+        "activeIcon": "image/home-active.png"
       },
       {
         "pagePath": "page/work/index/index",
-        "name": "工作台"
+        "name": "工作台",
+        "icon": "image/briefcase.png",
+        "activeIcon": "image/briefcase-active.png"
       },
       {
         "pagePath": "page/rank/index/index",
-        "name": "积分榜"
+        "name": "积分榜",
+        "icon": "image/stats-bars.png",
+        "activeIcon": "image/stats-bars-active.png"
       },
       {
         "pagePath": "page/personal/index/index",
-        "name": "个人中心"
+        "name": "个人中心",
+        "icon": "image/user.png",
+        "activeIcon": "image/user-active.png"
       }
     ]
   },

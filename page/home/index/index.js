@@ -80,6 +80,12 @@ Page({
       }
     })
   },
+
+  rankTo() {
+    dd.switchTab({
+      url: '/page/rank/index/index'
+    })
+  },
   onItemClick({index}) {
     console.log('list点击',index)
   }

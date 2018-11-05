@@ -1,0 +1,202 @@
+.page {
+  min-height: 100%;
+}
+
+/* 头部 */
+.top {
+  height: 160px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 0 2px #ccc; 
+}
+
+/* content部分 */
+.content {
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 0 2px #ccc;
+  margin-bottom: 10px;
+}
+
+.content-title {
+  height: 45px;
+  line-height: 45px;
+  position: relative;
+  background: #F7F7F7;
+}
+
+  
+.content-title text {
+  font-size: 14px;
+  color: #aaa;
+  margin-left: 30px;
+  position: relative;
+}
+
+.content-title::after {
+  content: "";
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.content-title text::before {
+  content: "";
+  position: absolute;
+  left: -19px;
+  top: 2px;
+  width: 15px;
+  height: 15px;
+  background: url("/image/list-numbered.png") 100%/100%;
+}
+
+.content-main {
+  display: flex;
+  height: 90px;
+  position: relative;
+}
+
+.content-main .number {
+  flex: 1;
+}
+
+.content-main::after {
+  content: "";
+  width: 95%;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.content-main .number .number-amount, .content-main .number .number-text {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+}
+
+.content-main .number .number-amount {
+  line-height: 60px;
+  font-size: 30px;
+  color: #46adf4;
+}
+
+.content-main .number .number-text {
+  color: #999;
+}
+
+.content-bottom {
+  line-height: 40px;
+  position: relative;
+}
+
+.content-bottom .content-bottom-image {
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  border-radius: 50%;
+  margin-left: 14px;
+  margin-right: 2px;
+}
+
+.content-bottom .content-bottom-text {
+  color: #46adf4;
+  font-size: 13px;
+}
+
+.right-arrow {
+  position: absolute;
+  right: 15px;
+}
+
+/* 列表部分 */
+.list {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 0 2px #ccc; 
+}
+
+.list-header {
+  height: 45px;
+  line-height: 45px;
+  position: relative;
+}
+
+.list-header text {
+  font-size: 14px;
+  color: #aaa;
+  margin-left: 30px;
+  position: relative;
+}
+
+.list-header::after {
+  content: "";
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.list-header text::before {
+  content: "";
+  position: absolute;
+  left: -19px;
+  top: 2px;
+  width: 15px;
+  height: 15px;
+  background: url("/image/database.png") 100%/100%;
+}
+
+/* 列表样式复写 */
+.list-item {
+  position: relative;
+}
+
+.list-item::after {
+  content: "";
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.am-list-extra {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.am-list-thumb {
+  border-radius: 50%;
+}
+
+.am-list-content {
+  font-size: 14px;
+  font-weight: bolder;
+}
+/* 列表样式复写完成 */
+
+.brief {
+  font-size: 13px;
+  font-weight: normal;
+}
+
+.brief-title {
+}
+
+.brief-content {
+  font-size: 12px;
+}
+
+.extra {
+  color: #46adf4;
+  font-weight: bold;
+  font-size: 13px;
+}
