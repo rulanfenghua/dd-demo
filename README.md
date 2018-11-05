@@ -1,2 +1,2 @@
 ## dd-demo
-> *dd-demo*
+> dd-demo
