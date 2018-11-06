@@ -4,17 +4,17 @@
 
 /* 头部 */
 .top {
-  height: 160px;
+  height: 140px;
   margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  /* border: 1px solid #ccc;
+  border-radius: 4px; */
   box-shadow: 0 0 2px #ccc; 
 }
 
 /* content部分 */
 .content {
   background: #fff;
-  border: 1px solid #ccc;
+  /* border: 1px solid #ccc; */
   border-radius: 4px;
   box-shadow: 0 0 2px #ccc;
   margin-bottom: 10px;
@@ -116,7 +116,7 @@
 
 /* 列表部分 */
 .list {
-  border: 1px solid #ccc;
+  /* border: 1px solid #ccc; */
   border-radius: 4px;
   box-shadow: 0 0 2px #ccc; 
 }
@@ -160,9 +160,10 @@
 
 .list-item::after {
   content: "";
-  width: 100%;
+  width: 95%;
+  left: 50%;
+  transform: translateX(-50%);
   position: absolute;
-  left: 0;
   bottom: 0;
   border-bottom: 1px solid #ddd;
 }

@@ -22,51 +22,51 @@ Page({
     ],
     listMain: [
       {
-        "icon": "",
+        "icon": "/image/城市.svg",
         "text": "考勤"
       },
       {
-        "icon": "",
+        "icon": "/image/使用文档.svg",
         "text": "工作日志"
       },
       {
-        "icon": "",
+        "icon": "/image/执行反馈.svg",
         "text": "悬赏任务"
       },
       {
-        "icon": "",
+        "icon": "/image/测试申请.svg",
         "text": "申报积分"
       },
       {
-        "icon": "",
+        "icon": "/image/广播.svg",
         "text": "公告"
       },
       {
-        "icon": "",
+        "icon": "/image/赞.svg",
         "text": "爱心点赞"
       },
       {
-        "icon": "",
+        "icon": "/image/提案审批.svg",
         "text": "积分申诉"
       },
       {
-        "icon": "",
+        "icon": "/image/待办事项.svg",
         "text": "自由奖扣"
       },
       {
-        "icon": "",
+        "icon": "/image/配网引导.svg",
         "text": "经营哲学"
       },
       {
-        "icon": "",
+        "icon": "/image/问题解答.svg",
         "text": "水平考核"
       },
       {
-        "icon": "",
+        "icon": "/image/商城.svg",
         "text": "积分商城"
       },
       {
-        "icon": "",
+        "icon": "/image/奖品.svg",
         "text": "积分抽奖"
       }
     ],

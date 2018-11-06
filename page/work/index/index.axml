@@ -1,4 +1,4 @@
-<view>
+<view class="page">
   <view class="top" style="background:url({{data.picture}})"></view>
   <view class="content">
     <view class="content-title">审批日记</view>

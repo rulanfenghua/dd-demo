@@ -1,0 +1,142 @@
+.page {
+  min-height: 100%;
+  /* background: rebeccapurple; */
+}
+
+/* top筛选部分 */
+.top {
+  height: 40px;
+  background: #fff;
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.top .select, .top .tabs, .top .search {
+  display: inline-block;
+}
+
+.top .select {
+  height: 40px;
+  width: 75px;
+  margin: 0 14px 0 0;
+  line-height: 40px;
+  border-bottom: none;
+}
+
+.right-arrow {
+  padding-left: 4px;
+}
+
+.right-arrow::after {
+  height: 4px;
+  width: 4px;
+}
+
+.top .search {
+  height: 40px;
+  width: 60px;
+  position: relative;
+}
+
+.top .search::after {
+  content: "";
+  height: 50%;
+  position: absolute;
+  left: 10px;
+  bottom: 0;
+  border-right: 1px solid #ddd;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.top .tabs {
+  flex: 1;
+}
+
+/* tab栏样式复写 */
+.am-tabs-bar-tab {
+  height: 40px;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+/* title部分 */
+.title {
+  height: 40px;
+  line-height: 40px;
+  display: flex;
+}
+
+.title .title-col {
+  flex: 1;
+  text-align: center;
+  font-family: "SimHei";
+  font-size: 14px;
+  font-weight: bold;
+  color: #999;
+}
+
+/* list部分 */
+.list {
+  background: #F7F7F7;
+}
+
+.list-item {
+  background: #fff;
+  position: relative;
+  height: 50px;
+}
+
+.list-item:first-child {
+
+}
+
+.list-item:nth-child(2) {
+  margin-top: 10px;
+}
+
+.list-item:nth-child(3) {
+
+}
+
+.list-item::after {
+  content: "";
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  border-bottom: 1px solid #ddd;
+}
+
+/* list样式复写 */
+.am-list-item {
+  padding-left: 0;
+}
+
+.am-list-line {
+  padding-right: 0;
+}
+
+.list .brief {
+  display: flex;
+  font-family: "SimHei";
+  font-size: 14px;
+  line-height: 50px;
+  color: #444;
+}
+
+.list .brief .brief-col {
+  flex: 1;
+  text-align: center;
+}
+
+.list .brief .avatar {
+  height: 35px;
+  width: 35px;
+  vertical-align: middle;
+  border-radius: 50%;
+}
+
+.list .brief .number {
+  font-style: italic;
+}

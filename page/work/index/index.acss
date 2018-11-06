@@ -1,0 +1,67 @@
+.page {
+  min-height: 100%;
+}
+
+/* 头部 */
+.top {
+  height: 140px;
+  box-shadow: 0 0 2px #ccc; 
+}
+
+/* content部分 */
+.content {
+  /* box-shadow: 0 0 2px #ccc; */
+  font-family: "microsoft yahei";
+}
+
+.content-title {
+  line-height: 35px;
+  color: #999;
+  font-size: 13px;
+  padding-left: 10px;
+}
+
+.content-list {
+  background: #fff;
+  display: flex;
+}
+
+.content-list .number {
+  flex: 1;
+  position: relative;
+}
+
+.content-list .number::after {
+  content: "";
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  border-right: 1px solid #ddd;
+}
+
+.content-list .number .number-amount, .content-list .number .number-text {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+}
+
+.content-list .number .number-amount {
+  line-height: 65px;
+}
+
+.content-list .number .number-text {
+  padding-bottom: 7px;
+}
+
+/* main部分 */
+.main {
+  font-family: "microsoft yahei";
+}
+
+.main-title {
+  line-height: 35px;
+  color: #999;
+  font-size: 13px;
+  padding-left: 10px;
+}

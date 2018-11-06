@@ -2,7 +2,14 @@ let app = getApp()
 
 Page({
   data: {
-    items: []
+    items: [],
+
+    tabs: [
+      { title: '按日' },
+      { title: '按月' },
+      { title: '按季' },
+      { title: '按年' }
+    ]
   },
   onShow() {
     dd.showLoading()
@@ -50,7 +57,10 @@ Page({
       }
     })
   },
+
   onItemClick({index}) {
     console.log('list点击', index)
-  }
+  },
+  handleTabClick({ index }) { },
+  handleTabChange({ index }) { },
 })

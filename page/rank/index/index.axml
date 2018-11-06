@@ -1,11 +1,16 @@
 <view class="page">
   <view class="top">
-    <view class="select" onTap="showSelect">筛选</view>
-    <view class="tabs">
+    <!-- <view class="select" onTap="showSelect">筛选</view> -->
+    <button type="default" size="mini" onTap="showSelect" class="select">筛选<text class="right-arrow"></text></button>
+    <!-- <view class="tabs">
       <text class="tabs-title">按日</text>
       <text class="tabs-title">按月</text>
       <text class="tabs-title">按季</text>
       <text class="tabs-title">按年</text>
+    </view> -->
+    <view class="tabs">
+      <tabs tabs="{{tabs}}" onTabClick="handleTabClick" onChange="handleTabChange">
+      </tabs>
     </view>
     <view class="search" onTap="showSearch"></view>
   </view>
@@ -32,7 +37,7 @@
       >
         <view class="brief">
           <text class="brief-col number">{{index>2 ? index+1 : ""}}</text>
-          <image class="brief-col avatar" src="{{item.avatar}}"></image>
+          <text class="brief-col"><image class="avatar" src="{{item.avatar}}"></image></text>
           <text class="brief-col">{{item.name}}</text>
           <text class="brief-col">{{item.add}}</text>
           <text class="brief-col">{{item.deduce}}</text>

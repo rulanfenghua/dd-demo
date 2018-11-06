@@ -2,9 +2,20 @@ let app = getApp()
 
 Page({
   data: {
-    data: {}
+    data: {},
+
+    height: ''
   },
   onShow() {
+    dd.getSystemInfo({
+      success: (res) => {
+        var height = res.windowHeight-65
+        this.setData({
+          height: height
+        })
+      }
+    })
+
     dd.showLoading()
     dd.httpRequest({
       url: app.globalData.domain + '/personal',
