@@ -11,8 +11,8 @@ Page({
   onShow() {
     dd.getSystemInfo({
       success: (res) => {
-        var width = res.windowWidth/2 - 30
-        var height = width/2*3
+        var width = res.windowWidth/2 - 21
+        var height = width/2*3 - 10
         this.setData({
           width: width,
           height: height

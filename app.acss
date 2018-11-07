@@ -2,14 +2,15 @@ page {
   background-color: #F7F7F7;
   border: 1px solid rgba(0,0,0,0);
   box-sizing: border-box;
-  height: 100%
+  height: 100%;
+  font-family: -apple-system-font,Helvetica Neue,Helvetica,sans-serif,"microsoft yahei";
 }
 
 .page {
   background-color: #F7F7F7;
   font-family: -apple-system-font,Helvetica Neue,Helvetica,sans-serif,"microsoft yahei";
   font-size: 24rpx;
-  padding: 32rpx;
+  /* padding: 32rpx; */
   flex: 1;
 }
 

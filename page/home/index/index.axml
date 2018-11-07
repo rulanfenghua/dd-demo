@@ -37,7 +37,7 @@
         multipleLine="{{true}}"
         wrap="{{true}}"
       >
-        {{item.name}}
+        <text class="name">{{item.name}}</text>
         <view class="brief">
           <view class="brief-title">{{item.brief.title}}</view>
           <view class="brief-content">{{item.brief.content}}</view>

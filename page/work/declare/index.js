@@ -4,8 +4,10 @@ var app = getApp()
 
 Page({
   ...Dropdown,
-  items: [],
   data: {
+    items: [],
+    value: '',
+
     dropdownSelectData: {
       active: false,
       selectedNav: 0,
@@ -129,5 +131,24 @@ Page({
     this.setData({
       active: false
     })
+  },
+
+  handleInput(value) {
+
+  },
+  handleClear(value) {
+
+  },
+  handleFocus() {
+
+  },
+  handleBlur() {
+
+  },
+  handleCancel() {
+
+  },
+  handleSubmit(value) {
+
   }
 }) 

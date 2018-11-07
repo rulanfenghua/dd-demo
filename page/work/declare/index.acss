@@ -1,2 +1,52 @@
 @import "/components/dropdown/index.acss";
 @import '/components/list/index.acss';
+
+.page {
+  /* padding: 0; */
+}
+
+/* .am-search-back {
+  display: none;
+} */
+
+.am-search-input {
+  font-size: 13px;
+}
+
+.am-search-synthetic-placeholder {
+  font-size: 13px;
+}
+
+.list {
+  background: #F7F7F7;
+  margin: 0 10px 0;
+}
+
+.list-item {
+  background: #fff;
+  box-shadow: 0 0 2px #ccc;
+  margin-top: 10px;
+}
+
+.list-item .title {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.list-item .brief-content {
+  font-size: 12px;
+}
+
+.list-item .brief-bottom {
+  margin-top: 7px;
+  font-size: 13px;
+}
+
+.brief-bottom-left .points {
+  color: #46adf4;
+}
+
+.brief-bottom-right {
+  float: right;
+  color: #999;
+}

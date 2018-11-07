@@ -87,16 +87,23 @@
   height: 50px;
 }
 
-.list-item:first-child {
-
-}
-
 .list-item:nth-child(2) {
   margin-top: 10px;
 }
 
-.list-item:nth-child(3) {
+.list-item:first-child .brief .number {
+  background: url('/image/节点-积分.svg') no-repeat 30px/30px;
+  background-position: center;
+}
 
+.list-item:nth-child(2) .brief .number {
+  background: url('/image/节点-积分 (1).svg') no-repeat 30px/30px;
+  background-position: center;
+}
+
+.list-item:nth-child(3) .brief .number {
+  background: url('/image/节点-积分 (2).svg') no-repeat 30px/30px;
+  background-position: center;
 }
 
 .list-item::after {

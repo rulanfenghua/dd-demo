@@ -20,7 +20,7 @@
     <text class="title-col">姓名</text>
     <text class="title-col">加分</text>
     <text class="title-col">扣分</text>
-    <text class="title-col">总分</text>
+    <text class="title-col" style="color: #46adf4">总分</text>
   </view>
   <list className="list">
     <block a:for="{{items}}" class="list-block">
@@ -41,7 +41,7 @@
           <text class="brief-col">{{item.name}}</text>
           <text class="brief-col">{{item.add}}</text>
           <text class="brief-col">{{item.deduce}}</text>
-          <text class="brief-col amount">{{item.amount}}</text>
+          <text class="brief-col amount" style="color: #46adf4">{{item.amount}}</text>
         </view>
       </list-item>
     </block> 

@@ -12,6 +12,7 @@
 .content {
   /* box-shadow: 0 0 2px #ccc; */
   font-family: "microsoft yahei";
+  margin: 0 10px 0;
 }
 
 .content-title {
@@ -24,6 +25,7 @@
 .content-list {
   background: #fff;
   display: flex;
+  font-size: 14px;
 }
 
 .content-list .number {
@@ -57,6 +59,7 @@
 /* main部分 */
 .main {
   font-family: "microsoft yahei";
+  margin: 0 10px 0;
 }
 
 .main-title {
@@ -64,4 +67,14 @@
   color: #999;
   font-size: 13px;
   padding-left: 10px;
+}
+
+/* grid样式复写 */
+.am-grid-text {
+  font-size: 13px;
+}
+
+.am-grid-icon-container {
+  height: 40px;
+  width: 40px;
 }

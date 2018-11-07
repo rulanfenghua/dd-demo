@@ -1,32 +1,35 @@
 <import src="/components/dropdown/index.axml" />
 
 <!-- <view class="page"> -->
-  <view>
-    <template is="DropdownSelect" data={{...dropdownSelectData}} />
-  </view>
-  <view class="search"></view>
-  <list className="list">
-      <block a:for="{{items}}" class="list-block">
-        <list-item
-          className="list-item"
-          key="item-{{index}}"
-          index="{{index}}"
-          last="{{index === (items.length - 1)}}"
-          arrow="{{item.arrow}}"
-          align="{{item.align}}"
-          onClick="onItemClick"
-          multipleLine="{{true}}"
-          wrap="{{true}}"
-        >
-          {{item.title}}
-          <view class="brief">
-            <view class="brief-content">{{item.content}}</view>
-            <view class="brief-bottom">
-              <text class="brief-bottom-left">积分奖励：{{item.bottom.left}}</text>
-              <text class="brief-bottom-right">{{item.bottom.right}}</text>
-            </view>
-          </view>
-        </list-item>
-      </block> 
-    </list>
-  <!-- </view> -->
+<view class="page">
+<view>
+  <template is="DropdownSelect" data={{...dropdownSelectData}} />
+</view>
+<!-- <view class="search"> -->
+  <search-bar value="{{value}}" placeholder="输入关键字进行搜索" onInput="handleInput" onClear="handleClear" onFocus="handleFocus" onBlur="handleBlur" onCancel="handleCancel" onSubmit="handleSubmit" showCancelButton="{{false}}" hasBackButton="{{true}}" />
+<!-- </view> -->
+<list className="list">
+    <block a:for="{{items}}" class="list-block">
+    <list-item
+      className="list-item"
+      key="item-{{index}}"
+      index="{{index}}"
+      last="{{index === (items.length - 1)}}"
+      arrow="{{item.arrow}}"
+      align="{{item.align}}"
+      onClick="onItemClick"
+      multipleLine="{{true}}"
+      wrap="{{true}}"
+    >
+      <text class="title">{{item.title}}</text>
+      <view class="brief">
+        <view class="brief-content">{{item.content}}</view>
+        <view class="brief-bottom">
+          <text class="brief-bottom-left">积分奖励：<text class="points">{{item.bottom.left}}分</text></text>
+          <text class="brief-bottom-right">{{item.bottom.right}}</text>
+        </view>
+      </view>
+    </list-item>
+  </block> 
+</list>
+</view>

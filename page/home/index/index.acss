@@ -18,6 +18,8 @@
   border-radius: 4px;
   box-shadow: 0 0 2px #ccc;
   margin-bottom: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .content-title {
@@ -119,6 +121,7 @@
   /* border: 1px solid #ccc; */
   border-radius: 4px;
   box-shadow: 0 0 2px #ccc; 
+  margin: 0 10px 0;
 }
 
 .list-header {
@@ -170,8 +173,8 @@
 
 .am-list-extra {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 13px;
+  right: 14px;
 }
 
 .am-list-thumb {
@@ -179,20 +182,21 @@
 }
 
 .am-list-content {
-  font-size: 14px;
-  font-weight: bolder;
+
 }
 /* 列表样式复写完成 */
 
-.brief {
-  font-size: 13px;
-  font-weight: normal;
+.list-item .name {
+  font-size: 14px;
+  font-weight: bolder;
 }
 
 .brief-title {
+  font-size: 13px;
 }
 
 .brief-content {
+  margin-top: 4px;
   font-size: 12px;
 }
 
