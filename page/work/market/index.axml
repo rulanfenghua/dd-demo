@@ -2,11 +2,11 @@
   <view class="top"></view>
   <view class="content">
     <text class="content-left">
-      <image src="/image/赚积分.svg" />
+      <image src="/image/left.png" />
       可用积分： 
       <text class="points">{{data.points}}</text>
     </text>
-    <text class="content-right"><image src="/image/积分兑换.svg" />兑换记录</text>
+    <text class="content-right"><image src="/image/right.png" />兑换记录</text>
   </view>
   <view class="title">
     <view class="title-up">他们都在兑</view>

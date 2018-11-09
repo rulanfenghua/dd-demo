@@ -76,7 +76,7 @@
   top: 14px;
   width: 17px;
   height: 17px;
-  background: url("/image/组织群组.svg") 100%/100%;
+  background: url("/image/frame.png") 100%/100%;
 }
 
 .content-item .task::before {
@@ -86,7 +86,7 @@
   top: 14px;
   width: 17px;
   height: 17px;
-  background: url("/image/工单确认.svg") 100%/100%;
+  background: url("/image/task.png") 100%/100%;
 }
 
 .content-item .diary::before {
@@ -96,7 +96,7 @@
   top: 14px;
   width: 17px;
   height: 17px;
-  background: url("/image/icon_使用文档.svg") 100%/100%;
+  background: url("/image/icon_diary.png") 100%/100%;
 }
 
 button {

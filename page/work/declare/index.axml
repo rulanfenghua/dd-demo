@@ -5,9 +5,9 @@
 <view>
   <template is="DropdownSelect" data={{...dropdownSelectData}} />
 </view>
-<!-- <view class="search"> -->
-  <search-bar value="{{value}}" placeholder="输入关键字进行搜索" onInput="handleInput" onClear="handleClear" onFocus="handleFocus" onBlur="handleBlur" onCancel="handleCancel" onSubmit="handleSubmit" showCancelButton="{{false}}" hasBackButton="{{true}}" />
-<!-- </view> -->
+<view class="search">
+  <search-bar value="{{value}}" disabled="{{true}}" placeholder="输入关键字进行搜索" onInput="handleInput" onClear="handleClear" onFocus="handleFocus" onBlur="handleBlur" onCancel="handleCancel" onSubmit="handleSubmit" showCancelButton="{{false}}" hasBackButton="{{false}}" />
+</view>
 <list className="list">
     <block a:for="{{items}}" class="list-block">
     <list-item

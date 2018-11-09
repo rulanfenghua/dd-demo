@@ -7,12 +7,11 @@ Page({
   },
   onShow() {
     dd.showLoading()
-    var home = false
-    var list = false
 
     dd.httpRequest({
-      url: app.globalData.domain + '/home',
+      url: app.globalData.domain + '/home/index',
       method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
       dataType: 'json',
       success: (res) => {
         console.log('successHome----', res)
@@ -23,56 +22,43 @@ Page({
       fail: (res) => {
         console.log("httpRequestFailHome---", res)
         dd.alert({
-          content: JSON.stringify(err)
+          content: JSON.stringify(res)
         })
+        dd.hideLoading()
       },
       complete: () => {
-        home = true
-        if (home && list) {
-          dd.hideLoading()
-        }
+        dd.hideLoading()
       }
     })
+
+    this.listShow()
+  },
+  onReachBottom() {
+    this.listShow()
+  },
+
+  listShow() {
+    dd.showLoading()
+
     dd.httpRequest({
       url: app.globalData.domain + '/home/list',
       method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
       dataType: 'json',
+      data: {
+        pageNum: '1',
+        pageSize: '20'
+      },
       success: (res) => {
         console.log('successHomeList----', res)
         this.setData({
-          items: res.data.data
+          items: res.data.data.list
         })
       },
       fail: (res) => {
         console.log("httpRequestFailHomeList---", res)
         dd.alert({
-          content: JSON.stringify(err)
-        })
-      },
-      complete: () => {
-        list = true
-        if (home && list) {
-          dd.hideLoading()
-        }
-      }
-    })
-  },
-  onReachBottom() {
-    dd.showLoading()
-    dd.httpRequest({
-      url: app.globalData.domain + '/home/list',
-      method: 'POST',
-      dataType: 'json',
-      success: (res) => {
-        console.log('successHome----', res)
-        this.setData({
-          items: res.data.data
-        })
-      },
-      fail: (res) => {
-        console.log("httpRequestFailHome---", res)
-        dd.alert({
-          content: JSON.stringify(err)
+          content: JSON.stringify(res)
         })
       },
       complete: () => {

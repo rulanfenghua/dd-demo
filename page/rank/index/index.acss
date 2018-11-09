@@ -54,6 +54,14 @@
 }
 
 /* tab栏样式复写 */
+.am-tabs-bar {
+  height: 40px;
+}
+
+.am-tabs-bar-content-fixed {
+  height: 40px;
+}
+
 .am-tabs-bar-tab {
   height: 40px;
   font-size: 13px;
@@ -92,17 +100,17 @@
 }
 
 .list-item:first-child .brief .number {
-  background: url('/image/节点-积分.svg') no-repeat 30px/30px;
+  background: url('/image/number.png') no-repeat 30px/30px;
   background-position: center;
 }
 
 .list-item:nth-child(2) .brief .number {
-  background: url('/image/节点-积分 (1).svg') no-repeat 30px/30px;
+  background: url('/image/number2.png') no-repeat 30px/30px;
   background-position: center;
 }
 
 .list-item:nth-child(3) .brief .number {
-  background: url('/image/节点-积分 (2).svg') no-repeat 30px/30px;
+  background: url('/image/number3.png') no-repeat 30px/30px;
   background-position: center;
 }
 

@@ -1,5 +1,6 @@
 .page {
   min-height: 100%;
+  padding-bottom: 10px;
 }
 
 /* 头部 */
@@ -98,12 +99,12 @@
 }
 
 .content-bottom .content-bottom-image {
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   vertical-align: middle;
   border-radius: 50%;
   margin-left: 14px;
-  margin-right: 2px;
+  margin-right: 7px;
 }
 
 .content-bottom .content-bottom-text {

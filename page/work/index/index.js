@@ -22,51 +22,51 @@ Page({
     ],
     listMain: [
       {
-        "icon": "/image/城市.svg",
+        "icon": "/image/city.png",
         "text": "考勤"
       },
       {
-        "icon": "/image/使用文档.svg",
+        "icon": "/image/page.png",
         "text": "工作日志"
       },
       {
-        "icon": "/image/执行反馈.svg",
+        "icon": "/image/task2.png",
         "text": "悬赏任务"
       },
       {
-        "icon": "/image/测试申请.svg",
+        "icon": "/image/test.png",
         "text": "申报积分"
       },
       {
-        "icon": "/image/广播.svg",
+        "icon": "/image/call.png",
         "text": "公告"
       },
       {
-        "icon": "/image/赞.svg",
+        "icon": "/image/to.png",
         "text": "爱心点赞"
       },
       {
-        "icon": "/image/提案审批.svg",
+        "icon": "/image/app.png",
         "text": "积分申诉"
       },
       {
-        "icon": "/image/待办事项.svg",
+        "icon": "/image/free.png",
         "text": "自由奖扣"
       },
       {
-        "icon": "/image/配网引导.svg",
+        "icon": "/image/book.png",
         "text": "经营哲学"
       },
       {
-        "icon": "/image/问题解答.svg",
+        "icon": "/image/question.png",
         "text": "水平考核"
       },
       {
-        "icon": "/image/商城.svg",
+        "icon": "/image/mall.png",
         "text": "积分商城"
       },
       {
-        "icon": "/image/奖品.svg",
+        "icon": "/image/gift.png",
         "text": "积分抽奖"
       }
     ],
@@ -83,7 +83,7 @@ Page({
 
     dd.showLoading()
     dd.httpRequest({
-      url: app.globalData.domain + '/work',
+      url: app.globalData.domain + '/work/index',
       method: 'POST',
       dataType: 'json',
       success: (res) => {
