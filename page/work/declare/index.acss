@@ -10,6 +10,10 @@
   display: none;
 } */
 
+dropdown-nav-item {
+  font-size: 14px;
+}
+
 dropdown-list-item dropdown-list-item-content {
   font-size: 14px;
 }

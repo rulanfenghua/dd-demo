@@ -8,7 +8,10 @@
     "page/personal/index/index",
 
     "page/work/declare/index",
-    "page/work/market/index"
+    "page/work/market/index",
+    "page/work/declare/approve/index",
+
+    "page/work/index/logs/index"
   ],
   "window": {
     "enableWK": "YES",

@@ -11,7 +11,7 @@ Page({
     dd.httpRequest({
       url: app.globalData.domain + '/home/index',
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      // headers: { 'Content-Type': 'application/json' },
       dataType: 'json',
       success: (res) => {
         console.log('successHome----', res)
@@ -43,7 +43,7 @@ Page({
     dd.httpRequest({
       url: app.globalData.domain + '/home/list',
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      // headers: { 'Content-Type': 'application/json' },
       dataType: 'json',
       data: {
         pageNum: '1',

@@ -132,23 +132,16 @@ Page({
       active: false
     })
   },
+  onItemClick({ index }) {
+    console.log('list点击', index)
 
-  handleInput(value) {
+    var title = this.data.items[index].title
+    var content = this.data.items[index].content
+    var url = `./approve/index?title=${title}&content=${content}`
 
-  },
-  handleClear(value) {
-
-  },
-  handleFocus() {
-
-  },
-  handleBlur() {
-
-  },
-  handleCancel() {
-
-  },
-  handleSubmit(value) {
-
+    console.log(url)
+    dd.navigateTo({
+      url: url
+    })
   }
 }) 

@@ -120,15 +120,15 @@ Page({
     }
   },
   logs() {
-
+    dd.navigateTo({ url: './logs/index' })
   },
   wait() {
-
+    dd.navigateTo({ url: './wait/index' })
   },
   initiate() {
-
+    dd.navigateTo({ url: './initiate/index' })
   },
   copy() {
-    
+    dd.navigateTo({ url: './copy/index' })
   }
 })

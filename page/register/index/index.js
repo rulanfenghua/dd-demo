@@ -57,7 +57,6 @@ Page({
     dd.httpRequest({
       url: app.globalData.domain + '/user/login',
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
       data: {
         phone: e.detail.value.phone,
         password: e.detail.value.password
@@ -71,9 +70,9 @@ Page({
         })
       },
       fail: (res) => {
-        console.log("httpRequestFail---", res)
+        console.log("httpRequestFail----", res)
         dd.alert({
-          content: JSON.stringify(err)
+          content: JSON.stringify(res)
         })
       },
       complete: () => {
