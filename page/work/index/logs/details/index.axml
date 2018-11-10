@@ -1,0 +1,41 @@
+<view class="page">
+  <view class="top">
+    <image class="avatar" />
+    <text class="name"></text>
+    <view class="form-line" />
+  </view>
+  <view class="main">
+    <view class="item">
+      <text class="item-left"></text>
+      <text class="item-right"></text>
+    </view>
+    <view class="item">
+      <text class="item-left"></text>
+      <text class="item-right"></text>
+    </view>
+    <view class="item">
+      <text class="item-left"></text>
+      <text class="item-right"></text>
+    </view>
+    <view class="item">
+      <text class="item-left"></text>
+      <text class="item-right"></text>
+    </view>
+    <view class="item">
+      <text class="item-left"></text>
+      <text class="item-right"></text>
+    </view>
+    <view class="item">
+      <text class="item-left"></text>
+      <text class="item-right"></text>
+    </view>
+    <view class="item">
+      <text class="item-left"></text>
+      <text class="item-right"></text>
+    </view>
+    <view class="item">
+      <text class="item-left"></text>
+      <image class="image" />
+    </view>
+  </view>
+</view>

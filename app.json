@@ -11,7 +11,8 @@
     "page/work/market/index",
     "page/work/declare/approve/index",
 
-    "page/work/index/logs/index"
+    "page/work/index/logs/index",
+    "page/work/index/logs/details/index"
   ],
   "window": {
     "enableWK": "YES",

@@ -1,5 +1,3 @@
-import Dropdown from '/components/dropdown'
-
 var app = getApp()
 
 Page({
@@ -8,27 +6,15 @@ Page({
     items: [],
     value: '',
 
-    dropdownSelectData: {
-      active: false,
-      selectedNav: 0,
-      listData: [
-        {
-          nav: "行为积分",
-          selectedItem: '',
-          data: []
-        },
-        {
-          nav: "品德积分",
-          selectedItem: '',
-          data: []
-        },
-        {
-          nav: "业绩积分",
-          selectedItem: '',
-          data: []
-        }
-      ]
-    }
+    tabs: [{
+        title: '行为积分'
+      },
+      {
+        title: '品德积分'
+      },
+      {
+        title: '业绩积分'
+    }]
   },
   onShow() {
     dd.showLoading()
@@ -41,11 +27,11 @@ Page({
       dataType: 'json',
       success: (res) => {
         console.log('successDeclareTabs----', res)
-        this.setData({
-          'dropdownSelectData.listData[0].data': res.data.data.behavior,
-          'dropdownSelectData.listData[1].data': res.data.data.moral,
-          'dropdownSelectData.listData[2].data': res.data.data.performance
-        })
+        // this.setData({
+        //   'dropdownSelectData.listData[0].data': res.data.data.behavior,
+        //   'dropdownSelectData.listData[1].data': res.data.data.moral,
+        //   'dropdownSelectData.listData[2].data': res.data.data.performance
+        // })
       },
       fail: (res) => {
         console.log("httpRequestFailDeclareTabs---", res)
@@ -85,53 +71,6 @@ Page({
     })
   },
 
-  onDropdownNavItemTap(e, index) {
-    const {
-      selectedNav,
-      active
-    } = this.data.dropdownSelectData
-
-    let nextactive = !active;
-    if (selectedNav !== index) {
-      nextactive = true
-    }
-
-    this.setData({
-      dropdownSelectData: {
-        ...this.data.dropdownSelectData,
-        active: nextactive,
-        selectedNav: index
-      }
-    })
-  },
-  catchDropdownNavItemTap(e, parentIndex, index, title) {
-    const {
-      listData
-    } = this.data.dropdownSelectData
-
-    const data = listData[parentIndex]
-
-    data.selectedItem = index
-
-    // dd.showToast({
-    //   content: `你选中了第${parentIndex + 1}个tab的第${index + 1}个元素`, // 文字内容
-    //   success: (res) => {
-
-    //   },
-    // })
-    this.setData({
-      dropdownSelectData: {
-        ...this.data.dropdownSelectData,
-        active: false,
-        listData
-      }
-    })
-  },
-  catchDropdownBgTap(e) {
-    this.setData({
-      active: false
-    })
-  },
   onItemClick({ index }) {
     console.log('list点击', index)
 
@@ -143,5 +82,11 @@ Page({
     dd.navigateTo({
       url: url
     })
+  },
+  handleTabClick({ index }) {
+
+  },
+  handleTabChange({ index }) {
+
   }
 }) 

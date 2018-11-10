@@ -61,6 +61,10 @@ Page({
   onItemClick({index}) {
     console.log('list点击', index)
   },
-  handleTabClick({ index }) { },
-  handleTabChange({ index }) { },
+  handleTabClick({ index }) {
+
+  },
+  handleTabChange({ index }) {
+
+  }
 })

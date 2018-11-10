@@ -1,5 +1,7 @@
 Page({
   data: {
+    options: {},
+    
     objectArray: [
       {
         id: 0,
@@ -27,9 +29,35 @@ Page({
 
   onLoad(options) {
     console.log(options)
+
+    this.setData({
+      options: options
+    })
   },
   formSubmit(e) {
     console.log('formSubmit----', e.detail.value)
+
+    dd.showLoading()
+    dd.httpRequest({
+      url: app.globalData.domain + '/work/addIntegralApprover',
+      method: 'POST',
+      dataType: 'json',
+      data: {
+        
+      },
+      success: (res) => {
+        console.log('successApp----', res)
+      },
+      fail: (res) => {
+        console.log("httpRequestFailApp---", res)
+        dd.alert({
+          content: JSON.stringify(res)
+        })
+      },
+      complete: () => {
+        dd.hideLoading()
+      }
+    })
   },
 
   changeFrom(e) {
@@ -56,9 +84,10 @@ Page({
       sourceType: ['camera', 'album'],
       count: 2,
       success: (res) => {
-        dd.alert({
-          content: JSON.stringify(res),
-        });
+        // dd.alert({
+        //   content: JSON.stringify(res),
+        // });
+        console.log(res.filePaths)
         if (res && res.filePaths) {
           this.setData({
             filePaths: res.filePaths,
