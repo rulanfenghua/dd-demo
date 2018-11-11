@@ -1,41 +1,41 @@
 <view class="page">
   <view class="top">
-    <image class="avatar" />
-    <text class="name"></text>
+    <image class="avatar" src="{{data.userImg ? data.userImg : 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1541159022813&di=285917cd1f1b7deabe424572b8d3a3a5&imgtype=0&src=http%3A%2F%2Fimg1.gamersky.com%2Fimage2014%2F01%2F20140123ge_11%2Fimage031_S.jpg'}}" />
+    <text class="name">{{data.userName}}</text>
     <view class="form-line" />
   </view>
   <view class="main">
     <view class="item">
-      <text class="item-left"></text>
-      <text class="item-right"></text>
+      <text class="item-left">审批编号</text>
+      <text class="item-right">{{data.approvalNum}}</text>
     </view>
     <view class="item">
-      <text class="item-left"></text>
-      <text class="item-right"></text>
+      <text class="item-left">所在部门</text>
+      <text class="item-right">{{data.userPost}}</text>
     </view>
     <view class="item">
-      <text class="item-left"></text>
-      <text class="item-right"></text>
+      <text class="item-left">审批标题</text>
+      <text class="item-right" style="padding-left: 35%;display: block">{{data.approvalTitle}}</text>
     </view>
     <view class="item">
-      <text class="item-left"></text>
-      <text class="item-right"></text>
+      <text class="item-left">审批内容</text>
+      <text class="item-right" style="padding-left: 35%;display: block">{{data.approvalContent}}</text>
     </view>
     <view class="item">
-      <text class="item-left"></text>
-      <text class="item-right"></text>
+      <text class="item-left">审批时间</text>
+      <text class="item-right">{{data.spTime}}</text>
     </view>
     <view class="item">
-      <text class="item-left"></text>
-      <text class="item-right"></text>
+      <text class="item-left">积分类型</text>
+      <text class="item-right">{{data.integralTypeId == '1' ? '品德积分' : (data.integralTypeId == '2' ? '业绩积分' : '行为积分')}}</text>
     </view>
     <view class="item">
-      <text class="item-left"></text>
-      <text class="item-right"></text>
+      <text class="item-left">申请积分</text>
+      <text class="item-right">{{data.addIntegral}}</text>
     </view>
     <view class="item">
-      <text class="item-left"></text>
-      <image class="image" />
+      <text class="item-left">备注</text>
+      <image class="image" src="{{data.approvalImg[0]}}" a:if="{{data.approvalImg[0]}}" />
     </view>
   </view>
 </view>

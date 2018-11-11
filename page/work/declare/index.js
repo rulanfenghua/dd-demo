@@ -1,10 +1,8 @@
 var app = getApp()
 
 Page({
-  ...Dropdown,
   data: {
     items: [],
-    value: '',
 
     tabs: [{
         title: '行为积分'
@@ -18,38 +16,16 @@ Page({
   },
   onShow() {
     dd.showLoading()
-    var list = false
-    var tabs = false
-
+    
     dd.httpRequest({
-      url: app.globalData.domain + '/work/declare/tabs',
+      url: app.globalData.domain + '/work/declareBehavior',
       method: 'POST',
       dataType: 'json',
-      success: (res) => {
-        console.log('successDeclareTabs----', res)
-        // this.setData({
-        //   'dropdownSelectData.listData[0].data': res.data.data.behavior,
-        //   'dropdownSelectData.listData[1].data': res.data.data.moral,
-        //   'dropdownSelectData.listData[2].data': res.data.data.performance
-        // })
+      data: {
+        pageNum: 1,
+        pageSize: 20,
+        search: ''
       },
-      fail: (res) => {
-        console.log("httpRequestFailDeclareTabs---", res)
-        dd.alert({
-          content: JSON.stringify(err)
-        })
-      },
-      complete: () => {
-        list = true
-        if (list && tabs) {
-          dd.hideLoading()
-        }
-      }
-    })
-    dd.httpRequest({
-      url: app.globalData.domain + '/work/declare',
-      method: 'POST',
-      dataType: 'json',
       success: (res) => {
         console.log('successDeclare----', res)
         this.setData({
@@ -63,10 +39,7 @@ Page({
         })
       },
       complete: () => {
-        tabs = true
-        if (list && tabs) {
-          dd.hideLoading()
-        }
+        dd.hideLoading()
       }
     })
   },
@@ -74,9 +47,12 @@ Page({
   onItemClick({ index }) {
     console.log('list点击', index)
 
-    var title = this.data.items[index].title
-    var content = this.data.items[index].content
-    var url = `./approve/index?title=${title}&content=${content}`
+    var title = this.data.items[index].behaviorTitle
+    var content = this.data.items[index].behaviorContent
+    var type = this.data.items[index].typeId
+    var max = this.data.items[index].zuiDuoIntegral
+    var min = this.data.items[index].zuiShaoIntegral
+    var url = `./approve/index?title=${title}&content=${content}&type=${type}&max=${max}&min=${min}`
 
     console.log(url)
     dd.navigateTo({

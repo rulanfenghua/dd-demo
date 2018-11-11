@@ -3,9 +3,18 @@
     <tabs tabs="{{tabs}}" onTabClick="handleTabClick" onChange="handleTabChange">
     </tabs>
   </view>
-  <view class="search">
+  <!-- <view class="search">
     <search-bar value="{{value}}" disabled="{{true}}" placeholder="输入关键字进行搜索" onInput="handleInput" onClear="handleClear" onFocus="handleFocus" onBlur="handleBlur" onCancel="handleCancel" onSubmit="handleSubmit" showCancelButton="{{false}}" hasBackButton="{{false}}" />
+  </view> -->
+  <!-- <view class="page-section"> -->
+  <view class="page-section-demo">
+    <view class="search-outer">
+      <input class="search-input" placeholder="搜索" value="{{search}}" onConfirm="doneSearch" onInput="handleSearch" />
+      <text class="search-cancel" onTap="clearSearch">取消
+      </text>
+    </view>
   </view>
+  <!-- </view> -->
   <list className="list">
       <block a:for="{{items}}" class="list-block">
       <list-item
@@ -19,12 +28,12 @@
         multipleLine="{{true}}"
         wrap="{{true}}"
       >
-        <text class="title">{{item.title}}</text>
+        <text class="title">{{item.behaviorTitle}}</text>
         <view class="brief">
-          <view class="brief-content">{{item.content}}</view>
+          <view class="brief-content">{{item.behaviorContent}}</view>
           <view class="brief-bottom">
-            <text class="brief-bottom-left">积分奖励：<text class="points">{{item.bottom.left}}分</text></text>
-            <text class="brief-bottom-right">{{item.bottom.right}}</text>
+            <text class="brief-bottom-left">积分奖励：<text class="points">{{item.zuiShaoIntegral}}-{{item.zuiDuoIntegral}}分</text></text>
+            <text class="brief-bottom-right">{{item.shenQingFangShi == '1' ? '每天一次' : '无限制'}}</text>
           </view>
         </view>
       </list-item>

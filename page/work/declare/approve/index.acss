@@ -23,3 +23,38 @@
   height: 32rpx;
   margin-left: 16rpx;
 }
+
+.page {
+  min-height: 100%;
+  padding-bottom: 10px;
+  font-size: 14px;
+}
+
+.am-input-label {
+  font-weight: bold;
+}
+
+.page-section-title {
+  font-weight: bold;
+}
+
+.row-title {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.row-extra {
+  font-size: 14px;
+}
+
+.am-input-content {
+  font-size: 13px;
+}
+
+button {
+  font-size: 17px;
+  height: 44px;
+  line-height: 44px;
+  margin-left: 10px;
+  margin-right: 10px;
+}

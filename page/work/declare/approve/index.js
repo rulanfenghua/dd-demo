@@ -20,9 +20,11 @@ Page({
         name: '日本',
       },
     ],
+    pointsArray: [],
     arrIndexFrom: 0,
     arrIndexApp: 0,
     arrIndexTo: 0,
+    arrIndexPoints: 0,
 
     filePaths: [],
   },
@@ -30,8 +32,17 @@ Page({
   onLoad(options) {
     console.log(options)
 
+    var pointsArray = []
+    var median = parseInt(options.min)
+    pointsArray.push(median)
+    while (median < parseInt(options.max)) {
+      median += 10
+      pointsArray.push(median)
+    }
+
     this.setData({
-      options: options
+      options: options,
+      pointsArray: pointsArray
     })
   },
   formSubmit(e) {
@@ -49,7 +60,7 @@ Page({
         console.log('successApp----', res)
       },
       fail: (res) => {
-        console.log("httpRequestFailApp---", res)
+        console.log("httpRequestFailApp----", res)
         dd.alert({
           content: JSON.stringify(res)
         })
@@ -76,6 +87,12 @@ Page({
     console.log('picker发送选择改变，携带值为', e.detail.value);
     this.setData({
       arrIndexTo: e.detail.value,
+    });
+  },
+  changePoints(e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value);
+    this.setData({
+      arrIndexPoints: e.detail.value,
     });
   },
 

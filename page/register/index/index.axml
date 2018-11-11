@@ -1,5 +1,5 @@
 <view class="page" hidden="{{hideList}}">
-  <view class="title"></view>
+  <view class="title">媚思嘉积分平台</view>
   <form class="form" onSubmit="formSubmit">
     <view class="input">
     <input-item
