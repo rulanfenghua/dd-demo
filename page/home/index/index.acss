@@ -172,6 +172,10 @@
   border-bottom: 1px solid #ddd;
 }
 
+.am-list-line-bottom {
+  display: none;
+}
+
 .am-list-extra {
   position: absolute;
   top: 13px;

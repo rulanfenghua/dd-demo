@@ -83,7 +83,7 @@ Page({
 
     dd.showLoading()
     dd.httpRequest({
-      url: app.globalData.domain + '/work/index',
+      url: app.globalData.domain + '/work/countLogNun',
       method: 'POST',
       dataType: 'json',
       success: (res) => {

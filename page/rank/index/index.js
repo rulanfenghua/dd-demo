@@ -9,47 +9,44 @@ Page({
       { title: '按月' },
       { title: '按季' },
       { title: '按年' }
-    ]
+    ],
+
+    times: 1
   },
   onShow() {
-    dd.showLoading()
-    dd.httpRequest({
-      url: app.globalData.domain + '/rank',
-      method: 'POST',
-      dataType: 'json',
-      success: (res) => {
-        console.log('successRank----', res)
-        this.setData({
-          items: res.data.data
-        })
-      },
-      fail: (res) => {
-        console.log("httpRequestFailRank---", res)
-        dd.alert({
-          content: JSON.stringify(err)
-        })
-      },
-      complete: () => {
-        dd.hideLoading()
-      }
-    })
+    this.showList()
   },
   onReachBottom() {
+    this.showList()
+  },
+
+  showList() {
     dd.showLoading()
     dd.httpRequest({
-      url: app.globalData.domain + '/rank',
+      url: app.globalData.domain + '/rank/index',
       method: 'POST',
+      data: {
+        pageNum: 1,
+        pageSize: 20,
+        deptId: '',
+        postId: '',
+        typeId: '',
+        times: this.data.times,
+        spTime1: '',
+        spTime2: '',
+        searchName: ''
+      },
       dataType: 'json',
       success: (res) => {
         console.log('successRank----', res)
         this.setData({
-          items: res.data.data
+          items: res.data.data.list
         })
       },
       fail: (res) => {
         console.log("httpRequestFailRank---", res)
         dd.alert({
-          content: JSON.stringify(err)
+          content: JSON.stringify(res)
         })
       },
       complete: () => {
@@ -62,9 +59,15 @@ Page({
     console.log('list点击', index)
   },
   handleTabClick({ index }) {
+    console.log(index)
 
+    this.setData({
+      items: index+1
+    })
+
+    this.showList()
   },
   handleTabChange({ index }) {
-
+    console.log(index)
   }
 })

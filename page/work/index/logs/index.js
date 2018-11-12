@@ -15,14 +15,18 @@ Page({
       method: 'POST',
       // headers: { 'Content-Type': 'application/json' },
       dataType: 'json',
+      data: {
+        pageSize: 1000,
+        pageNum: 1
+      },
       success: (res) => {
         console.log('successLogsList----', res)
         this.setData({
-          items: res.data.data
+          items: res.data.data.list
         })
       },
       fail: (res) => {
-        console.log("httpRequestFailLogsList---", res)
+        console.log("httpRequestFailLogsList----", res)
         dd.alert({
           content: JSON.stringify(res)
         })

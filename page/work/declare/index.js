@@ -29,7 +29,7 @@ Page({
       success: (res) => {
         console.log('successDeclare----', res)
         this.setData({
-          items: res.data.data
+          items: res.data.data.list
         })
       },
       fail: (res) => {
@@ -52,9 +52,9 @@ Page({
     var type = this.data.items[index].typeId
     var max = this.data.items[index].zuiDuoIntegral
     var min = this.data.items[index].zuiShaoIntegral
-    var url = `./approve/index?title=${title}&content=${content}&type=${type}&max=${max}&min=${min}`
+    var id = this.data.items[index].behaviorId
+    var url = `./approve/index?title=${title}&content=${content}&type=${type}&max=${max}&min=${min}&id=${id}`
 
-    console.log(url)
     dd.navigateTo({
       url: url
     })

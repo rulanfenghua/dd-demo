@@ -4,19 +4,19 @@
     <view class="content-title">审批日记</view>
     <view class="content-list">
       <view class="number">
-        <text class="number-amount" onTap="logs">{{data.approve.logs}}</text>
+        <text class="number-amount" onTap="logs">{{data.counNum ? data.counNum : '-'}}</text>
         <text class="number-text">审批日志</text>
       </view>
       <view class="number">
-        <text class="number-amount" onTap="wait">{{data.approve.wait}}</text>
+        <text class="number-amount" onTap="wait">{{data.dwsp ? data.dwsp : '-'}}</text>
         <text class="number-text">待我审批</text>
       </view>
       <view class="number">
-        <text class="number-amount" onTap="initiate">{{data.approve.initiate}}</text>
+        <text class="number-amount" onTap="initiate">{{data.counNum1 ? data.counNum1 : '-'}}</text>
         <text class="number-text">我发起的</text>
       </view>
       <view class="number">
-        <text class="number-amount" onTap="copy">{{data.approve.copy}}</text>
+        <text class="number-amount" onTap="copy">{{data.csrs ? data.csrs : '-'}}</text>
         <text class="number-text">抄送我的</text>
       </view>
     </view>

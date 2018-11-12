@@ -36,6 +36,8 @@
   height: 40px;
   width: 60px;
   position: relative;
+  background: url('/image/search.png') no-repeat center;
+  background-size: 20px 20px;
 }
 
 .top .search::after {

@@ -32,8 +32,8 @@
         <view class="brief">
           <view class="brief-content">{{item.behaviorContent}}</view>
           <view class="brief-bottom">
-            <text class="brief-bottom-left">积分奖励：<text class="points">{{item.zuiShaoIntegral}}-{{item.zuiDuoIntegral}}分</text></text>
-            <text class="brief-bottom-right">{{item.shenQingFangShi == '1' ? '每天一次' : '无限制'}}</text>
+            <text class="brief-bottom-left">积分奖励：<text class="points">{{item.zuiShaoIntegral ? item.zuiShaoIntegral : '0'}}-{{item.zuiDuoIntegral}}分</text></text>
+            <text class="brief-bottom-right">{{item.shenQingFangShi == '0' ? '每天一次' : '无限制'}}</text>
           </view>
         </view>
       </list-item>

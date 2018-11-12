@@ -14,6 +14,6 @@ App({
   globalData: {
     corpId: '',
     level: 1,
-    domain: 'https://easy-mock.com/mock/5bdaaea365346e4f101027ce/simple-demo'
+    domain: 'http://192.168.0.104:8081'
   }
 });

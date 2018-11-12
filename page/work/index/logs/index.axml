@@ -9,12 +9,12 @@
             {{item.approvalTitle}}
           </view>
           <view class="brief-bottom">
-            <text class="brief-bottom-left">{{item.status == '1' ? '审批中' : (item.status == '2' ? '审批通过' : '审批不过')}}</text>
+            <text class="brief-bottom-left">{{item.status == '0' ? '审批中' : (item.status == '1' ? '审批通过' : '审批不过')}}</text>
             <text class="brief-bottom-right">{{item.sqTime}}</text>
           </view>
         </view>
         <view slot="extra" class="extra">
-        {{item.addIntegral>0 ? '+' : ''}}{{item.addIntegral}}    {{item.typeId == '1' ? 'A分' : (item.typeId == '2' ? 'B分' : 'C分')}}        
+        {{item.sqIntegral>0 ? '+' : ''}}{{item.sqIntegral}}    {{item.typeId == '1' ? 'A分' : (item.typeId == '2' ? 'B分' : 'C分')}}        
         </view>
       </list-item>
     </block>

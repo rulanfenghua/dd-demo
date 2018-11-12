@@ -37,9 +37,9 @@
       >
         <view class="brief">
           <text class="brief-col number">{{index>2 ? index+1 : ""}}</text>
-          <text class="brief-col"><image class="avatar" src="{{item.avatar}}"></image></text>
-          <text class="brief-col">{{item.name}}</text>
-          <text class="brief-col">{{item.add}}</text>
+          <text class="brief-col"><image class="avatar" src="{{item.userImg}}"></image></text>
+          <text class="brief-col">{{item.userName}}</text>
+          <text class="brief-col">{{item.addIntegral}}</text>
           <text class="brief-col">{{item.deduce}}</text>
           <text class="brief-col amount" style="color: #46adf4">{{item.amount}}</text>
         </view>

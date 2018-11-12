@@ -58,3 +58,11 @@ button {
   margin-left: 10px;
   margin-right: 10px;
 }
+
+.am-input-line-bottom {
+  display: none;
+}
+
+.page-section-btns {
+  border-top: none;
+}

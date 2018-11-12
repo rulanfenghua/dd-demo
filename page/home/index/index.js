@@ -6,8 +6,6 @@ Page({
     data: {}
   },
   onShow() {
-    dd.showLoading()
-
     dd.httpRequest({
       url: app.globalData.domain + '/home/index',
       method: 'POST',
@@ -27,7 +25,6 @@ Page({
         dd.hideLoading()
       },
       complete: () => {
-        dd.hideLoading()
       }
     })
 
