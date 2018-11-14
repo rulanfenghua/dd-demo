@@ -117,6 +117,9 @@ Page({
       case 10:
         dd.navigateTo({url: '../market/index'});
         break;
+      case 7:
+        dd.navigateTo({ url: '../award/index' });
+        break;
     }
   },
   logs() {

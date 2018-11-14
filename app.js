@@ -14,6 +14,6 @@ App({
   globalData: {
     corpId: '',
     level: 1,
-    domain: 'http://192.168.0.104:8081'
+    domain: 'http://192.168.10.71:8081'
   }
 });

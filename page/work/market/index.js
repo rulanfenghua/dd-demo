@@ -2,7 +2,7 @@ let app = getApp()
 
 Page({
   data: {
-    data: {},
+    data: '',
     items: [],
 
     width: '',
@@ -20,12 +20,8 @@ Page({
       }
     })
 
-    dd.showLoading()
-    var data = false
-    var items = false
-
     dd.httpRequest({
-      url: app.globalData.domain + '/work/market',
+      url: app.globalData.domain + '/integralGoods/selectIntegralGoodsKYIntegral',
       method: 'POST',
       dataType: 'json',
       success: (res) => {
@@ -35,52 +31,32 @@ Page({
         })
       },
       fail: (res) => {
-        console.log("httpRequestFailMarket---", res)
+        console.log("httpRequestFailMarket----", res)
         dd.alert({
-          content: JSON.stringify(err)
+          content: JSON.stringify(res)
         })
       },
       complete: () => {
-        data = true
-        if (data && items) {
-          dd.hideLoading()
-        }
       }
     })
-    dd.httpRequest({
-      url: app.globalData.domain + '/work/market/list',
-      method: 'POST',
-      dataType: 'json',
-      success: (res) => {
-        console.log('successMarketList----', res)
-        this.setData({
-          items: res.data.data
-        })
-      },
-      fail: (res) => {
-        console.log("httpRequestFailMarketList---", res)
-        dd.alert({
-          content: JSON.stringify(err)
-        })
-      },
-      complete: () => {
-        items = true
-        if (data && items) {
-          dd.hideLoading()
-        }
-      }
-    })
+    this.showList()
   },
-  onReachBottom() {
+
+  showList() {
     dd.showLoading()
+
     dd.httpRequest({
-      url: app.globalData.domain + '/work/market/list',
+      url: app.globalData.domain + '/integralGoods/selectIntegralGoodsList',
       method: 'POST',
       dataType: 'json',
+      data: {
+        pageSize: 20,
+        pageNum: 1
+      },
       success: (res) => {
         console.log('successMarketList----', res)
         this.setData({
-          items: res.data.data
+          items: res.data.data.list
         })
       },
       fail: (res) => {
@@ -93,5 +69,8 @@ Page({
         dd.hideLoading()
       }
     })
+  },
+  onReachBottom() {
+    this.showList()
   }
 })

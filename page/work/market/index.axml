@@ -4,7 +4,7 @@
     <text class="content-left">
       <image src="/image/left.png" />
       可用积分： 
-      <text class="points">{{data.points}}</text>
+      <text class="points">{{data}}</text>
     </text>
     <text class="content-right"><image src="/image/right.png" />兑换记录</text>
   </view>
@@ -14,10 +14,10 @@
   </view>
   <view class="main">
     <view a:for="{{items}}" class="item" style="width: {{width}};height: {{height}};display: inline-block">
-      <image src="{{item.picture}}" class="item-picture" style="width: {{width}};height: {{width}}"></image>
-      <view class="item-title">{{item.title}}</view>
+      <image src="{{item.goodLbImg ? item.goodLbImg : 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1541328157322&di=1ff74bf95f26ec47f6ab9d03910ecd88&imgtype=0&src=http%3A%2F%2Ff.hiphotos.baidu.com%2Fzhidao%2Fpic%2Fitem%2Fa5c27d1ed21b0ef4662dfff3d8c451da80cb3e51.jpg'}}" class="item-picture" style="width: {{width}};height: {{width}}"></image>
+      <view class="item-title">{{item.goodName}}</view>
       <view class="item-bottom">
-        <text class="item-bottom-left"><text class="price">{{item.price}}</text>积分</text>
+        <text class="item-bottom-left"><text class="price">{{item.dhIntegral}}</text>积分</text>
         <text class="item-bottom-right">兑换</text>
       </view>
     </view>

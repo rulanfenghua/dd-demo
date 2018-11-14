@@ -8,7 +8,7 @@
 } */
 
 .tabs {
-  margin: 0 10px 0;
+  /* margin: 0 10px 0; */
 }
 
 .am-tabs-bar {
@@ -26,7 +26,7 @@
 }
 
 .page-section-demo {
-  padding: 0 10px 0;
+  padding: 0;
 }
 
 .search-outer {

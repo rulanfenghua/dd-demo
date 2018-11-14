@@ -1,17 +1,19 @@
 <view class="page" style="min-height: {{height}}">
   <view class="wrapper">
   <card
-    thumb="{{data.avatar}}"
+    thumb="{{data.avatar ? data.avatar : '/image/logo.jpg'}}"
     title="{{data.name}}"
-    subTitle="{{data.info}}"
+    subTitle="{{data.deptName}} {{data.postName}}"
     onClick="onCardClick"
   >
-    <view class="am-card-footer">
-      <text>积分：{{data.amount}}</text>
-      <text style="margin-left: 34px;">基础积分：{{data.base}}</text>
-    </view>
+  <view class="am-card-footer">
+    <text>积分：{{data.amount}}</text>
+    <text style="margin-left: 34px;">基础积分：{{data.base}}</text>
+  </view>
   </card>
-  <view class="chart"></view>
+  <view class="chart">
+    <dd-charts canvasId="ddchart-canvas" onDraw="onDraw" />
+  </view>
   <view class="content">
     <view class="content-item" onTap="toFrame">
       <text class="frame">企业组织架构</text>

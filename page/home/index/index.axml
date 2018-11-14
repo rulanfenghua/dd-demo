@@ -15,7 +15,7 @@
       </view>
     </view>
     <view class="content-bottom" onTap="rankTo">
-      <image src="{{data.avatar ? data.avatar : 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1541159022813&di=285917cd1f1b7deabe424572b8d3a3a5&imgtype=0&src=http%3A%2F%2Fimg1.gamersky.com%2Fimage2014%2F01%2F20140123ge_11%2Fimage031_S.jpg'}}" class="content-bottom-image"/>
+      <image src="{{data.avatar ? data.avatar : '/image/logo.jpg'}}" class="content-bottom-image"/>
       <text class="content-bottom-text">{{data.name ? data.name : '暂时无人'}} 获得今日的积分冠军</text>
       <text class="right-arrow"></text>
     </view>
@@ -30,7 +30,7 @@
         key="item-{{index}}"
         index="{{index}}"
         last="{{index === (items.length - 1)}}"
-        thumb="{{item.userImg ? item.userImg : 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1541159022813&di=285917cd1f1b7deabe424572b8d3a3a5&imgtype=0&src=http%3A%2F%2Fimg1.gamersky.com%2Fimage2014%2F01%2F20140123ge_11%2Fimage031_S.jpg'}}"
+        thumb="{{item.userImg ? item.userImg : '/image/logo.jpg'}}"
         arrow="{{item.arrow}}"
         align="{{item.align}}"
         onClick="onItemClick"

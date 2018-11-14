@@ -9,9 +9,11 @@
 
     "page/work/declare/index",
     "page/work/market/index",
+    "page/work/award/index",
     "page/work/declare/approve/index",
 
     "page/work/index/logs/index",
+    "page/work/index/wait/index",
     "page/work/index/logs/details/index"
   ],
   "window": {

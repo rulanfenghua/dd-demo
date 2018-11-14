@@ -59,15 +59,17 @@ Page({
     console.log('list点击', index)
   },
   handleTabClick({ index }) {
-    console.log(index)
-
     this.setData({
-      items: index+1
+      times: index + 1
     })
 
     this.showList()
   },
   handleTabChange({ index }) {
-    console.log(index)
+    this.setData({
+      items: index + 1
+    })
+
+    this.showList()
   }
 })
