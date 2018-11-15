@@ -44,8 +44,14 @@ Page({
       },
       success: (res) => {
         console.log('successUsers----', res)
+        var users = res.data.data.list
+        users.unshift({
+          userName: '为空',
+          userId: ''
+        })
+
         this.setData({
-          users: res.data.data.list
+          users: users
         })
       },
       fail: (res) => {

@@ -118,7 +118,12 @@ Page({
         dd.navigateTo({url: '../market/index'});
         break;
       case 7:
-        dd.navigateTo({ url: '../award/index' });
+        dd.alert(
+          {
+            content: '正在测试，敬请期待'
+          }
+        );
+        // dd.navigateTo({ url: '../award/index' });
         break;
     }
   },

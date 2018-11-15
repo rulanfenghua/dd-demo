@@ -1,13 +1,15 @@
+<import src="/components/tag/index.axml" />
+
 <view class="page">
+  <view class="page-section-demo {{show ? 'search' : ''}}">
+    <view class="search-outer">
+      <input class="search-input" placeholder="搜索" value="{{search}}" onFocus="focusSearch" onBlur="blurSearch" onConfirm="doneSearch" onInput="handleSearch" />
+      <text class="search-cancel {{active ? 'focus' : ''}}" onTap="clearSearch">取消      
+      </text>
+    </view>
+  </view> 
   <view class="top">
-    <!-- <view class="select" onTap="showSelect">筛选</view> -->
     <button type="default" size="mini" onTap="showSelect" class="select">筛选<text class="right-arrow"></text></button>
-    <!-- <view class="tabs">
-      <text class="tabs-title">按日</text>
-      <text class="tabs-title">按月</text>
-      <text class="tabs-title">按季</text>
-      <text class="tabs-title">按年</text>
-    </view> -->
     <view class="tabs">
       <tabs tabs="{{tabs}}" onTabClick="handleTabClick" onChange="handleTabChange">
       </tabs>
@@ -46,4 +48,31 @@
       </list-item>
     </block> 
   </list>
+</view>
+<view class="filter {{showFilter ? 'show-filter' : ''}}">
+  <view>
+    <tabs
+      tabs="{{tabsFilter}}"
+      fixed="{{true}}"
+      onTabClick="handleTabFilterClick"
+      onChange="handleTabFilterChange"
+    >
+      <block a:for="{{tabsFilter}}">
+        <tab-content key="{{index}}">
+          <view class="tab-content">
+            <view class="container">
+              <view class="tag-list">
+                <block a:for="{{tags}}">
+                  <template is="tag" data="{{props: tags[index]}}"  />
+                </block>
+              </view>
+              <view class="mt-24">
+                <text>您选择的是: {{selectedLables}}</text>
+              </view>
+          </view>
+          </view>
+        </tab-content>
+      </block>
+    </tabs>
+  </view>
 </view>

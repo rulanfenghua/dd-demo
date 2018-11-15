@@ -21,7 +21,7 @@
 
 .am-tabs-bar-tab {
   height: 40px;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: bold;
 }
 
@@ -34,7 +34,7 @@
   display:flex;
   height:40px;
   overflow:hidden;
-  padding: 8px;
+  padding: 10px 10px;
   border-bottom: 1px solid #ddd;
   background-color: #efeff4;
 }
@@ -54,8 +54,8 @@
   border-color: transparent;
 }
 
-.search-input:focus + .search-cancel {
-  margin-right:0;
+.focus.search-cancel {
+  margin-right: 0;
   opacity: 1;
 }
 

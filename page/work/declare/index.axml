@@ -9,8 +9,8 @@
   <!-- <view class="page-section"> -->
   <view class="page-section-demo">
     <view class="search-outer">
-      <input class="search-input" placeholder="搜索" value="{{search}}" onConfirm="doneSearch" onInput="handleSearch" />
-      <text class="search-cancel" onTap="clearSearch">取消
+      <input class="search-input" placeholder="搜索" value="{{search}}" onFocus="focusSearch" onBlur="blurSearch" onConfirm="doneSearch" onInput="handleSearch" />
+      <text class="search-cancel {{active ? 'focus' : ''}}" onTap="clearSearch">取消
       </text>
     </view>
   </view>

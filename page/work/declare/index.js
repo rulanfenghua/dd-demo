@@ -3,6 +3,9 @@ var app = getApp()
 Page({
   data: {
     items: [],
+    search: '',
+    active: false,
+    url: '/work/declareBehavior',
 
     tabs: [{
         title: '行为积分'
@@ -15,16 +18,20 @@ Page({
     }]
   },
   onShow() {
+    this.listShow()
+  },
+
+  listShow() {
     dd.showLoading()
-    
+
     dd.httpRequest({
-      url: app.globalData.domain + '/work/declareBehavior',
+      url: app.globalData.domain + this.data.url,
       method: 'POST',
       dataType: 'json',
       data: {
         pageNum: 1,
         pageSize: 20,
-        search: ''
+        search: this.data.search
       },
       success: (res) => {
         console.log('successDeclare----', res)
@@ -33,15 +40,43 @@ Page({
         })
       },
       fail: (res) => {
-        console.log("httpRequestFailDeclare---", res)
+        console.log("httpRequestFailDeclare----", res)
         dd.alert({
-          content: JSON.stringify(err)
+          content: JSON.stringify(res)
         })
       },
       complete: () => {
         dd.hideLoading()
       }
     })
+  },
+
+  handleSearch(e) {
+    this.setData({
+      search: e.detail.value
+    })
+  },
+  clearSearch() {
+    this.setData({
+      search: '',
+      active: false
+    })
+
+    dd.hideKeyboard()
+  },
+  focusSearch() {
+    this.setData({
+      active: true
+    })
+  },
+  blurSearch() {
+    this.setData({
+      active: false
+    })
+  },
+  doneSearch() {
+    this.listShow()
+    dd.hideKeyboard()
   },
 
   onItemClick({ index }) {
@@ -60,7 +95,26 @@ Page({
     })
   },
   handleTabClick({ index }) {
-
+    switch (index) {
+      case 0 :
+      this.setData({
+        url: '/work/declareBehavior'
+      });
+      this.listShow();
+      break;
+      case 1 :
+      this.setData({
+        url: '/work/declareMoral'
+      });
+      this.listShow();
+      break;
+      case 2:
+      this.setData({
+        url: '/work/declareResults'
+      });
+      this.listShow();
+      break;
+    }
   },
   handleTabChange({ index }) {
 

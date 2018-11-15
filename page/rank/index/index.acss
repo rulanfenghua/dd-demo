@@ -1,3 +1,5 @@
+@import '/components/tag/index.acss';
+
 .page {
   min-height: 100%;
   /* background: rebeccapurple; */
@@ -49,6 +51,65 @@
   border-right: 1px solid #ddd;
   top: 50%;
   transform: translateY(-50%);
+}
+
+.page-section-demo {
+  flex: 1;
+  padding: 0;
+  background: #fff;
+  margin-top: -40px;
+  opacity: 0;
+  transition: margin-top .3s, opacity .3s;
+  transition-delay: .1s;
+}
+
+.page-section-demo.search {
+  margin-top: 0;
+  opacity: 1;
+}
+
+.search-outer {
+  box-sizing: border-box;
+  display:flex;
+  height:40px;
+  overflow:hidden;
+  padding: 8px 10px;
+  border-bottom: 1px solid #ddd;
+  background-color: #efeff4;
+}
+
+.search-outer * {
+  box-sizing: border-box;
+}
+
+.search-input {
+  flex:1;
+  text-align: left;
+  display: block;
+  color: #000;
+  height: 24px;
+  font-size: 15px;
+  background-color: #fff;
+  border-color: transparent;
+}
+
+.focus.search-cancel {
+  margin-right: 0;
+  opacity: 1;
+}
+
+.search-cancel {
+  margin-right:-40px;
+  display: inline-block;
+  opacity: 0;
+  padding-left: 8px;
+  height: 24px;
+  line-height: 24px;
+  font-size: 16px;
+  color: #108ee9;
+  text-align: right;
+  transition: margin-right .3s,opacity .3s;
+  transition-delay: .1s;
 }
 
 .top .tabs {
@@ -156,4 +217,38 @@
 
 .list .brief .number {
   font-style: italic;
+}
+
+.filter {
+  background: green;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  top: 0;
+  left: -30%;
+  opacity: 0;
+  transition: left .3s,opacity .3s,z-index .3s;
+  transition-delay: .1s;
+}
+
+.filter.show-filter {
+  opacity: 1;
+  left: 0;
+  z-index: 199;
+}
+
+/* filter部分页面样式 */
+.container {
+    padding: 0 20rpx;
+}
+
+.mt-24 {
+    margin-top: 24rpx;
+}
+
+.tag-list {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 24rpx;
 }
