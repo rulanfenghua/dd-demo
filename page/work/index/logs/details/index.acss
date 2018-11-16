@@ -47,3 +47,11 @@
 .am-vertical-steps {
 
 }
+
+.am-vertical-step-title {
+  font-size: 14px;
+}
+
+.am-vertical-step-description {
+  font-size: 12px;
+}

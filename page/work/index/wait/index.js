@@ -4,6 +4,7 @@ Page({
   data: {
     items: [],
     search: '',
+    status: 1,
     active: false,
 
     tabs: [{
@@ -26,6 +27,7 @@ Page({
       data: {
         pageNum: 1,
         pageSize: 20,
+        status: this.data.status,
         search: this.data.search
       },
       success: (res) => {
@@ -56,7 +58,7 @@ Page({
       search: '',
       active: false
     })
-
+    this.listShow()
     dd.hideKeyboard()
   },
   focusSearch() {
@@ -76,6 +78,27 @@ Page({
 
   onItemClick({ index }) {
     var approvalId = this.data.items[index].approvalId
-    dd.navigateTo({ url: `./details/index?approvalId=${approvalId}` })
+    var status = this.data.items[index].status
+    dd.navigateTo({ url: `./details/index?approvalId=${approvalId}&status=${status}` })
+  },
+
+  handleTabClick({ index }) {
+    switch (index) {
+      case 0:
+        this.setData({
+          status: 1
+        });
+        this.listShow();
+        break;
+      case 1:
+        this.setData({
+          status: 2
+        });
+        this.listShow();
+        break;
+    }
+  },
+  handleTabChange({ index }) {
+
   }
 })

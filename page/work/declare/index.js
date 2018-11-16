@@ -61,7 +61,7 @@ Page({
       search: '',
       active: false
     })
-
+    this.listShow()
     dd.hideKeyboard()
   },
   focusSearch() {

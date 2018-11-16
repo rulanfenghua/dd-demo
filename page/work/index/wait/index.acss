@@ -35,7 +35,7 @@
   display:flex;
   height:40px;
   overflow:hidden;
-  padding: 8px 10px;
+  padding: 8px 10px 8px 0;
   border-bottom: 1px solid #ddd;
   background-color: #efeff4;
 }
@@ -76,7 +76,7 @@
 
 .filter {
   height: 40px;
-  width: 60px;
+  width: 54px;
   position: relative;
   background: url('/image/filter.png') no-repeat center;
   background-size: 20px 20px;

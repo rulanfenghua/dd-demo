@@ -4,19 +4,19 @@ Page({
   data: {
     listContent: [
       {
-        "icon": "",
+        "icon": "/image/nothing.png",
         "text": "发布任务"
       },
       {
-        "icon": "",
-        "text": "领导表扬"
+        "icon": "/image/praise.png",
+        "text": "积分表扬"
       },
       {
-        "icon": "",
+        "icon": "/image/manage.png",
         "text": "管理奖扣"
       },
       {
-        "icon": "",
+        "icon": "/image/push.png",
         "text": "发布公告"
       }
     ],
@@ -75,7 +75,8 @@ Page({
     data: {}
   },
   onShow() {
-    if (app.globalData.level == '0') {
+    console.log('level', app.globalData.level)
+    if (app.globalData.level == 'admin' || app.globalData.level == 'superAdmin') {
       this.setData({
         hidden: false
       })
@@ -93,9 +94,9 @@ Page({
         })
       },
       fail: (res) => {
-        console.log("httpRequestFailWork---", res)
+        console.log("httpRequestFailWork----", res)
         dd.alert({
-          content: JSON.stringify(err)
+          content: JSON.stringify(res)
         })
       },
       complete: () => {
@@ -106,6 +107,19 @@ Page({
 
   onContentClick(e) {
     console.log(e.detail)
+
+    switch (e.detail.index) {
+      case 0:
+        break;
+      case 1:
+        dd.alert({ content: '正在测试，敬请期待' })
+        break;
+      case 2:
+        dd.alert({ content: '正在测试，敬请期待' })
+        break;
+      case 3:
+        break;
+    }
   },
   onMainClick(e) {
     console.log(e.detail)
@@ -124,6 +138,12 @@ Page({
           }
         );
         // dd.navigateTo({ url: '../award/index' });
+        break;
+      case 1:
+        dd.alert({ content: '正在测试，敬请期待' })
+        break;
+      case 5:
+        dd.alert({ content: '正在测试，敬请期待' })
         break;
     }
   },

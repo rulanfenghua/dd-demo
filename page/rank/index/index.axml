@@ -1,5 +1,3 @@
-<import src="/components/tag/index.axml" />
-
 <view class="page">
   <view class="page-section-demo {{show ? 'search' : ''}}">
     <view class="search-outer">
@@ -50,7 +48,9 @@
   </list>
 </view>
 <view class="filter {{showFilter ? 'show-filter' : ''}}">
+  <button type="default" plain hover-class="none" class="top-button" onTap="back">点击这里返回</button>
   <view>
+    <form onSubmit="onSubmit" onReset="onReset" class="filter-form">
     <tabs
       tabs="{{tabsFilter}}"
       fixed="{{true}}"
@@ -60,19 +60,21 @@
       <block a:for="{{tabsFilter}}">
         <tab-content key="{{index}}">
           <view class="tab-content">
-            <view class="container">
-              <view class="tag-list">
-                <block a:for="{{tags}}">
-                  <template is="tag" data="{{props: tags[index]}}"  />
-                </block>
-              </view>
-              <view class="mt-24">
-                <text>您选择的是: {{selectedLables}}</text>
-              </view>
-          </view>
+            <radio-group class="radio-group" onChange="radioChange" name="tags{{index}}" a:if="{{index != 3}}">
+              <label class="radio" a:for="{{item.tags}}" key="label-{{index}}">
+                <radio value="{{item.id}}" checked="{{item.checked}}" disabled="{{item.disabled}}" />
+                <text class="radio-text">{{item.name}}</text>
+              </label>
+            </radio-group>
+            <view a:else></view>
           </view>
         </tab-content>
       </block>
     </tabs>
+    <view class="page-section-btns">
+      <view><button size="mini" type="ghost" formType="reset">重置</button></view>
+      <view><button size="mini" type="primary" formType="submit">确定</button></view>
+    </view>
+    </form>
   </view>
 </view>

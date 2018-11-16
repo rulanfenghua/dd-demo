@@ -47,3 +47,17 @@
 .am-vertical-steps {
 
 }
+s
+.page-section-btns {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.am-vertical-step-title {
+  font-size: 14px;
+}
+
+.am-vertical-step-description {
+  font-size: 12px;
+}

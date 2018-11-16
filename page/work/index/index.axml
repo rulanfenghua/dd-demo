@@ -21,8 +21,8 @@
       </view>
     </view>
   </view>
-  <view class="content2" hidden="{{hidden}}">
-    <view class="content2-title">管理应用</view>
+  <view class="content" hidden="{{hidden}}">
+    <view class="content-title">管理应用</view>
     <grid class="content-grid" columnNum="{{4}}" list="{{listContent}}" onGridItemClick="onContentClick" hasLine="{{true}}"></grid>
   </view>
   <view class="main">

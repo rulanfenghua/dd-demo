@@ -4,6 +4,7 @@ Page({
   data: {
     data: {},
     options: {},
+    status: '',
 
     items: [],
     activeIndex: 1,
@@ -79,5 +80,55 @@ Page({
         dd.hideLoading()
       }
     })
+  },
+
+  todo() {
+    dd.showLoading()
+    var approvalId = this.data.options.approvalId
+    var status = this.data.status
+
+    dd.httpRequest({
+      url: app.globalData.domain + '/approversPel/selectApproversDetail/' + approvalId +'/'+ status,
+      method: 'GET',
+      // headers: { 'Content-Type': 'application/json' },
+      dataType: 'json',
+      success: (res) => {
+        console.log('successWaitDetail----', res)
+      },
+      fail: (res) => {
+        console.log("httpRequestFailWaitDetail----", res)
+        dd.alert({
+          content: JSON.stringify(res)
+        })
+      },
+      complete: () => {
+        dd.hideLoading()
+      }
+    })
+  },
+
+  todoPass() {
+    this.setData({
+      status: 1
+    })
+
+    this.todo()
+    this.listShow()
+  },
+  todoStop() {
+    this.setData({
+      status: 2
+    })
+
+    this.todo()
+    this.listShow()
+  },
+  todoBack() {
+    this.setData({
+      status: 3
+    })
+
+    this.todo()
+    this.listShow()
   },
 })

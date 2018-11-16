@@ -11,15 +11,10 @@ Page({
       { title: '按年' }
     ],
     tabsFilter: [
-      {
-        title: '选项',
-      },
-      {
-        title: '选项二',
-      },
-      { title: '3 Tab' },
-      { title: '4 Tab' },
-      { title: '5 Tab' },
+      { title: '部门' },
+      { title: '职位' },
+      { title: '积分类型' },
+      { title: '时间' }
     ],
 
     times: 1,
@@ -28,27 +23,73 @@ Page({
     showFilter: false,
     search: '',
 
-    selectedLables: ',疾病医疗,',
-    tags: [
-      {
-        label: '意外医疗',
-        selected: false,
-        onChange: 'onTagChange1',
-      },
-      {
-        label: '疾病医疗',
-        selected: true,
-        onChange: 'onTagChange2',
-      },
-      {
-        label: '疾病住院',
-        selected: false,
-        onChange: 'onTagChange3',
-      },
-    ]
+    deptId: '',
+    postId: '',
+    typeId: '',
 
     // width: '',
     // height: ''
+  },
+  onLoad() {
+    dd.httpRequest({
+      url: app.globalData.domain + '/rank/selectDept',
+      method: 'POST',
+      dataType: 'json',
+      success: (res) => {
+        console.log('successRankDept----', res)
+        this.setData({
+          'tabsFilter[0].tags': res.data.data
+        })
+      },
+      fail: (res) => {
+        console.log("httpRequestFailRankDept----", res)
+        dd.alert({
+          content: JSON.stringify(res)
+        })
+      },
+      complete: () => {
+      }
+    })
+
+    dd.httpRequest({
+      url: app.globalData.domain + '/rank/selectPost',
+      method: 'POST',
+      dataType: 'json',
+      success: (res) => {
+        console.log('successRankPost----', res)
+        this.setData({
+          'tabsFilter[1].tags': res.data.data
+        })
+      },
+      fail: (res) => {
+        console.log("httpRequestFailRankPost----", res)
+        dd.alert({
+          content: JSON.stringify(res)
+        })
+      },
+      complete: () => {
+      }
+    })
+
+    dd.httpRequest({
+      url: app.globalData.domain + '/rank/selectType',
+      method: 'POST',
+      dataType: 'json',
+      success: (res) => {
+        console.log('successRankType----', res)
+        this.setData({
+          'tabsFilter[2].tags': res.data.data
+        })
+      },
+      fail: (res) => {
+        console.log("httpRequestFailRankType----", res)
+        dd.alert({
+          content: JSON.stringify(res)
+        })
+      },
+      complete: () => {
+      }
+    })
   },
   onShow() {
     // dd.getSystemInfo({
@@ -76,13 +117,13 @@ Page({
       data: {
         pageNum: 1,
         pageSize: 20,
-        deptId: '',
-        postId: '',
-        typeId: '',
+        deptId: this.data.deptId,
+        postId: this.data.postId,
+        typeId: this.data.typeId,
         times: this.data.times,
         spTime1: '',
         spTime2: '',
-        searchName: this.data.search
+        search: this.data.search
       },
       dataType: 'json',
       success: (res) => {
@@ -101,6 +142,7 @@ Page({
         dd.hideLoading()
       }
     })
+    console.log(this.data)
   },
 
   onItemClick({index}) {
@@ -137,7 +179,7 @@ Page({
       active: false,
       show: false
     })
-
+    this.showList()
     dd.hideKeyboard()
   },
   focusSearch() {
@@ -160,20 +202,45 @@ Page({
       showFilter: true
     })
   },
-  handleTabClick({ index }) {
+  handleTabFilterClick({ index }) {
     console.log(index)
   },
-  handleTabChange({ index }) { },
+  handleTabFilterChange({ index }) { },
 
   // filter部分页面逻辑
-  onTagChange(selected, index) {
-    console.log(selected, index)
-    const tempTag = [].concat(this.data.tags);
-    tempTag[index].selected = !selected;
-    const labels = tempTag.map((item) => item.selected ? item.label : '').join(',');
+  onSubmit(e) {
+    for (var prop in e.detail.value) {
+      switch (prop) {
+        case 'tags0':
+          this.setData({'deptId': e.detail.value[prop] })
+          break;
+        case 'tags1':
+          this.setData({ 'postId': e.detail.value[prop] })
+          break;
+        case 'tags2':
+          this.setData({ 'typeId': e.detail.value[prop] })
+          break;
+      }
+    }
+    
+    this.showList()
     this.setData({
-      tags: tempTag,
-      selectedLables: labels,
-    });
+      showFilter: false
+    })
+  },
+  onReset(e) {
+    this.setData({
+      deptId: '',
+      postId: '',
+      typeId: ''
+    })
+  },
+  radioChange(e) {
+  },
+
+  back() {
+    this.setData({
+      showFilter: false
+    })
   }
 })
