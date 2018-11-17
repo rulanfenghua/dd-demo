@@ -228,6 +228,7 @@
   opacity: 0;
   transition: left .3s,opacity .3s,z-index .3s;
   transition-delay: .1s;
+  overflow: hidden;
 }
 
 .filter.show-filter {
@@ -250,13 +251,14 @@
 .radio-group {
   /* padding: 10px 10px 0 10px; */
   height: 100%;
+  overflow: auto;
 }
 
 .radio {
   display: inline-block;
   /* margin-bottom: 20rpx;
   margin-right: 170rpx; */
-  margin: 20rpx 40rpx;
+  margin: 20rpx 20rpx;
 }
 .radio-text {
   line-height: 1.8;
@@ -267,6 +269,7 @@
   position: fixed;
   bottom: 0;
   width: 100%;
+  background: #fff;
 }
 
 .top-button {

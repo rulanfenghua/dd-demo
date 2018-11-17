@@ -26,7 +26,7 @@
       <textarea auto-height placeholder="输入备注信息" name="textarea" style="font-size: 14px" />
     </view>
     <view class="form-line" />
-    <view class="page-section-btns">
+    <view class="picture-btns">
       <view onTap="chooseImage">选择照片</view>
     </view>
     <view class="form-line" />
@@ -55,15 +55,62 @@
         <image class="row-arrow" src="/image/arrowright.png" mode="aspectFill" />
       </view>
     </picker>
-    <view class="form-line" />
+    <!-- <view class="form-line" />
     <picker onChange="changeTo" value="{{arrIndexTo}}" range="{{users}}" range-key="userName" name="to">
       <view class="row">
         <view class="row-title">抄送</view>
         <view class="row-extra">当前选择：{{users[arrIndexTo].userName}}</view>
         <image class="row-arrow" src="/image/arrowright.png" mode="aspectFill" />
       </view>
-    </picker>
+    </picker> -->
     <view class="form-line" />
-    <button formType="submit" type="primary" loading="{{loading}}">提交</button>
+    <view class="select-section">
+      <view class="title">抄送<text class="details">审批通过后，通知抄送人</text></view>
+      <view class="add-wrapper">
+        <text class="add" onTap="addFilter">+</text>
+        <!-- <text class="name">小绿</text> -->
+      </view>
+      <view class="add-wrapper" a:for="{{to}}">
+        <image class="add" src="{{item.avatar ? item.avatar : '/image/logo.jpg'}}" onTap="deleteUser"></image>
+        <text class="name">{{item.userName}}</text>
+      </view>
+    </view>
+    <view class="form-line" />
+    <button formType="submit" type="primary" loading="{{loading}}" class="button-form">提交</button>
   </form>
+</view>
+<view class="filter {{showFilter ? 'show-filter' : ''}}">
+  <!-- <button type="default" plain hover-class="none" class="top-button" onTap="back">点击这里返回</button> -->
+  <view class="search-filter">
+    <view class="select" onTap="showSelect"></view>
+    <view class="page-section-demo search">
+      <view class="search-outer">
+        <input class="search-input" placeholder="搜索" value="{{search}}" onFocus="focusSearch" onBlur="blurSearch" onConfirm="doneSearch" onInput="handleSearch" />
+        <text class="search-cancel {{active ? 'focus' : ''}}" onTap="clearSearch">取消      
+        </text>
+      </view>
+    </view>
+  </view>
+  <view>
+    <form onSubmit="onSubmit" onReset="onReset" class="filter-form">
+      <view class="page-section">
+        <checkbox-group onChange="onChange" name="to" style="height: {{height - 91}}px" class="checkbox-wrapper">
+          <label class="checkbox" a:for="{{users}}" key="label-{{index}}">
+            <checkbox value="{{item}}" checked="{{item.checked}}" disabled="{{item.disabled}}" class="checkbox-label"/>
+            <image src="/image/logo.jpg" />
+            <text class="checkbox-text">{{item.userName}}</text>
+            <text class="checkbox-details">美容：桥东店</text>
+          </label>
+        </checkbox-group>
+      <view class="page-section-btns">
+        <view>
+          <button size="mini" type="ghost" onTap="back">取消</button>
+        </view>
+        <view>
+          <button size="mini" type="primary" formType="submit">确定</button>
+        </view>
+        <view><button size="mini" type="warn" formType="reset">重置</button></view>
+      </view>
+    </form>
+  </view>
 </view>

@@ -4,7 +4,7 @@
     </tabs>
   </view>
   <view class="search-filter">
-  <view class="filter" onTap="showfilter"></view>
+  <view class="select" onTap="showSelect"></view>
   <view class="page-section-demo">
     <view class="search-outer">
       <input class="search-input" placeholder="搜索" value="{{search}}" onFocus="focusSearch" onBlur="blurSearch" onConfirm="doneSearch" onInput="handleSearch" />

@@ -28,7 +28,7 @@ Page({
     typeId: '',
 
     // width: '',
-    // height: ''
+    height: ''
   },
   onLoad() {
     dd.httpRequest({
@@ -92,16 +92,16 @@ Page({
     })
   },
   onShow() {
-    // dd.getSystemInfo({
-    //   success: (res) => {
-    //     var width = res.windowWidth
-    //     var height = res.windowHeight
-    //     this.setData({
-    //       width: width,
-    //       height: height
-    //     })
-    //   }
-    // })
+    dd.getSystemInfo({
+      success: (res) => {
+        // var width = res.windowWidth
+        var height = res.windowHeight - 124
+        this.setData({
+          // width: width,
+          height: height
+        })
+      }
+    })
 
     this.showList()
   },
@@ -234,6 +234,8 @@ Page({
       postId: '',
       typeId: ''
     })
+
+    this.showList()
   },
   radioChange(e) {
   },

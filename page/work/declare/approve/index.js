@@ -4,10 +4,11 @@ Page({
   data: {
     options: {},
     loading: false,
+    height: '',
     
     users: [],
     apps: [],
-    user: [],
+    user: [], // 申请人
 
     pointsArray: [],
     arrIndexFrom: 0,
@@ -16,6 +17,13 @@ Page({
     arrIndexPoints: 0,
 
     filePaths: [],
+
+    showFilter: false,
+    show: false,
+    active: false,
+    search: '',
+
+    to: []
   },
 
   onLoad(options) {
@@ -45,10 +53,10 @@ Page({
       success: (res) => {
         console.log('successUsers----', res)
         var users = res.data.data.list
-        users.unshift({
-          userName: '为空',
-          userId: ''
-        })
+        // users.unshift({
+        //   userName: '为空',
+        //   userId: ''
+        // })
 
         this.setData({
           users: users
@@ -104,6 +112,18 @@ Page({
         })
       },
       complete: () => {
+      }
+    })
+  },
+  onShow() {
+    dd.getSystemInfo({
+      success: (res) => {
+        // var width = res.windowWidth
+        var height = res.windowHeight
+        this.setData({
+          // width: width,
+          height: height
+        })
       }
     })
   },
@@ -209,4 +229,77 @@ Page({
       }
     })
   },
+
+  // 多选组件
+  addFilter() {
+    this.setData({
+      showFilter: true
+    })
+  },
+
+  showSelect() {
+    
+  },
+
+  showSearch() {
+    this.setData({
+      show: !this.data.show
+    })
+  },
+  handleSearch(e) {
+    this.setData({
+      search: e.detail.value
+    })
+  },
+  clearSearch() {
+    this.setData({
+      search: '',
+      active: false,
+      show: false
+    })
+    this.showList()
+    dd.hideKeyboard()
+  },
+  focusSearch() {
+    this.setData({
+      active: true
+    })
+  },
+  blurSearch() {
+    this.setData({
+      active: false
+    })
+  },
+  doneSearch() {
+    this.showList()
+    dd.hideKeyboard()
+  },
+
+  back() {
+    this.setData({
+      showFilter: false
+    })
+  },
+  onReset(e) {
+    this.setData({
+      to: []
+    })
+  },
+  onSubmit(e) {
+    console.log('onSubmit', e.detail.value);
+
+    this.setData({
+      to: e.detail.value.to,
+      showFilter: false
+    })
+  },
+  onChange(e) {
+  },
+
+  deleteUser(e) {
+    // 删除头像
+    console.log(e)
+
+    // 由于无法传值废弃
+  }
 })

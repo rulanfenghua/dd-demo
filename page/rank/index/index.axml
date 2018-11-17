@@ -60,7 +60,7 @@
       <block a:for="{{tabsFilter}}">
         <tab-content key="{{index}}">
           <view class="tab-content">
-            <radio-group class="radio-group" onChange="radioChange" name="tags{{index}}" a:if="{{index != 3}}">
+            <radio-group class="radio-group" onChange="radioChange" name="tags{{index}}" a:if="{{index != 3}}" style="height: {{height}}px">
               <label class="radio" a:for="{{item.tags}}" key="label-{{index}}">
                 <radio value="{{item.id}}" checked="{{item.checked}}" disabled="{{item.disabled}}" />
                 <text class="radio-text">{{item.name}}</text>

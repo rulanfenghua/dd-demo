@@ -74,7 +74,7 @@
   transition-delay: .1s;
 }
 
-.filter {
+.select {
   height: 40px;
   width: 54px;
   position: relative;
