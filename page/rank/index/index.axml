@@ -39,7 +39,7 @@
           <text class="brief-col number">{{index>2 ? index+1 : ""}}</text>
           <text class="brief-col"><image class="avatar" src="{{item.userImg}}"></image></text>
           <text class="brief-col">{{item.userName}}</text>
-          <text class="brief-col">{{item.sqIntegral}}</text>
+          <text class="brief-col">{{item.total}}</text>
           <text class="brief-col">{{item.deduce}}</text>
           <text class="brief-col amount" style="color: #46adf4">{{item.amount}}</text>
         </view>

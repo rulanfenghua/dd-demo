@@ -48,8 +48,8 @@
       </view>
     </view>
     <view class="content-bottom" onTap="rankTo">
-      <image src="{{data.avatar ? data.avatar : '/image/logo.jpg'}}" class="content-bottom-image"/>
-      <text class="content-bottom-text">{{data.name ? data.name : '暂时无人'}} 获得今日的积分冠军</text>
+      <image src="{{first.userImg ? first.userImg : '/image/logo.jpg'}}" class="content-bottom-image"/>
+      <text class="content-bottom-text">{{first.userName ? first.userName : '暂时无人'}} 获得今日的积分冠军</text>
       <text class="right-arrow"></text>
     </view>
   </view>

@@ -4,7 +4,7 @@ Page({
   data: {
     data: {},
     options: {},
-    status: '',
+    status: 0,
 
     items: [],
     activeIndex: 1,
@@ -15,7 +15,8 @@ Page({
     console.log(options)
 
     this.setData({
-      options: options
+      options: options,
+      status: options.status
     })
   },
 
@@ -24,7 +25,7 @@ Page({
   },
 
   listShow() {
-    dd.showLoading()
+    dd.showLoading({content: '加载中...'})
     var approvalId = this.data.options.approvalId
 
     dd.httpRequest({
@@ -40,7 +41,7 @@ Page({
           title: `${res.data.data.userName}  提交审批`,
           description: `${res.data.data.userDept}  ${res.data.data.sqTime}`
         })
-        if (res.data.data.spTime && res.data.data.status == 1) {
+        if (res.data.data.status == 1) {
           items.push({
             title: `${res.data.data.appName}  审批通过`,
             description: `${res.data.data.appDept}  ${res.data.data.spTime}`
@@ -73,7 +74,8 @@ Page({
       fail: (res) => {
         console.log("httpRequestFailWaitDetail----", res)
         dd.alert({
-          content: JSON.stringify(res)
+          content: JSON.stringify(res),
+          buttonText: '好的'
         })
       },
       complete: () => {
@@ -83,26 +85,27 @@ Page({
   },
 
   todo() {
-    dd.showLoading()
     var approvalId = this.data.options.approvalId
     var status = this.data.status
 
     dd.httpRequest({
-      url: app.globalData.domain + '/approversPel/selectApproversDetail/' + approvalId +'/'+ status,
+      url: app.globalData.domain + '/approversPel/approversYesNo/' + approvalId +'/'+ status,
       method: 'GET',
       // headers: { 'Content-Type': 'application/json' },
       dataType: 'json',
       success: (res) => {
-        console.log('successWaitDetail----', res)
+        console.log('successWaitDetailYes----', res)
+
+        this.listShow()
       },
       fail: (res) => {
-        console.log("httpRequestFailWaitDetail----", res)
+        console.log("httpRequestFailWaitDetailYes----", res)
         dd.alert({
-          content: JSON.stringify(res)
+          content: JSON.stringify(res),
+          buttonText: '好的'
         })
       },
       complete: () => {
-        dd.hideLoading()
       }
     })
   },
@@ -113,7 +116,6 @@ Page({
     })
 
     this.todo()
-    this.listShow()
   },
   todoStop() {
     this.setData({
@@ -121,14 +123,14 @@ Page({
     })
 
     this.todo()
-    this.listShow()
   },
   todoBack() {
-    this.setData({
-      status: 3
-    })
+    // this.setData({
+    //   status: 3
+    // })
 
-    this.todo()
-    this.listShow()
+    // this.todo()
+
+    dd.navigateBack()
   },
 })

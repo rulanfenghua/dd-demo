@@ -33,7 +33,8 @@ Page({
       fail: (res) => {
         console.log("httpRequestFailMarket----", res)
         dd.alert({
-          content: JSON.stringify(res)
+          content: JSON.stringify(res),
+          buttonText: '好的'
         })
       },
       complete: () => {
@@ -43,7 +44,7 @@ Page({
   },
 
   showList() {
-    dd.showLoading()
+    dd.showLoading({content: '加载中...'})
 
     dd.httpRequest({
       url: app.globalData.domain + '/integralGoods/selectIntegralGoodsList',
@@ -60,9 +61,10 @@ Page({
         })
       },
       fail: (res) => {
-        console.log("httpRequestFailMarketList---", res)
+        console.log("httpRequestFailMarketList----", res)
         dd.alert({
-          content: JSON.stringify(err)
+          content: JSON.stringify(res),
+          buttonText: '好的'
         })
       },
       complete: () => {

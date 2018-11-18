@@ -23,7 +23,7 @@ Page({
   },
 
   listShow() {
-    dd.showLoading()
+    dd.showLoading({content: '加载中...'})
     var approvalId = this.data.options.approvalId
 
     dd.httpRequest({
@@ -39,7 +39,7 @@ Page({
           title: `${res.data.data.userName}  提交审批`,
           description: `${res.data.data.userDept}  ${res.data.data.sqTime}`
         })
-        if (res.data.data.spTime && res.data.data.status == 1) {
+        if (res.data.data.status == 1) {
           items.push({
             title: `${res.data.data.appName}  审批通过`,
             description: `${res.data.data.appDept}  ${res.data.data.spTime}`
@@ -72,7 +72,8 @@ Page({
       fail: (res) => {
         console.log("httpRequestFailLogsDetail----", res)
         dd.alert({
-          content: JSON.stringify(res)
+          content: JSON.stringify(res),
+          buttonText: '好的'
         })
       },
       complete: () => {

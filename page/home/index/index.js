@@ -3,7 +3,8 @@ let app = getApp()
 Page({
   data: {
     items: [],
-    data: {}
+    data: {},
+    first: {}
   },
   onShow() {
     dd.httpRequest({
@@ -18,11 +19,33 @@ Page({
         })
       },
       fail: (res) => {
-        console.log("httpRequestFailHome---", res)
+        console.log('httpRequestFailHome----', res)
         dd.alert({
-          content: JSON.stringify(res)
+          content: JSON.stringify(res),
+          buttonText: '好的'
         })
-        dd.hideLoading()
+      },
+      complete: () => {
+      }
+    })
+
+    dd.httpRequest({
+      url: app.globalData.domain + '/home/indexFirst',
+      method: 'POST',
+      // headers: { 'Content-Type': 'application/json' },
+      dataType: 'json',
+      success: (res) => {
+        console.log('successHomeFirst----', res)
+        this.setData({
+          first: res.data.data
+        })
+      },
+      fail: (res) => {
+        console.log('httpRequestFailHomeFirst----', res)
+        dd.alert({
+          content: JSON.stringify(res),
+          buttonText: '好的'
+        })
       },
       complete: () => {
       }
@@ -35,7 +58,7 @@ Page({
   },
 
   listShow() {
-    dd.showLoading()
+    dd.showLoading({content: '加载中...'})
 
     dd.httpRequest({
       url: app.globalData.domain + '/home/list',
@@ -53,9 +76,10 @@ Page({
         })
       },
       fail: (res) => {
-        console.log("httpRequestFailHomeList---", res)
+        console.log('httpRequestFailHomeList---', res)
         dd.alert({
-          content: JSON.stringify(res)
+          content: JSON.stringify(res),
+          buttonText: '好的'
         })
       },
       complete: () => {
@@ -70,6 +94,6 @@ Page({
     })
   },
   onItemClick({index}) {
-    console.log('list点击',index)
+    console.log('list点击', index)
   }
 })

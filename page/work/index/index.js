@@ -82,7 +82,7 @@ Page({
       })
     }
 
-    dd.showLoading()
+    dd.showLoading({content: '加载中...'})
     dd.httpRequest({
       url: app.globalData.domain + '/work/countLogNun',
       method: 'POST',
@@ -96,7 +96,8 @@ Page({
       fail: (res) => {
         console.log("httpRequestFailWork----", res)
         dd.alert({
-          content: JSON.stringify(res)
+          content: JSON.stringify(res),
+          buttonText: '好的'
         })
       },
       complete: () => {
@@ -112,10 +113,10 @@ Page({
       case 0:
         break;
       case 1:
-        dd.alert({ content: '正在测试，敬请期待' })
+        dd.alert({ content: '正在测试，敬请期待', buttonText: '好的' })
         break;
       case 2:
-        dd.alert({ content: '正在测试，敬请期待' })
+        dd.alert({ content: '正在测试，敬请期待', buttonText: '好的' })
         break;
       case 3:
         break;
@@ -134,16 +135,17 @@ Page({
       case 7:
         dd.alert(
           {
-            content: '正在测试，敬请期待'
+            content: '正在测试，敬请期待',
+            buttonText: '好的'
           }
         );
         // dd.navigateTo({ url: '../award/index' });
         break;
       case 1:
-        dd.alert({ content: '正在测试，敬请期待' })
+        dd.alert({ content: '正在测试，敬请期待', buttonText: '好的' })
         break;
       case 5:
-        dd.alert({ content: '正在测试，敬请期待' })
+        dd.alert({ content: '正在测试，敬请期待', buttonText: '好的' })
         break;
     }
   },

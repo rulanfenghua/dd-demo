@@ -55,7 +55,8 @@ Page({
       fail: (res) => {
         console.log("httpRequestFailUsers----", res)
         dd.alert({
-          content: JSON.stringify(res)
+          content: JSON.stringify(res),
+          buttonText: '好的'
         })
       },
       complete: () => {
@@ -75,7 +76,8 @@ Page({
       fail: (res) => {
         console.log("httpRequestFailApps----", res)
         dd.alert({
-          content: JSON.stringify(res)
+          content: JSON.stringify(res),
+          buttonText: '好的'
         })
       },
       complete: () => {
@@ -98,7 +100,8 @@ Page({
       fail: (res) => {
         console.log("httpRequestFailUser----", res)
         dd.alert({
-          content: JSON.stringify(res)
+          content: JSON.stringify(res),
+          buttonText: '好的'
         })
       },
       complete: () => {
@@ -149,7 +152,8 @@ Page({
       fail: (res) => {
         console.log("httpRequestFailApp----", res)
         dd.alert({
-          content: JSON.stringify(res)
+          content: JSON.stringify(res),
+          buttonText: '好的'
         })
       },
       complete: () => {

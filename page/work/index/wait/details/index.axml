@@ -43,7 +43,7 @@
     failIndex="{{failIndex}}"
     items="{{items}}"
     direction="vertical"
-    a:if="{{options.status}}"
+    a:if="{{status != 0}}"
   ></steps>
   <view class="page-section-btns" a:else>
     <view><button size="mini" type="ghost" onTap="todoBack">撤销审批</button></view>

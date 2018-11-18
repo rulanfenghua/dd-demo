@@ -44,7 +44,8 @@ Page({
       fail: (res) => {
         console.log("httpRequestFailRankDept----", res)
         dd.alert({
-          content: JSON.stringify(res)
+          content: JSON.stringify(res),
+          buttonText: '好的'
         })
       },
       complete: () => {
@@ -64,7 +65,8 @@ Page({
       fail: (res) => {
         console.log("httpRequestFailRankPost----", res)
         dd.alert({
-          content: JSON.stringify(res)
+          content: JSON.stringify(res),
+          buttonText: '好的'
         })
       },
       complete: () => {
@@ -84,7 +86,8 @@ Page({
       fail: (res) => {
         console.log("httpRequestFailRankType----", res)
         dd.alert({
-          content: JSON.stringify(res)
+          content: JSON.stringify(res),
+          buttonText: '好的'
         })
       },
       complete: () => {
@@ -110,13 +113,13 @@ Page({
   },
 
   showList() {
-    dd.showLoading()
+    dd.showLoading({content: '加载中...'})
     dd.httpRequest({
       url: app.globalData.domain + '/rank/index',
       method: 'POST',
       data: {
         pageNum: 1,
-        pageSize: 20,
+        pageSize: 1000,
         deptId: this.data.deptId,
         postId: this.data.postId,
         typeId: this.data.typeId,
@@ -135,7 +138,8 @@ Page({
       fail: (res) => {
         console.log("httpRequestFailRank---", res)
         dd.alert({
-          content: JSON.stringify(res)
+          content: JSON.stringify(res),
+          buttonText: '好的'
         })
       },
       complete: () => {
@@ -172,6 +176,7 @@ Page({
     this.setData({
       search: e.detail.value
     })
+    this.showList()
   },
   clearSearch() {
     this.setData({

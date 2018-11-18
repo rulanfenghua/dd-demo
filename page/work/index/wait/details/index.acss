@@ -47,11 +47,12 @@
 .am-vertical-steps {
 
 }
-s
+
 .page-section-btns {
   position: fixed;
   bottom: 0;
   width: 100%;
+  background: #fff;
 }
 
 .am-vertical-step-title {

@@ -4,7 +4,7 @@ Page({
   data: {
     items: [],
     search: '',
-    status: 1,
+    status: 0,
     active: false,
 
     tabs: [{
@@ -18,7 +18,7 @@ Page({
     this.listShow()
   },
   listShow() {
-    dd.showLoading()
+    dd.showLoading({content: '加载中...'})
 
     dd.httpRequest({
       url: app.globalData.domain + '/approversPel/selectApproversList',
@@ -26,8 +26,8 @@ Page({
       dataType: 'json',
       data: {
         pageNum: 1,
-        pageSize: 20,
-        status: this.data.status,
+        pageSize: 1000,
+        status: this.data.status, // tab栏审批未审批
         search: this.data.search
       },
       success: (res) => {
@@ -37,9 +37,10 @@ Page({
         })
       },
       fail: (res) => {
-        console.log("httpRequestFailWait----", res)
+        console.log('httpRequestFailWait----', res)
         dd.alert({
-          content: JSON.stringify(res)
+          content: JSON.stringify(res),
+          buttonText: '好的'
         })
       },
       complete: () => {
@@ -52,6 +53,7 @@ Page({
     this.setData({
       search: e.detail.value
     })
+    this.listShow()
   },
   clearSearch() {
     this.setData({
@@ -86,13 +88,13 @@ Page({
     switch (index) {
       case 0:
         this.setData({
-          status: 1
+          status: 0
         });
         this.listShow();
         break;
       case 1:
         this.setData({
-          status: 2
+          status: 1
         });
         this.listShow();
         break;

@@ -22,7 +22,7 @@ Page({
   },
 
   listShow() {
-    dd.showLoading()
+    dd.showLoading({content: '加载中...'})
 
     dd.httpRequest({
       url: app.globalData.domain + this.data.url,
@@ -42,7 +42,8 @@ Page({
       fail: (res) => {
         console.log("httpRequestFailDeclare----", res)
         dd.alert({
-          content: JSON.stringify(res)
+          content: JSON.stringify(res),
+          buttonText: '好的'
         })
       },
       complete: () => {
@@ -55,6 +56,7 @@ Page({
     this.setData({
       search: e.detail.value
     })
+    this.listShow()
   },
   clearSearch() {
     this.setData({

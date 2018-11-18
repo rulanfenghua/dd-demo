@@ -16,7 +16,7 @@ Page({
       }
     })
 
-    dd.showLoading()
+    dd.showLoading({content: '加载中...'})
     dd.httpRequest({
       url: app.globalData.domain + '/personal/indexHead',
       method: 'POST',
@@ -28,9 +28,10 @@ Page({
         })
       },
       fail: (res) => {
-        console.log("httpRequestFailPersonal---", res)
+        console.log("httpRequestFailPersonal----", res)
         dd.alert({
-          content: JSON.stringify(err)
+          content: JSON.stringify(res),
+          buttonText: '好的'
         })
       },
       complete: () => {
@@ -71,7 +72,8 @@ Page({
       fail: (res) => {
         console.log("httpRequestFailEcharts----", res)
         dd.alert({
-          content: JSON.stringify(res)
+          content: JSON.stringify(res),
+          buttonText: '好的'
         })
       },
       complete: () => {

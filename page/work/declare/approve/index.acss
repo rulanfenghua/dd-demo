@@ -256,7 +256,7 @@
 /* 用户列表样式 */
 .checkbox-wrapper {
   overflow: auto;
-  padding-top: 4px;
+  /* padding-top: 4px; */
 }
 
 .checkbox {
@@ -272,7 +272,7 @@
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  top: 0;
+  bottom: 0;
   border-bottom: 1px solid #ddd;
 }
 

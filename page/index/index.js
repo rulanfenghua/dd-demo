@@ -18,7 +18,7 @@ Page({
         hideList: true,
     },
     loginSystem() {
-        dd.showLoading();
+        dd.showLoading({content: '加载中...'});
         dd.getAuthCode({
             success:(res)=>{
                 this.setData({

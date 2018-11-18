@@ -19,7 +19,6 @@ Page({
     filePaths: [],
 
     showFilter: false,
-    show: false,
     active: false,
     search: '',
 
@@ -42,35 +41,34 @@ Page({
       pointsArray: pointsArray
     })
 
-    dd.httpRequest({
-      url: app.globalData.domain + '/work/declareBehaviorDetail/selectAllUser',
-      method: 'POST',
-      dataType: 'json',
-      data: {
-        pageSize: 1000,
-        pageNum: 1
-      },
-      success: (res) => {
-        console.log('successUsers----', res)
-        var users = res.data.data.list
-        // users.unshift({
-        //   userName: '为空',
-        //   userId: ''
-        // })
+    // dd.httpRequest({
+    //   url: app.globalData.domain + '/work/declareBehaviorDetail/selectAllUser',
+    //   method: 'POST',
+    //   dataType: 'json',
+    //   data: {
+    //     pageSize: 1000,
+    //     pageNum: 1
+    //   },
+    //   success: (res) => {
+    //     console.log('successUsers----', res)
+    //     var users = res.data.data.list
 
-        this.setData({
-          users: users
-        })
-      },
-      fail: (res) => {
-        console.log("httpRequestFailUsers----", res)
-        dd.alert({
-          content: JSON.stringify(res)
-        })
-      },
-      complete: () => {
-      }
-    })
+    //     this.setData({
+    //       users: users
+    //     })
+    //   },
+    //   fail: (res) => {
+    //     console.log("httpRequestFailUsers----", res)
+    //     dd.alert({
+    //       content: JSON.stringify(res),
+    //       buttonText: '好的'
+    //     })
+    //   },
+    //   complete: () => {
+    //   }
+    // })
+
+    this.allUsers()
 
     dd.httpRequest({
       url: app.globalData.domain + '/work/declareBehaviorDetail/approverPel',
@@ -85,7 +83,8 @@ Page({
       fail: (res) => {
         console.log("httpRequestFailApps----", res)
         dd.alert({
-          content: JSON.stringify(res)
+          content: JSON.stringify(res),
+          buttonText: '好的'
         })
       },
       complete: () => {
@@ -108,7 +107,8 @@ Page({
       fail: (res) => {
         console.log("httpRequestFailUser----", res)
         dd.alert({
-          content: JSON.stringify(res)
+          content: JSON.stringify(res),
+          buttonText: '好的'
         })
       },
       complete: () => {
@@ -127,6 +127,39 @@ Page({
       }
     })
   },
+
+  allUsers() {
+    dd.showLoading({ content: '加载中...' })
+    dd.httpRequest({
+      url: app.globalData.domain + '/work/declareBehaviorDetail/selectAllUser',
+      method: 'POST',
+      dataType: 'json',
+      data: {
+        pageSize: 1000,
+        pageNum: 1,
+        search: this.data.search
+      },
+      success: (res) => {
+        console.log('successUsers----', res)
+        var users = res.data.data.list
+
+        this.setData({
+          users: users
+        })
+      },
+      fail: (res) => {
+        console.log("httpRequestFailUsers----", res)
+        dd.alert({
+          content: JSON.stringify(res),
+          buttonText: '好的'
+        })
+      },
+      complete: () => {
+        dd.hideLoading()
+      }
+    })
+  },
+
   formSubmit(e) {
     console.log('formSubmit----', e.detail.value)
     this.setData({
@@ -137,7 +170,11 @@ Page({
     var textarea = e.detail.value.textarea
     var typeId = this.data.options.type
     var from = this.data.user[e.detail.value.from].userId
-    var to = this.data.users[e.detail.value.to].userId
+    // var to = this.data.users[e.detail.value.to].userId
+    var to = []
+    this.data.to.forEach((item) => {
+      to.push(item.userId)
+    })
     var apps = this.data.apps[e.detail.value.app].userId
     var approvalTitle = this.data.options.title
     var approvalContent = this.data.options.content
@@ -153,7 +190,7 @@ Page({
         spRemark: textarea,
         typeId: typeId,
         from: [from],
-        to: [to],
+        to: to,
         apps: [apps],
         approvalTitle: approvalTitle,
         approvalContent: approvalContent,
@@ -171,7 +208,8 @@ Page({
       fail: (res) => {
         console.log("httpRequestFailApp----", res)
         dd.alert({
-          content: JSON.stringify(res)
+          content: JSON.stringify(res),
+          buttonText: '好的'
         })
       },
       complete: () => {
@@ -241,23 +279,18 @@ Page({
     
   },
 
-  showSearch() {
-    this.setData({
-      show: !this.data.show
-    })
-  },
   handleSearch(e) {
     this.setData({
       search: e.detail.value
     })
+    this.allUsers()
   },
   clearSearch() {
     this.setData({
       search: '',
       active: false,
-      show: false
     })
-    this.showList()
+    this.allUsers()
     dd.hideKeyboard()
   },
   focusSearch() {
@@ -271,7 +304,7 @@ Page({
     })
   },
   doneSearch() {
-    this.showList()
+    this.allUsers()
     dd.hideKeyboard()
   },
 
@@ -286,7 +319,7 @@ Page({
     })
   },
   onSubmit(e) {
-    console.log('onSubmit', e.detail.value);
+    console.log('onSubmit', e.detail.value.to);
 
     this.setData({
       to: e.detail.value.to,
