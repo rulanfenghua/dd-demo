@@ -333,6 +333,18 @@ Page({
     // 删除头像
     console.log(e)
 
-    // 由于无法传值废弃
+    // var users = this.data.users
+    // var index = users.findIndex((item) => item.userId == this.data.to[e.target.dataset.index].userId)
+    // users[index].checked = false
+    // console.log(index, users)
+    // this.setData({
+    //   users: users
+    // })
+
+    // var to = this.data.to
+    // to.splice(e.target.dataset.index, 1)
+    // this.setData({
+    //   to: to
+    // })
   }
 })

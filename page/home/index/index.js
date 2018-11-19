@@ -66,8 +66,8 @@ Page({
       // headers: { 'Content-Type': 'application/json' },
       dataType: 'json',
       data: {
-        pageNum: '1',
-        pageSize: '20'
+        pageNum: 1,
+        pageSize: 1000
       },
       success: (res) => {
         console.log('successHomeList----', res)
@@ -95,5 +95,16 @@ Page({
   },
   onItemClick({index}) {
     console.log('list点击', index)
+
+    var approvalId = this.data.items[index].approvalId
+    dd.navigateTo({ url: `/page/work/index/logs/details/index?approvalId=${approvalId}` })
+  },
+
+  preview(e) {
+    console.log(e)
+    dd.previewImage({
+      current: e.target.dataset.index,
+      urls: this.data.items.approvalImg
+    })
   }
 })

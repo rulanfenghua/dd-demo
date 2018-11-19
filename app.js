@@ -13,7 +13,7 @@ App({
   },
   globalData: {
     corpId: '',
-    level: 1,
+    level: '',
     domain: 'http://192.168.255.183:8081'
   }
 });

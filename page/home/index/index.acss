@@ -281,6 +281,21 @@
 .brief-content {
   margin-top: 4px;
   font-size: 12px;
+  margin-bottom: 10px;
+}
+
+.brief-image {
+  display: inline-block;
+  height: 100px;
+  width: 100px;
+  margin-right: 23px;
+  /* margin-bottom: 14px; */
+}
+
+.brief-time {
+  /* margin-top: 10px; */
+  font-size: 10px;
+  color: #777;
 }
 
 .extra {

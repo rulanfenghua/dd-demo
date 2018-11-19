@@ -71,7 +71,7 @@
         <!-- <text class="name">小绿</text> -->
       </view>
       <view class="add-wrapper" a:for="{{to}}">
-        <image class="add" src="{{item.avatar ? item.avatar : '/image/logo.jpg'}}" onTap="deleteUser"></image>
+        <image class="add" src="{{item.avatar ? item.avatar : '/image/logo.jpg'}}" onTap="deleteUser" data-index="{{index}}"></image>
         <text class="name">{{item.userName}}</text>
       </view>
     </view>
@@ -99,7 +99,7 @@
             <checkbox value="{{item}}" checked="{{item.checked}}" disabled="{{item.disabled}}" class="checkbox-label"/>
             <image src="{{item.avatar ? item.avatar : '/image/logo.jpg'}}" />
             <text class="checkbox-text">{{item.userName}}</text>
-            <text class="checkbox-details">美容：桥东店</text>
+            <text class="checkbox-details">{{item.deptName}}</text>
           </label>
         </checkbox-group>
       <view class="page-section-btns">
