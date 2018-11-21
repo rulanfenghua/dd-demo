@@ -135,38 +135,36 @@ Page({
     this.setData({
       loading: true
     })
+    let that = this
 
-    var points = e.detail.value.points
-    var textarea = e.detail.value.textarea
-    var typeId = this.data.types[e.detail.value.types].typeId
-    var from = this.data.user[e.detail.value.from].userId
-    // var to = this.data.users[e.detail.value.to].userId
+    if (!this.data.filePaths.length) {
+      this.submit(e, that)
+    }
+    else {
+      this.uploadImage(e, this.submit)
+    }
+  },
+  submit(values, that) {
+    console.log('this', that)
+    var points = values.detail.value.points
+    var textarea = values.detail.value.textarea
+    var typeId = that.data.types[values.detail.value.types].typeId
+    var from = that.data.user[values.detail.value.from].userId
+    // var to = that.data.users[e.detail.value.to].userId
     var to = []
-    this.data.to.forEach((item) => {
+    that.data.to.forEach((item) => {
       to.push(item.userId)
     })
-    var apps = this.data.apps[e.detail.value.app].userId
-    var approvalTitle = e.detail.value.title
-    var approvalContent = e.detail.value.content
-    // var approvalId = this.data.options.id
+    var apps = that.data.apps[values.detail.value.app].userId
+    var approvalTitle = values.detail.value.title
+    var approvalContent = values.detail.value.content
 
-    // 验证提交
-    // if (!approvalTitle) {
-    //   dd.showToast({
-    //     type: 'fail',
-    //     content: '请您填写审批标题'
-    //   })
-    // } else if (!approvalContent) {
-
-    // } else if (!points) {
-
-    // }
     if (!approvalTitle || !approvalContent || !points) {
       dd.showToast({
         type: 'fail',
         content: '请您填写关键内容'
       })
-      this.setData({
+      that.setData({
         loading: false
       })
       return
@@ -178,7 +176,7 @@ Page({
       dataType: 'json',
       data: {
         addIntegral: points,
-        approvalImg: this.data.filePaths,
+        approvalImg: that.data.filePaths,
         spRemark: textarea,
         typeId: typeId,
         from: [from],
@@ -204,11 +202,44 @@ Page({
         })
       },
       complete: () => {
-        this.setData({
+        that.setData({
           loading: false
         })
       }
     })
+  },
+  uploadImage(value, fnSubmit) {
+    let success = 0
+    let _this = this
+    let toFilePaths = []
+    for (let index = 0; index < this.data.filePaths.length; index++) {
+      dd.uploadFile({
+        url: app.globalData.domain + '/upload/uploadFile',
+        fileType: 'image',
+        fileName: 'file',
+        filePath: this.data.filePaths[index],
+        success: (res) => {
+          success++
+          console.log(res)
+          toFilePaths.push(res.data.data)
+          if (success == _this.data.filePaths.length) {
+            _this.setData({
+              toFilePaths: toFilePaths
+            })
+            fnSubmit(value, _this)
+          }
+        },
+        fail: function(res) {
+          dd.alert({
+            content: JSON.stringify(res),
+            buttonText: '好的'
+          })
+          _this.setData({
+            loading: false
+          })
+        },
+      })
+    }
   },
 
   changeFrom(e) {

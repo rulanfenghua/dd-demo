@@ -17,6 +17,7 @@ Page({
     arrIndexPoints: 0,
 
     filePaths: [],
+    toFilePaths: [],
 
     showFilter: false,
     active: false,
@@ -40,33 +41,6 @@ Page({
       options: options,
       pointsArray: pointsArray
     })
-
-    // dd.httpRequest({
-    //   url: app.globalData.domain + '/work/declareBehaviorDetail/selectAllUser',
-    //   method: 'POST',
-    //   dataType: 'json',
-    //   data: {
-    //     pageSize: 1000,
-    //     pageNum: 1
-    //   },
-    //   success: (res) => {
-    //     console.log('successUsers----', res)
-    //     var users = res.data.data.list
-
-    //     this.setData({
-    //       users: users
-    //     })
-    //   },
-    //   fail: (res) => {
-    //     console.log("httpRequestFailUsers----", res)
-    //     dd.alert({
-    //       content: JSON.stringify(res),
-    //       buttonText: '好的'
-    //     })
-    //   },
-    //   complete: () => {
-    //   }
-    // })
 
     this.allUsers()
 
@@ -162,31 +136,43 @@ Page({
 
   formSubmit(e) {
     console.log('formSubmit----', e.detail.value)
+
     this.setData({
       loading: true
     })
+    let that = this
 
-    var points = this.data.pointsArray[e.detail.value.points]
-    var textarea = e.detail.value.textarea
-    var typeId = this.data.options.type
-    var from = this.data.user[e.detail.value.from].userId
-    // var to = this.data.users[e.detail.value.to].userId
+    if (!this.data.filePaths.length) {
+      this.submit(e, that)
+    }
+    else {
+      this.uploadImage(e, this.submit)
+    }
+  },
+  submit(values, that) {
+    console.log('this', that)
+    var points = that.data.pointsArray[values.detail.value.points]
+    var textarea = values.detail.value.textarea
+    var typeId = that.data.options.type
+    var from = that.data.user[values.detail.value.from].userId
+    // var to = that.data.users[e.detail.value.to].userId
     var to = []
-    this.data.to.forEach((item) => {
+    that.data.to.forEach((item) => {
       to.push(item.userId)
     })
-    var apps = this.data.apps[e.detail.value.app].userId
-    var approvalTitle = this.data.options.title
-    var approvalContent = this.data.options.content
-    var approvalId = this.data.options.id
+    var apps = that.data.apps[values.detail.value.app].userId
+    var approvalTitle = that.data.options.title
+    var approvalContent = that.data.options.content
+    var approvalId = that.data.options.id
 
+    console.log(that.data.toFilePaths)
     dd.httpRequest({
       url: app.globalData.domain + '/work/addIntegralApprover',
       method: 'POST',
       dataType: 'json',
       data: {
         addIntegral: points,
-        approvalImg: this.data.filePaths,
+        approvalImg: that.data.toFilePaths,
         spRemark: textarea,
         typeId: typeId,
         from: [from],
@@ -213,7 +199,7 @@ Page({
         })
       },
       complete: () => {
-        this.setData({
+        that.setData({
           loading: false
         })
       }
@@ -254,9 +240,9 @@ Page({
         //   content: JSON.stringify(res),
         // });
         console.log(res)
-        if (res && res.apfilePaths) {
+        if (res && res.apFilePaths) {
           this.setData({
-            filePaths: res.apfilePaths,
+            filePaths: res.filePaths,
           });
         }
       },
@@ -266,6 +252,40 @@ Page({
         })
       }
     })
+  },
+  uploadImage(value, fnSubmit) {
+    let success = 0
+    let _this = this
+    let toFilePaths = []
+    for (let index = 0; index < this.data.filePaths.length; index++) {
+      dd.uploadFile({
+        url: app.globalData.domain + '/upload/uploadFile',
+        fileType: 'image',
+        fileName: 'file',
+        filePath: this.data.filePaths[index],
+        success: (res) => {
+          success++
+          console.log(res)
+          toFilePaths.push(JSON.parse(res).data.data)
+          if (success == _this.data.filePaths.length) {
+            _this.setData({
+              toFilePaths: toFilePaths
+            })
+            console.log(_this.data.toFilePaths)
+            fnSubmit(value, _this)
+          }
+        },
+        fail: function(res) {
+          dd.alert({
+            content: JSON.stringify(res),
+            buttonText: '好的'
+          })
+          _this.setData({
+            loading: false
+          })
+        },
+      })
+    }
   },
 
   // 多选组件
