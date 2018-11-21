@@ -39,8 +39,5 @@ Page({
   },
   onItemClick({index}) {
     console.log('list点击',index)
-
-    var approvalId = this.data.items[index].approvalId
-    dd.navigateTo({ url: `./details/index?approvalId=${approvalId}` })
   }
 })

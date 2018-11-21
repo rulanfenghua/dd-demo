@@ -53,7 +53,7 @@ Page({
     this.setData({
       search: e.detail.value
     })
-    this.listShow()
+    // this.listShow()
   },
   clearSearch() {
     this.setData({

@@ -186,7 +186,7 @@ Page({
       dataType: 'json',
       data: {
         addIntegral: points,
-        approvalImg: [],
+        approvalImg: this.data.filePaths,
         spRemark: textarea,
         typeId: typeId,
         from: [from],
@@ -283,7 +283,7 @@ Page({
     this.setData({
       search: e.detail.value
     })
-    this.allUsers()
+    // this.allUsers()
   },
   clearSearch() {
     this.setData({

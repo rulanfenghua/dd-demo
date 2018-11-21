@@ -1,0 +1,6 @@
+{
+  "title": "日志详情",
+  "usingComponents":{
+    "steps":"mini-ddui/es/steps/index"
+  }
+}

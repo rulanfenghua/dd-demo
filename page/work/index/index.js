@@ -127,19 +127,19 @@ Page({
 
     switch (e.detail.index) {
       case 3:
-        dd.navigateTo({url: '../declare/index'});
+        dd.navigateTo({url: '../declare/index'})
         break;
       case 10:
-        dd.navigateTo({url: '../market/index'});
+        dd.navigateTo({url: '../market/index'})
         break;
       case 7:
-        dd.alert(
-          {
-            content: '正在测试，敬请期待',
-            buttonText: '好的'
-          }
-        );
-        // dd.navigateTo({ url: '../award/index' });
+        // dd.alert(
+        //   {
+        //     content: '正在测试，敬请期待',
+        //     buttonText: '好的'
+        //   }
+        // )
+        dd.navigateTo({ url: '../award/index' })
         break;
       case 1:
         dd.alert({ content: '正在测试，敬请期待', buttonText: '好的' })
@@ -156,9 +156,9 @@ Page({
     dd.navigateTo({ url: './wait/index' })
   },
   initiate() {
-    dd.navigateTo({ url: './initiate/index' })
+    dd.navigateTo({ url: './from/index' })
   },
   copy() {
-    dd.navigateTo({ url: './copy/index' })
+    dd.navigateTo({ url: './to/index' })
   }
 })

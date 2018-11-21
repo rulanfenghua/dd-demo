@@ -4,43 +4,40 @@ Page({
   data: {
     items: [],
     search: '',
+    status: 0,
     active: false,
-    url: '/work/declareBehavior',
 
     tabs: [{
-        title: '行为积分'
-      },
-      {
-        title: '品德积分'
-      },
-      {
-        title: '业绩积分'
+      title: '待审批'
+    },
+    {
+      title: '已审批'
     }]
   },
   onShow() {
     this.listShow()
   },
-
   listShow() {
     dd.showLoading({content: '加载中...'})
 
     dd.httpRequest({
-      url: app.globalData.domain + this.data.url,
+      url: app.globalData.domain + '/work/selectMyFq',
       method: 'POST',
       dataType: 'json',
       data: {
         pageNum: 1,
-        pageSize: 20,
+        pageSize: 1000,
+        status: this.data.status, // tab栏审批未审批
         search: this.data.search
       },
       success: (res) => {
-        console.log('successDeclare----', res)
+        console.log('successWait----', res)
         this.setData({
           items: res.data.data.list
         })
       },
       fail: (res) => {
-        console.log("httpRequestFailDeclare----", res)
+        console.log('httpRequestFailWait----', res)
         dd.alert({
           content: JSON.stringify(res),
           buttonText: '好的'
@@ -82,43 +79,28 @@ Page({
   },
 
   onItemClick({ index }) {
-    console.log('list点击', index)
-
-    var title = this.data.items[index].behaviorTitle
-    var content = this.data.items[index].behaviorContent
-    var type = this.data.items[index].typeId
-    var max = this.data.items[index].zuiDuoIntegral
-    var min = this.data.items[index].zuiShaoIntegral
-    var id = this.data.items[index].behaviorId
-    var url = `./approve/index?title=${title}&content=${content}&type=${type}&max=${max}&min=${min}&id=${id}`
-
-    dd.navigateTo({
-      url: url
-    })
+    var approvalId = this.data.items[index].approvalId
+    var status = this.data.items[index].status
+    dd.navigateTo({ url: `./details/index?approvalId=${approvalId}&status=${status}` })
   },
+
   handleTabClick({ index }) {
     switch (index) {
-      case 0 :
-      this.setData({
-        url: '/work/declareBehavior'
-      });
-      this.listShow();
-      break;
-      case 1 :
-      this.setData({
-        url: '/work/declareMoral'
-      });
-      this.listShow();
-      break;
-      case 2:
-      this.setData({
-        url: '/work/declareResults'
-      });
-      this.listShow();
-      break;
+      case 0:
+        this.setData({
+          status: 0
+        });
+        this.listShow();
+        break;
+      case 1:
+        this.setData({
+          status: 1
+        });
+        this.listShow();
+        break;
     }
   },
   handleTabChange({ index }) {
 
   }
-}) 
+})

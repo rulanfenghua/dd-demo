@@ -176,7 +176,7 @@ Page({
     this.setData({
       search: e.detail.value
     })
-    this.showList()
+    // this.showList()
   },
   clearSearch() {
     this.setData({

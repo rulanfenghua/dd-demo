@@ -2,23 +2,23 @@ var app = getApp()
 
 Page({
   data: {
-    options: {},
     loading: false,
-
+    height: '',
+    
     users: [],
     apps: [],
-    user: [],
+    user: [], // 申请人
     types: [
       {
-        type: 'A类积分',
+        type: '品德积分',
         typeId: 1
       },
       {
-        type: 'B类积分',
+        type: '业绩积分',
         typeId: 2
       },
       {
-        type: 'C类积分',
+        type: '行为积分',
         typeId: 3
       }
     ],
@@ -26,42 +26,19 @@ Page({
     arrIndexFrom: 0,
     arrIndexApp: 0,
     arrIndexTo: 0,
-    arrIndexPoints: 0,
+    arrIndexType: 2,
 
     filePaths: [],
+
+    showFilter: false,
+    active: false,
+    search: '',
+
+    to: []
   },
 
-  onLoad(options) {
-    console.log(options)
-
-    dd.httpRequest({
-      url: app.globalData.domain + '/work/declareBehaviorDetail/selectAllUser',
-      method: 'POST',
-      dataType: 'json',
-      data: {
-        pageSize: 1000,
-        pageNum: 1
-      },
-      success: (res) => {
-        console.log('successUsers----', res)
-        var users = res.data.data.list.push({
-          userName: '空'
-        })
-
-        this.setData({
-          users: users
-        })
-      },
-      fail: (res) => {
-        console.log("httpRequestFailUsers----", res)
-        dd.alert({
-          content: JSON.stringify(res),
-          buttonText: '好的'
-        })
-      },
-      complete: () => {
-      }
-    })
+  onLoad() {
+    this.allUsers()
 
     dd.httpRequest({
       url: app.globalData.domain + '/work/declareBehaviorDetail/approverPel',
@@ -108,6 +85,51 @@ Page({
       }
     })
   },
+  onShow() {
+    dd.getSystemInfo({
+      success: (res) => {
+        // var width = res.windowWidth
+        var height = res.windowHeight
+        this.setData({
+          // width: width,
+          height: height
+        })
+      }
+    })
+  },
+
+  allUsers() {
+    dd.showLoading({ content: '加载中...' })
+    dd.httpRequest({
+      url: app.globalData.domain + '/work/declareBehaviorDetail/selectAllUser',
+      method: 'POST',
+      dataType: 'json',
+      data: {
+        pageSize: 1000,
+        pageNum: 1,
+        search: this.data.search
+      },
+      success: (res) => {
+        console.log('successUsers----', res)
+        var users = res.data.data.list
+
+        this.setData({
+          users: users
+        })
+      },
+      fail: (res) => {
+        console.log("httpRequestFailUsers----", res)
+        dd.alert({
+          content: JSON.stringify(res),
+          buttonText: '好的'
+        })
+      },
+      complete: () => {
+        dd.hideLoading()
+      }
+    })
+  },
+
   formSubmit(e) {
     console.log('formSubmit----', e.detail.value)
     this.setData({
@@ -116,29 +138,54 @@ Page({
 
     var points = e.detail.value.points
     var textarea = e.detail.value.textarea
-    var typeId = this.data.types[e.detail.value.type].typeId
+    var typeId = this.data.types[e.detail.value.types].typeId
     var from = this.data.user[e.detail.value.from].userId
-    var to = this.data.users[e.detail.value.to].userId
+    // var to = this.data.users[e.detail.value.to].userId
+    var to = []
+    this.data.to.forEach((item) => {
+      to.push(item.userId)
+    })
     var apps = this.data.apps[e.detail.value.app].userId
-    var approvalTitle = this.data.options.title
-    var approvalContent = this.data.options.content
-    var approvalId = this.data.options.id
+    var approvalTitle = e.detail.value.title
+    var approvalContent = e.detail.value.content
+    // var approvalId = this.data.options.id
+
+    // 验证提交
+    // if (!approvalTitle) {
+    //   dd.showToast({
+    //     type: 'fail',
+    //     content: '请您填写审批标题'
+    //   })
+    // } else if (!approvalContent) {
+
+    // } else if (!points) {
+
+    // }
+    if (!approvalTitle || !approvalContent || !points) {
+      dd.showToast({
+        type: 'fail',
+        content: '请您填写关键内容'
+      })
+      this.setData({
+        loading: false
+      })
+      return
+    }
 
     dd.httpRequest({
-      url: app.globalData.domain + '/work/addIntegralApprover',
+      url: app.globalData.domain + '/free/freeIntegralApprover',
       method: 'POST',
       dataType: 'json',
       data: {
         addIntegral: points,
-        approvalImg: [],
+        approvalImg: this.data.filePaths,
         spRemark: textarea,
         typeId: typeId,
         from: [from],
-        to: [to],
+        to: to,
         apps: [apps],
         approvalTitle: approvalTitle,
-        approvalContent: approvalContent,
-        approvalId: approvalId
+        approvalContent: approvalContent
       },
       success: (res) => {
         console.log('successApp----', res)
@@ -185,7 +232,7 @@ Page({
   changePoints(e) {
     console.log('picker发送选择改变，携带值为', e.detail.value);
     this.setData({
-      arrIndexPoints: e.detail.value,
+      arrIndexType: e.detail.value,
     });
   },
 
@@ -211,4 +258,84 @@ Page({
       }
     })
   },
+
+  // 多选组件
+  addFilter() {
+    this.setData({
+      showFilter: true
+    })
+  },
+
+  showSelect() {
+    
+  },
+
+  handleSearch(e) {
+    this.setData({
+      search: e.detail.value
+    })
+    // this.allUsers()
+  },
+  clearSearch() {
+    this.setData({
+      search: '',
+      active: false,
+    })
+    this.allUsers()
+    dd.hideKeyboard()
+  },
+  focusSearch() {
+    this.setData({
+      active: true
+    })
+  },
+  blurSearch() {
+    this.setData({
+      active: false
+    })
+  },
+  doneSearch() {
+    this.allUsers()
+    dd.hideKeyboard()
+  },
+
+  back() {
+    this.setData({
+      showFilter: false
+    })
+  },
+  onReset(e) {
+    this.setData({
+      to: []
+    })
+  },
+  onSubmit(e) {
+    console.log('onSubmit', e.detail.value.to);
+
+    this.setData({
+      to: e.detail.value.to,
+      showFilter: false
+    })
+  },
+  onChange(e) {
+  },
+
+  deleteUser(e) {
+    // 删除头像
+    console.log(e)
+
+    // var users = this.data.users
+    // var index = users.findIndex((item) => item.userId == this.data.to[e.target.dataset.index].userId)
+    // users[index].checked = false
+    // console.log(index, users)
+    // this.setData({
+    //   users: users
+    // })
+
+    // var to = this.data.to
+    // to.splice(e.target.dataset.index, 1)
+    // this.setData({
+    //   to: to
+    // })
+  }
 })

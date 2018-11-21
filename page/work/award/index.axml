@@ -1,15 +1,15 @@
 <view class="page">
   <form onSubmit="formSubmit" class="page-section">
-    <view class="page-section-title">审批标题    
+    <view class="page-section-title important">审批标题
     </view>
     <view class="page-section-demo">
-      <textarea auto-height placeholder="请您输入标题" name="title" style="font-size: 13px" auto-height="{{true}}" maxlength="-1" value="{{options.title}}" />
+      <textarea auto-height placeholder="" name="title" style="font-size: 13px" auto-height="{{true}}" maxlength="-1" value="{{options.title}}" />
     </view>
     <view class="form-line" />
-    <view class="page-section-title">审批内容      
+    <view class="page-section-title important">审批内容  
     </view>
     <view class="page-section-demo">
-      <textarea auto-height placeholder="请您输入内容" name="content" style="font-size: 13px" auto-height="{{true}}" maxlength="-1" value="{{options.content}}" />
+      <textarea auto-height placeholder="" name="content" style="font-size: 13px" auto-height="{{true}}" maxlength="-1" value="{{options.content}}" />
     </view>
     <view class="form-line" />
     <picker onChange="changePoints" value="{{arrIndexType}}" range="{{types}}" range-key="type" name="types">
@@ -22,19 +22,17 @@
       </view>
     </picker>
     <view class="form-line" />
-    <view class="page-section-title">备注
-    </view>
+    <view class="page-section-title">备注</view>
     <view class="page-section-demo">
       <textarea auto-height placeholder="输入备注信息" name="textarea" style="font-size: 14px" />
     </view>
     <view class="form-line" />
-    <view class="page-section-btns">
-      <view onTap="chooseImage">选择照片
-      </view>
+    <view class="picture-btns">
+      <view onTap="chooseImage">选择照片</view>
     </view>
     <view class="form-line" />
     <input-item
-      className="input-text"
+      className="input-text important"
       name="points"
     >
       输入奖扣分数
@@ -42,35 +40,75 @@
     <view class="form-line" />
     <picker onChange="changeFrom" value="{{arrIndexFrom}}" range="{{user}}" range-key="userName" name="from">
       <view class="row">
-        <view class="row-title">申请人
-        </view>
-        <view class="row-extra">当前选择：{{user[arrIndexFrom].userName}}
-        </view>
+        <view class="row-title">申请人</view>
+        <view class="row-extra">当前选择：{{user[arrIndexFrom].userName}}</view>
         <image class="row-arrow" src="/image/arrowright.png" mode="aspectFill" />
       </view>
     </picker>
     <view class="form-line" />
     <picker onChange="changeApp" value="{{arrIndexApp}}" range="{{apps}}" range-key="userName" name="app">
       <view class="row">
-        <view class="row-title">审批人
-        </view>
-        <view class="row-extra">当前选择：{{apps[arrIndexApp].userName}}
-        </view>
+        <view class="row-title">审批人</view>
+        <view class="row-extra">当前选择：{{apps[arrIndexApp].userName}}</view>
         <image class="row-arrow" src="/image/arrowright.png" mode="aspectFill" />
       </view>
     </picker>
-    <view class="form-line" />
+    <!-- <view class="form-line" />
     <picker onChange="changeTo" value="{{arrIndexTo}}" range="{{users}}" range-key="userName" name="to">
       <view class="row">
-        <view class="row-title">抄送
-        </view>
-        <view class="row-extra">当前选择：{{users[arrIndexTo].userName}}
-        </view>
+        <view class="row-title">抄送</view>
+        <view class="row-extra">当前选择：{{users[arrIndexTo].userName}}</view>
         <image class="row-arrow" src="/image/arrowright.png" mode="aspectFill" />
       </view>
-    </picker>
+    </picker> -->
     <view class="form-line" />
-    <button formType="submit" type="primary" loading="{{loading}}">提交
-    </button>
+    <view class="select-section">
+      <view class="title">抄送<text class="details">审批通过后，通知抄送人</text></view>
+      <view class="add-wrapper">
+        <text class="add" onTap="addFilter">+</text>
+        <!-- <text class="name">小绿</text> -->
+      </view>
+      <view class="add-wrapper" a:for="{{to}}">
+        <image class="add" src="{{item.avatar ? item.avatar : '/image/logo.jpg'}}" onTap="deleteUser" data-index="{{index}}"></image>
+        <text class="name">{{item.userName}}</text>
+      </view>
+    </view>
+    <view class="form-line" />
+    <button formType="submit" type="primary" loading="{{loading}}" class="button-form">提交</button>
   </form>
-</view> 
+</view>
+<view class="filter {{showFilter ? 'show-filter' : ''}}">
+  <!-- <button type="default" plain hover-class="none" class="top-button" onTap="back">点击这里返回</button> -->
+  <view class="search-filter">
+    <view class="select" onTap="showSelect"></view>
+    <view class="page-section-demo search">
+      <view class="search-outer">
+        <input class="search-input" placeholder="搜索" value="{{search}}" onFocus="focusSearch" onBlur="blurSearch" onConfirm="doneSearch" onInput="handleSearch" />
+        <text class="search-cancel {{active ? 'focus' : ''}}" onTap="clearSearch">取消      
+        </text>
+      </view>
+    </view>
+  </view>
+  <view>
+    <form onSubmit="onSubmit" onReset="onReset" class="filter-form">
+      <view class="page-section">
+        <checkbox-group onChange="onChange" name="to" style="height: {{height - 91}}px" class="checkbox-wrapper">
+          <label class="checkbox" a:for="{{users}}" key="label-{{index}}">
+            <checkbox value="{{item}}" checked="{{item.checked}}" disabled="{{item.disabled}}" class="checkbox-label"/>
+            <image src="{{item.avatar ? item.avatar : '/image/logo.jpg'}}" />
+            <text class="checkbox-text">{{item.userName}}</text>
+            <text class="checkbox-details">{{item.deptName}}</text>
+          </label>
+        </checkbox-group>
+      <view class="page-section-btns">
+        <view>
+          <button size="mini" type="ghost" onTap="back">取消</button>
+        </view>
+        <view>
+          <button size="mini" type="primary" formType="submit">确定</button>
+        </view>
+        <!-- <view><button size="mini" type="warn" formType="reset">重置</button></view> -->
+      </view>
+    </form>
+  </view>
+</view>

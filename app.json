@@ -14,8 +14,12 @@
 
     "page/work/index/logs/index",
     "page/work/index/wait/index",
+    "page/work/index/from/index",
+    "page/work/index/to/index",
     "page/work/index/logs/details/index",
-    "page/work/index/wait/details/index"
+    "page/work/index/wait/details/index",
+    "page/work/index/from/details/index",
+    "page/work/index/to/details/index"
   ],
   "window": {
     "enableWK": "YES",
