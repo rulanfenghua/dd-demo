@@ -2,7 +2,7 @@ let app = getApp()
 
 Page({
   data: {
-    hideList: true,
+    hideList: false,
     authCode: ''
   },
   // onLoad() {
@@ -48,14 +48,60 @@ Page({
   //   })
   // },
   onLoad() {
-    this.setData({
-      hideList: false
+    dd.getStorage({
+      key: 'login',
+      success(res) {
+        console.log("storage----", res)
+        if (res.data) {
+          dd.showLoading({ content: '登陆中...' })
+          dd.httpRequest({
+            url: app.globalData.domain + '/user/login',
+            method: 'POST',
+            data: {
+              phone: res.data.phone,
+              password: res.data.password
+            },
+            dataType: 'json',
+            success: (res) => {
+              console.log('success----', res)
+
+              if (res.data.code == 0) {
+                app.globalData.level = res.data.msg
+                dd.switchTab({
+                  url: '/page/home/index/index'
+                })
+              } else {
+                dd.alert({
+                  content: res.data.msg,
+                  buttonText: '好的'
+                })
+              }
+            },
+            fail: (res) => {
+              console.log("httpRequestFail----", res)
+              dd.alert({
+                content: JSON.stringify(res),
+                buttonText: '好的'
+              })
+            },
+            complete: () => {
+              dd.hideLoading()
+            }
+          })
+        }
+      },
+      fail(res) {
+        dd.alert({
+          content: JSON.stringify(res),
+          buttonText: '好的'
+        })
+      }
     })
   },
   formSubmit(e) {
     console.log('formSubmit----', e.detail.value)
 
-    dd.showLoading({content: '加载中...'})
+    dd.showLoading({content: '登陆中...'})
     dd.httpRequest({
       url: app.globalData.domain + '/user/login',
       method: 'POST',
@@ -69,8 +115,17 @@ Page({
 
         if (res.data.code == 0) {
           app.globalData.level = res.data.msg
-          dd.switchTab({
-            url: '/page/home/index/index'
+          dd.setStorage({
+            key: 'login',
+            data: {
+              phone: e.detail.value.phone,
+              password: e.detail.value.password
+            },
+            success() {
+              dd.switchTab({
+                url: '/page/home/index/index'
+              })
+            }
           })
         } else {
           dd.alert({

@@ -135,5 +135,38 @@ Page({
     // })
     // ddChart.interval().position('title*points')
     // ddChart.render()
+  },
+
+  logout() {
+    dd.showLoading({ content: '退出中...' })
+    dd.httpRequest({
+      url: app.globalData.domain + '/user/logout',
+      method: 'GET',
+      dataType: 'json',
+      success: (res) => {
+        console.log('successPersonalLogout----', res)
+        dd.removeStorage({
+          key: 'login',
+          success: function() {
+            console.log(1)
+            dd.hideLoading()
+            dd.reLaunch({
+              url: '/page/register/index/index'
+            })
+          }
+        })
+      },
+      fail: (res) => {
+        console.log("httpRequestFailPersonalLogout----", res)
+        dd.alert({
+          content: JSON.stringify(res),
+          buttonText: '好的'
+        })
+        dd.hideLoading()
+      },
+      complete: () => {
+        dd.hideLoading()
+      }
+    })
   }
 })

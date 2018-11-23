@@ -62,7 +62,7 @@
 .picture-btns {
   height: 40px;
   line-height: 40px;
-  color: blue;
+  color: rgba(50, 150, 250, 1);
   font-size: 14px;
   text-align: center;
 }

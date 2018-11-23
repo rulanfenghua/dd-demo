@@ -71,6 +71,9 @@ Page({
       },
       success: (res) => {
         console.log('successHomeList----', res)
+        res.data.data.list.forEach((item) => {
+          item.approvalImg1 = item.approvalImg1.split(',')
+        })
         this.setData({
           items: res.data.data.list
         })
@@ -104,7 +107,7 @@ Page({
     console.log(e)
     dd.previewImage({
       current: e.target.dataset.index,
-      urls: this.data.items.approvalImg
+      urls: this.data.items.approvalImg1
     })
   }
 })

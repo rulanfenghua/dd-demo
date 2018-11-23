@@ -27,7 +27,7 @@ Page({
   },
 
   onLoad(options) {
-    console.log(options)
+    // console.log(options)
 
     var pointsArray = []
     var median = parseInt(options.min ? options.min : '0')
@@ -165,7 +165,7 @@ Page({
     var approvalContent = that.data.options.content
     var approvalId = that.data.options.id
 
-    console.log(that.data.toFilePaths)
+    // console.log(that.data.toFilePaths)
     dd.httpRequest({
       url: app.globalData.domain + '/work/addIntegralApprover',
       method: 'POST',
@@ -239,7 +239,7 @@ Page({
         // dd.alert({
         //   content: JSON.stringify(res),
         // });
-        console.log(res)
+        // console.log(res)
         if (res && res.apFilePaths) {
           this.setData({
             filePaths: res.filePaths,
@@ -266,12 +266,14 @@ Page({
         success: (res) => {
           success++
           console.log(res)
-          toFilePaths.push(JSON.parse(res).data.data)
+          var regex = /:"(.*)","msg"/
+          var path = res.data.match(regex)[1]
+          toFilePaths.push(path)
           if (success == _this.data.filePaths.length) {
             _this.setData({
               toFilePaths: toFilePaths
             })
-            console.log(_this.data.toFilePaths)
+            // console.log(_this.data.toFilePaths)
             fnSubmit(value, _this)
           }
         },
@@ -351,7 +353,7 @@ Page({
 
   deleteUser(e) {
     // 删除头像
-    console.log(e)
+    // console.log(e)
 
     // var users = this.data.users
     // var index = users.findIndex((item) => item.userId == this.data.to[e.target.dataset.index].userId)

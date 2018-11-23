@@ -44,6 +44,14 @@
   float: right;
 }
 
+.main .image {
+  display: inline-block;
+  height: 100px;
+  width: 100px;
+  margin-right: 14px;
+  /* margin-bottom: 14px; */
+}
+
 .am-vertical-steps {
 
 }

@@ -133,4 +133,12 @@ Page({
 
     dd.navigateBack()
   },
+
+  preview(e) {
+    console.log(e)
+    dd.previewImage({
+      current: e.target.dataset.index,
+      urls: this.data.data.approvalImg
+    })
+  }
 })
