@@ -2,7 +2,7 @@
 
 <view class="page">
   <view class="top">
-    <image class="avatar" src="{{data.userImg ? data.userImg : '/image/logo.jpg'}}" />
+    <image class="avatar" src="{{data.userImg ? data.userImg : '/image/logo.png'}}" />
     <text class="name">{{data.userName}}</text>
     <view class="form-line" /></view>
   <view class="main">

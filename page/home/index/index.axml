@@ -48,7 +48,7 @@
       </view>
     </view>
     <view class="content-bottom" onTap="rankTo">
-      <image src="{{first.userImg ? first.userImg : '/image/logo.jpg'}}" class="content-bottom-image"/>
+      <image src="{{first.userImg ? first.userImg : '/image/logo.png'}}" class="content-bottom-image"/>
       <text class="content-bottom-text">{{first.userName ? first.userName : '暂时无人'}} 获得今日的积分冠军</text>
       <text class="right-arrow"></text>
     </view>
@@ -63,7 +63,7 @@
         key="item-{{index}}"
         index="{{index}}"
         last="{{index === (items.length - 1)}}"
-        thumb="{{item.userImg ? item.userImg : '/image/logo.jpg'}}"
+        thumb="{{item.userImg ? item.userImg : '/image/logo.png'}}"
         arrow="{{item.arrow}}"
         align="{{item.align}}"
         onClick="onItemClick"

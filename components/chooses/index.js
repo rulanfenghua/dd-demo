@@ -10,11 +10,17 @@ Component({
     height: '',
 
     active: false,
-    search: ''
+    search: '',
+    to: [],
+    changeTo: []
   },
 
   didMount() {
     this.allUsers()
+    this.setData({
+      to: [],
+      changeTo: []
+    })
 
     dd.getSystemInfo({
       success: (res) => {
@@ -44,6 +50,13 @@ Component({
         success: (res) => {
           console.log('successUsers----', res)
           var users = res.data.data.list
+          users.forEach((item) => {
+            if (this.data.to.some((toItem) => toItem.userId == item.userId)) {
+              item.checked = true
+            }
+          })
+
+          console.log(users)
 
           this.setData({
             users: users
@@ -101,13 +114,41 @@ Component({
       this.props.onTo([])
     },
     onSubmit(e) {
-      console.log('onSubmit', e.detail.value.to);
+      console.log('changeTo', this.data.changeTo)
+      var to = this.data.to
+      this.data.changeTo.forEach((item) => {
+        if (this.data.to.some((toItem) => toItem.userId == item.userId)) {
+          var index = to.findIndex((findItem) => findItem.userId == item.userId)
+          to.splice(index, 1)
+        } else {
+          to.push(item)
+        }
+      })
+      console.log('to', this.data.to)
+      this.setData({
+        to: to
+      })
 
-      this.props.onTo(e.detail.value.to)
+      this.props.onTo(to)
 
       this.props.onShowFilter()
     },
     onChange(e) {
+      console.log(e.detail.value)
+      // var changeTo = []
+      // e.detail.value.forEach((item) => {
+      //   if (this.data.to.some((toItem) => toItem.userId == item.userId)) {
+      //     changeTo.splice(changeTo.indexOf(item), 1)
+      //   } else {
+      //     changeTo.push(item)
+      //   }
+      // })
+
+      // console.log('changeTo', changeTo)
+
+      this.setData({
+        changeTo: e.detail.value
+      })
     }
   }
 })

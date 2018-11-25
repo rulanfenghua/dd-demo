@@ -13,9 +13,9 @@
     <form onSubmit="onSubmit" onReset="onReset" class="filter-form">
       <view class="page-section">
         <checkbox-group onChange="onChange" name="to" style="height: {{height - 81}}px" class="checkbox-wrapper">
-          <label class="checkbox" a:for="{{users}}" key="label-{{index}}">
+          <label class="checkbox" a:for="{{users}}" key="{{item.userId}}">
             <checkbox value="{{item}}" checked="{{item.checked}}" disabled="{{item.disabled}}" class="checkbox-label"/>
-            <image src="{{item.avatar ? item.avatar : '/image/logo.jpg'}}" />
+            <image src="{{item.avatar ? item.avatar : '/image/logo.png'}}" />
             <text class="checkbox-text">{{item.userName}}</text>
             <text class="checkbox-details">{{item.deptName}}</text>
           </label>

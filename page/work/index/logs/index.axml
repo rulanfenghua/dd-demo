@@ -1,7 +1,7 @@
 <view class="page">
   <list className="list">
     <block a:for="{{items}}" class="list-block">
-      <list-item className="list-item" key="item-{{index}}" index="{{index}}" last="{{index === (items.length - 1)}}" thumb="{{item.userImg ? item.userImg : '/image/logo.jpg'}}" arrow="{{false}}" align="{{item.align}}" onClick="onItemClick" multipleLine="{{true}}" wrap="{{true}}">
+      <list-item className="list-item" key="item-{{index}}" index="{{index}}" last="{{index === (items.length - 1)}}" thumb="{{item.userImg ? item.userImg : '/image/logo.png'}}" arrow="{{false}}" align="{{item.align}}" onClick="onItemClick" multipleLine="{{true}}" wrap="{{true}}">
         <text class="name">{{item.userName}}
         </text>
         <view class="brief">

@@ -74,7 +74,7 @@
         <!-- <text class="name">小绿</text> -->
       </view>
       <view class="add-wrapper" a:for="{{to}}">
-        <image class="add" src="{{item.avatar ? item.avatar : '/image/logo.jpg'}}" onTap="deleteUser" data-index="{{index}}"></image>
+        <image class="add" src="{{item.avatar ? item.avatar : '/image/logo.png'}}" onTap="deleteUser" data-index="{{index}}"></image>
         <text class="name">{{item.userName}}</text>
       </view>
     </view>

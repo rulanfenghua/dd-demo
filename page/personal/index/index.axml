@@ -1,7 +1,7 @@
 <view class="page" style="min-height: {{height}}px">
   <view class="wrapper">
   <card
-    thumb="{{data.avatar ? data.avatar : '/image/logo.jpg'}}"
+    thumb="{{data.avatar ? data.avatar : '/image/logo.png'}}"
     title="{{data.name}}"
     subTitle="{{data.deptName}} {{data.postName}}"
     onClick="onCardClick"
