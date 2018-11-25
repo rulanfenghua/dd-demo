@@ -3,7 +3,6 @@ var app = getApp()
 Page({
   data: {
     loading: false,
-    height: '',
     
     users: [],
     apps: [],
@@ -29,17 +28,13 @@ Page({
     arrIndexType: 2,
 
     filePaths: [],
+    toFilePaths: [],
 
     showFilter: false,
-    active: false,
-    search: '',
-
     to: []
   },
 
   onLoad() {
-    this.allUsers()
-
     dd.httpRequest({
       url: app.globalData.domain + '/work/declareBehaviorDetail/approverPel',
       method: 'POST',
@@ -86,48 +81,7 @@ Page({
     })
   },
   onShow() {
-    dd.getSystemInfo({
-      success: (res) => {
-        // var width = res.windowWidth
-        var height = res.windowHeight
-        this.setData({
-          // width: width,
-          height: height
-        })
-      }
-    })
-  },
-
-  allUsers() {
-    dd.showLoading({ content: '加载中...' })
-    dd.httpRequest({
-      url: app.globalData.domain + '/work/declareBehaviorDetail/selectAllUser',
-      method: 'POST',
-      dataType: 'json',
-      data: {
-        pageSize: 1000,
-        pageNum: 1,
-        search: this.data.search
-      },
-      success: (res) => {
-        console.log('successUsers----', res)
-        var users = res.data.data.list
-
-        this.setData({
-          users: users
-        })
-      },
-      fail: (res) => {
-        console.log("httpRequestFailUsers----", res)
-        dd.alert({
-          content: JSON.stringify(res),
-          buttonText: '好的'
-        })
-      },
-      complete: () => {
-        dd.hideLoading()
-      }
-    })
+    
   },
 
   formSubmit(e) {
@@ -272,14 +226,12 @@ Page({
       sourceType: ['camera', 'album'],
       count: 9,
       success: (res) => {
-        // dd.alert({
-        //   content: JSON.stringify(res),
-        // });
-        console.log(res)
-        if (res && res.apfilePaths) {
+        console.log('chooseImage', res)
+        if (res && res.apFilePaths) {
           this.setData({
-            filePaths: res.apfilePaths,
-          });
+            filePaths: res.apFilePaths,
+          })
+          console.log(this.data.filePaths)
         }
       },
       fail: () => {
@@ -293,62 +245,13 @@ Page({
   // 多选组件
   addFilter() {
     this.setData({
-      showFilter: true
+      showFilter: !this.data.showFilter
     })
   },
-
-  showSelect() {
-    
-  },
-
-  handleSearch(e) {
+  to(to) {
     this.setData({
-      search: e.detail.value
+      to: to
     })
-    // this.allUsers()
-  },
-  clearSearch() {
-    this.setData({
-      search: '',
-      active: false,
-    })
-    this.allUsers()
-    dd.hideKeyboard()
-  },
-  focusSearch() {
-    this.setData({
-      active: true
-    })
-  },
-  blurSearch() {
-    this.setData({
-      active: false
-    })
-  },
-  doneSearch() {
-    this.allUsers()
-    dd.hideKeyboard()
-  },
-
-  back() {
-    this.setData({
-      showFilter: false
-    })
-  },
-  onReset(e) {
-    this.setData({
-      to: []
-    })
-  },
-  onSubmit(e) {
-    console.log('onSubmit', e.detail.value.to);
-
-    this.setData({
-      to: e.detail.value.to,
-      showFilter: false
-    })
-  },
-  onChange(e) {
   },
 
   deleteUser(e) {

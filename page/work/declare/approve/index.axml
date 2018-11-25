@@ -27,7 +27,10 @@
     </view>
     <view class="form-line" />
     <view class="picture-btns">
-      <view onTap="chooseImage">选择照片</view>
+      <view onTap="chooseImage">选择照片
+        <text class="details" a:if="{{filePaths.length == 0}}">图片大小不能超过4M</text>
+        <text class="details" a:else>您选择了{{filePaths.length}}张图片</text>
+      </view>
     </view>
     <view class="form-line" />
     <picker onChange="changePoints" value="{{arrIndexPoints}}" range="{{pointsArray}}" name="points">
@@ -79,38 +82,4 @@
     <button formType="submit" type="primary" loading="{{loading}}" class="button-form">提交</button>
   </form>
 </view>
-<view class="filter {{showFilter ? 'show-filter' : ''}}">
-  <!-- <button type="default" plain hover-class="none" class="top-button" onTap="back">点击这里返回</button> -->
-  <view class="search-filter">
-    <view class="select" onTap="showSelect"></view>
-    <view class="page-section-demo search">
-      <view class="search-outer">
-        <input class="search-input" placeholder="搜索" value="{{search}}" onFocus="focusSearch" onBlur="blurSearch" onConfirm="doneSearch" onInput="handleSearch" />
-        <text class="search-cancel {{active ? 'focus' : ''}}" onTap="clearSearch">取消      
-        </text>
-      </view>
-    </view>
-  </view>
-  <view>
-    <form onSubmit="onSubmit" onReset="onReset" class="filter-form">
-      <view class="page-section">
-        <checkbox-group onChange="onChange" name="to" style="height: {{height - 91}}px" class="checkbox-wrapper">
-          <label class="checkbox" a:for="{{users}}" key="label-{{index}}">
-            <checkbox value="{{item}}" checked="{{item.checked}}" disabled="{{item.disabled}}" class="checkbox-label"/>
-            <image src="{{item.avatar ? item.avatar : '/image/logo.jpg'}}" />
-            <text class="checkbox-text">{{item.userName}}</text>
-            <text class="checkbox-details">{{item.deptName}}</text>
-          </label>
-        </checkbox-group>
-      <view class="page-section-btns">
-        <view>
-          <button size="mini" type="ghost" onTap="back">取消</button>
-        </view>
-        <view>
-          <button size="mini" type="primary" formType="submit">确定</button>
-        </view>
-        <!-- <view><button size="mini" type="warn" formType="reset">重置</button></view> -->
-      </view>
-    </form>
-  </view>
-</view>
+<chooses onTo="to" onShowFilter="addFilter" showFilter="{{showFilter}}" />

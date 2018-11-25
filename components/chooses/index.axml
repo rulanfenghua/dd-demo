@@ -1,0 +1,34 @@
+<view class="filter {{showFilter ? 'show-filter' : ''}}">
+  <!-- <button type="default" plain hover-class="none" class="top-button" onTap="back">点击这里返回</button> -->
+  <view class="search-filter">
+    <view class="select" onTap="showSelect"></view>
+    <view class="page-section-demo search">
+      <view class="search-outer">
+        <input class="search-input" placeholder="搜索" value="{{search}}" onFocus="focusSearch" onBlur="blurSearch" onConfirm="doneSearch" onInput="handleSearch" />
+        <text class="search-cancel {{active ? 'focus' : ''}}" onTap="clearSearch">取消              </text>
+      </view>
+    </view>
+  </view>
+  <view>
+    <form onSubmit="onSubmit" onReset="onReset" class="filter-form">
+      <view class="page-section">
+        <checkbox-group onChange="onChange" name="to" style="height: {{height - 81}}px" class="checkbox-wrapper">
+          <label class="checkbox" a:for="{{users}}" key="label-{{index}}">
+            <checkbox value="{{item}}" checked="{{item.checked}}" disabled="{{item.disabled}}" class="checkbox-label"/>
+            <image src="{{item.avatar ? item.avatar : '/image/logo.jpg'}}" />
+            <text class="checkbox-text">{{item.userName}}</text>
+            <text class="checkbox-details">{{item.deptName}}</text>
+          </label>
+        </checkbox-group>
+        <view class="page-section-btns">
+          <view>
+            <button size="mini" type="ghost" onTap="back">取消</button>
+          </view>
+          <view>
+            <button size="mini" type="primary" formType="submit">确定</button>
+          </view>
+          <!-- <view><button size="mini" type="warn" formType="reset">重置</button></view> -->
+        </view>
+      </form>
+    </view>
+  </view>
