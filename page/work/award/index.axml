@@ -24,7 +24,7 @@
     <view class="form-line" />
     <view class="page-section-title">备注</view>
     <view class="page-section-demo">
-      <textarea auto-height placeholder="输入备注信息" name="textarea" style="font-size: 14px" />
+      <textarea auto-height placeholder="输入备注信息" name="textarea" style="font-size: 13px" />
     </view>
     <view class="form-line" />
     <view class="picture-btns">

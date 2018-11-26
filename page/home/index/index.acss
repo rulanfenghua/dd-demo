@@ -287,7 +287,7 @@
 
 .brief-image {
   display: inline-block;
-  height: 100px;
+  /* height: 100px; */
   width: 100px;
   margin-right: 23px;
   /* margin-bottom: 14px; */

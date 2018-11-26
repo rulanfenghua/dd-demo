@@ -113,6 +113,8 @@ Page({
     var approvalTitle = values.detail.value.title
     var approvalContent = values.detail.value.content
 
+    console.log(!approvalTitle || !approvalContent || !points)
+
     if (!approvalTitle || !approvalContent || !points) {
       dd.showToast({
         type: 'fail',
@@ -124,13 +126,15 @@ Page({
       return
     }
 
+    console.log('toFilePaths', that.data.toFilePaths)
+
     dd.httpRequest({
       url: app.globalData.domain + '/free/freeIntegralApprover',
       method: 'POST',
       dataType: 'json',
       data: {
         addIntegral: points,
-        approvalImg: that.data.filePaths,
+        approvalImg: that.data.toFilePaths,
         spRemark: textarea,
         typeId: typeId,
         from: [from],
@@ -174,12 +178,15 @@ Page({
         filePath: this.data.filePaths[index],
         success: (res) => {
           success++
-          console.log(res)
-          toFilePaths.push(res.data.data)
+          console.log('dbImg', res)
+          var regex = /:"(.*)","msg"/
+          var path = res.data.match(regex)[1]
+          toFilePaths.push(path)
           if (success == _this.data.filePaths.length) {
             _this.setData({
               toFilePaths: toFilePaths
             })
+            // console.log(_this.data.toFilePaths)
             fnSubmit(value, _this)
           }
         },
