@@ -113,7 +113,7 @@ Page({
     var approvalTitle = values.detail.value.title
     var approvalContent = values.detail.value.content
 
-    console.log(!approvalTitle || !approvalContent || !points)
+    // console.log(!approvalTitle || !approvalContent || !points)
 
     if (!approvalTitle || !approvalContent || !points) {
       dd.showToast({
@@ -167,6 +167,21 @@ Page({
     })
   },
   uploadImage(value, fnSubmit) {
+    // 表单验证
+    var points = values.detail.value.points
+    var approvalTitle = values.detail.value.title
+    var approvalContent = values.detail.value.content
+    if (!approvalTitle || !approvalContent || !points) {
+      dd.showToast({
+        type: 'fail',
+        content: '请您填写关键内容'
+      })
+      that.setData({
+        loading: false
+      })
+      return
+    }
+
     let success = 0
     let _this = this
     let toFilePaths = []
