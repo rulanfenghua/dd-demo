@@ -12,14 +12,15 @@ Component({
     active: false,
     search: '',
     to: [],
-    changeTo: []
+    changeTo: [],
+    midTo: []
   },
 
   didMount() {
     this.allUsers()
     this.setData({
       to: [],
-      changeTo: []
+      midTo: []
     })
 
     dd.getSystemInfo({
@@ -56,10 +57,9 @@ Component({
             }
           })
 
-          console.log(users)
-
           this.setData({
-            users: users
+            users: users,
+            midTo: this.data.to
           })
         },
         fail: (res) => {
@@ -114,17 +114,19 @@ Component({
       this.props.onTo([])
     },
     onSubmit(e) {
+      console.log('changeTo', e.detail.value.to)
       console.log('changeTo', this.data.changeTo)
-      var to = this.data.to
+      console.log('midTo', this.data.midTo)
+      var to = this.data.midTo
       this.data.changeTo.forEach((item) => {
-        if (this.data.to.some((toItem) => toItem.userId == item.userId)) {
+        if (to.some((toItem) => toItem.userId == item.userId)) {
           var index = to.findIndex((findItem) => findItem.userId == item.userId)
           to.splice(index, 1)
         } else {
           to.push(item)
         }
       })
-      console.log('to', this.data.to)
+      console.log('to', to)
       this.setData({
         to: to
       })
