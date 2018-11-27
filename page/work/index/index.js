@@ -130,6 +130,7 @@ Page({
         dd.navigateTo({url: '../declare/index'})
         break;
       case 10:
+        // dd.alert({ content: '正在测试，敬请期待', buttonText: '好的' })
         dd.navigateTo({url: '../market/index'})
         break;
       case 7:
