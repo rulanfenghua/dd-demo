@@ -166,17 +166,18 @@ Page({
       }
     })
   },
-  uploadImage(value, fnSubmit) {
+  uploadImage(values, fnSubmit) {
     // 表单验证
     var points = values.detail.value.points
     var approvalTitle = values.detail.value.title
     var approvalContent = values.detail.value.content
     if (!approvalTitle || !approvalContent || !points) {
+      console.log(1)
       dd.showToast({
         type: 'fail',
         content: '请您填写关键内容'
       })
-      that.setData({
+      this.setData({
         loading: false
       })
       return
@@ -202,7 +203,7 @@ Page({
               toFilePaths: toFilePaths
             })
             // console.log(_this.data.toFilePaths)
-            fnSubmit(value, _this)
+            fnSubmit(values, _this)
           }
         },
         fail: function(res) {

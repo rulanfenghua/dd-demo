@@ -31,6 +31,12 @@ Page({
       }
     })
 
+    this.showList()
+  },
+
+  showList() {
+    dd.showLoading({content: '加载中...'})
+
     dd.httpRequest({
       url: app.globalData.domain + '/integralGoods/selectIntegralGoodsKYIntegral',
       method: 'POST',
@@ -51,11 +57,6 @@ Page({
       complete: () => {
       }
     })
-    this.showList()
-  },
-
-  showList() {
-    dd.showLoading({content: '加载中...'})
 
     dd.httpRequest({
       url: app.globalData.domain + '/integralGoods/selectIntegralGoodsList',
@@ -70,7 +71,8 @@ Page({
         
         var items = res.data.data.list
         items.forEach((item) => {
-          if (this.data.goods.some((good) => good.goodId == item.goodId)) {
+          item.goodImg = item.goodLbImg.split(',')[0]
+          if (item.goodKc == 0) {
             item.active = true
           } else {
             items.active = false
@@ -103,8 +105,72 @@ Page({
     this.showList()
   },
 
-  change() {
-    dd.alert({ content: '正在测试，敬请期待', buttonText: '好的' })
+  logs() {
+    dd.navigateTo({ url: './logs/index' })
+  },
+  change(e) {
+    // dd.alert({ content: '正在测试，敬请期待', buttonText: '好的' })
+    if (e.currentTarget.dataset.item.goodKc == 0) {
+      dd.showToast({
+        type: 'exception',
+        content: '没有存货了',
+      })
+      return
+    }
+    if (e.currentTarget.dataset.item.dhIntegral > this.data.data) {
+      dd.alert({
+        content: '您的积分不足，请赚取积分后再做兑换！',
+        buttonText: '好的'
+      })
+      return
+    }
+    dd.confirm({
+      title: '温馨提示',
+      content: `确定兑换 ${e.currentTarget.dataset.item.goodName} 吗？`,
+      confirmButtonText: '兑换',
+      cancelButtonText: '再看看',
+      success: (result) => {
+        if (result.confirm) {
+          dd.showLoading({content: '兑换中...'})
+          dd.httpRequest({
+            url: app.globalData.domain + '/integralGoods/selectIntegralAddGoods',
+            method: 'POST',
+            dataType: 'json',
+            data: {
+              goodId: e.currentTarget.dataset.item.goodId
+            },
+            success: (res) => {
+              console.log('successMarketChange----', res)
+              dd.showToast({
+                type: 'success',
+                content: '兑换成功',
+              })
+            },
+            fail: (res) => {
+              console.log("httpRequestFailMarketChange----", res)
+              dd.alert({
+                content: JSON.stringify(res),
+                buttonText: '好的'
+              })
+            },
+            complete: () => {
+              dd.hideLoading()
+              this.showList()
+            }
+          })
+        }
+      }
+    })
+  },
+  toDetails(e) {
+    var goodId = e.currentTarget.dataset.item.goodId
+    var goodName = e.currentTarget.dataset.item.goodName
+    var goodKc = e.currentTarget.dataset.item.goodKc
+    var ydhNum = e.currentTarget.dataset.item.ydhNum
+    var goodLbImg = e.currentTarget.dataset.item.goodLbImg
+    var dhIntegral = e.currentTarget.dataset.item.dhIntegral
+    var data = this.data.data
+    dd.navigateTo({ url: `./details/index?goodId=${goodId}&goodName=${goodName}&goodKc=${goodKc}&ydhNum=${ydhNum}&goodLbImg=${goodLbImg}&dhIntegral=${dhIntegral}&data=${data}` })
   },
 
   choose(e) {

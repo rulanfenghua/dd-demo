@@ -19,17 +19,17 @@
   text-align: center;
 }
 
-.top .title .sub {
+.top-title .sub {
   font-size: 12px;
   font-family: 'Times New Roman', Times, serif;
   margin-bottom: 2px;
 }
 
-.top .title .main {
+.top-title .main {
   font-size: 14px;
 }
 
-.top .title .main .green {
+.top-title .main .green {
   color: #00634e;
   font-size: 15px;
 }
@@ -61,12 +61,12 @@
   display: none;
 }
 
-.top .amount .wrapper .main {
+.amount-main {
   display: inline-block;
   font-size: 10px;
 }
 
-.top .amount .wrapper .main .number {
+.amount-main .number {
   font-size: 17px;
   font-weight: 700;
   margin-right: 4px;

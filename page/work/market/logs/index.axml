@@ -1,0 +1,22 @@
+<view class="page">
+  <list className="list">
+    <block a:for="{{items}}" class="list-block">
+      <list-item className="list-item" key="item-{{index}}" index="{{index}}" last="{{index === (items.length - 1)}}" thumb="{{item.recordImg ? item.recordImg : '/image/logo.png'}}" arrow="{{false}}" align="{{item.align}}" onClick="onItemClick" multipleLine="{{true}}" wrap="{{true}}">
+        <text class="name">{{item.recordName}}
+        </text>
+        <view class="brief">
+          <view class="brief-title">
+            {{item.userName}} {{item.deptName}}
+          </view>
+          <view class="brief-bottom">
+            <text class="brief-bottom-left">{{item.dhCreateTime}}</text>
+            <text class="brief-bottom-right">已兑换</text>
+          </view>
+        </view>
+        <view slot="extra" class="extra">
+          {{item.dhIntegral}}        
+        </view>
+      </list-item>
+    </block>
+  </list>
+</view>

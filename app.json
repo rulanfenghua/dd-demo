@@ -9,6 +9,8 @@
 
     "page/work/declare/index",
     "page/work/market/index",
+    "page/work/market/details/index",
+    "page/work/market/logs/index",
     "page/work/award/index",
     "page/work/declare/approve/index",
 

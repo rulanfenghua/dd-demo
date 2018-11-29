@@ -2,7 +2,7 @@ let app = getApp()
 
 Page({
   data: {
-    hideList: false,
+    hideList: true,
     authCode: ''
   },
   // onLoad() {
@@ -48,6 +48,7 @@ Page({
   //   })
   // },
   onLoad() {
+    const _this = this
     dd.getStorage({
       key: 'login',
       success(res) {
@@ -87,6 +88,10 @@ Page({
             complete: () => {
               dd.hideLoading()
             }
+          })
+        } else {
+          _this.setData({
+            hideList: false
           })
         }
       },
