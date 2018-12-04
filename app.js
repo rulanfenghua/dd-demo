@@ -14,6 +14,6 @@ App({
   globalData: {
     corpId: '',
     level: '',
-    domain: 'http://192.168.0.101:8081'
+    domain: 'http://jifen.meisijia.cn:8081'
   }
 });
