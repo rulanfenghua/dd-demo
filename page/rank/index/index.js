@@ -37,8 +37,14 @@ Page({
       dataType: 'json',
       success: (res) => {
         console.log('successRankDept----', res)
+        var data = res.data.data
+        data.unshift({
+          id: '',
+          name: '全部',
+          checked: 'true'
+        })
         this.setData({
-          'tabsFilter[0].tags': res.data.data
+          'tabsFilter[0].tags': data
         })
       },
       fail: (res) => {
@@ -58,8 +64,14 @@ Page({
       dataType: 'json',
       success: (res) => {
         console.log('successRankPost----', res)
+        var data = res.data.data
+        data.unshift({
+          id: '',
+          name: '全部',
+          checked: 'true'
+        })
         this.setData({
-          'tabsFilter[1].tags': res.data.data
+          'tabsFilter[1].tags': data
         })
       },
       fail: (res) => {
@@ -79,8 +91,14 @@ Page({
       dataType: 'json',
       success: (res) => {
         console.log('successRankType----', res)
+        var data = res.data.data
+        data.unshift({
+          id: '',
+          name: '全部',
+          checked: 'true'
+        })
         this.setData({
-          'tabsFilter[2].tags': res.data.data
+          'tabsFilter[2].tags': data
         })
       },
       fail: (res) => {
@@ -98,7 +116,7 @@ Page({
     dd.getSystemInfo({
       success: (res) => {
         // var width = res.windowWidth
-        var height = res.windowHeight - 124
+        var height = res.windowHeight - 84
         this.setData({
           // width: width,
           height: height
@@ -208,7 +226,6 @@ Page({
     })
   },
   handleTabFilterClick({ index }) {
-    console.log(index)
   },
   handleTabFilterChange({ index }) { },
 

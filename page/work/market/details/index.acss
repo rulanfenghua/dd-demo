@@ -84,5 +84,5 @@
     font-size: 14px;
     background: #fff;
     padding-left: 4px;
-    padding-bottom: 7px;
+    line-height: 23px;
 }

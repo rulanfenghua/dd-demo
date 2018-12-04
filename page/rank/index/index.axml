@@ -48,7 +48,7 @@
   </list>
 </view>
 <view class="filter {{showFilter ? 'show-filter' : ''}}">
-  <button type="default" plain hover-class="none" class="top-button" onTap="back">点击这里返回</button>
+  <!-- <button type="default" plain hover-class="none" class="top-button" onTap="back">点击这里返回</button> -->
   <view>
     <form onSubmit="onSubmit" onReset="onReset" class="filter-form">
     <tabs
@@ -72,7 +72,8 @@
       </block>
     </tabs>
     <view class="page-section-btns">
-      <view><button size="mini" type="ghost" formType="reset">重置</button></view>
+      <!-- <view><button size="mini" type="ghost" formType="reset">重置</button></view> -->
+      <view><button size="mini" type="ghost" onTap="back">返回</button></view>
       <view><button size="mini" type="primary" formType="submit">确定</button></view>
     </view>
     </form>

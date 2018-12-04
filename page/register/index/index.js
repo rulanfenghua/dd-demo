@@ -72,6 +72,9 @@ Page({
                   url: '/page/home/index/index'
                 })
               } else {
+                _this.setData({
+                  hideList: false
+                })
                 dd.alert({
                   content: res.data.msg,
                   buttonText: '好的'
