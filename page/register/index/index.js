@@ -9,26 +9,35 @@ Page({
     dd.showLoading({content: '加载中...'})
     dd.getAuthCode({
       success: (res) => {
+        console.log(res.authCode)
         dd.httpRequest({
           url: app.globalData.domain + '/empp/login',
-          // url: app.globalData.domain + '/user/login',
           method: 'POST',
           // headers: { 'Content-Type': 'application/json' },
           data: {
             authCode: res.authCode
+            // authCode: '5dea735df7c33578966feb95d394d444'
           },
           dataType: 'json',
           success: (res) => {
             console.log('successAuto----', res)
-            app.globalData.level = res.level
-            dd.switchTab({
-              url: '/page/home/index/index'
-            })
+            if (res.data.stringCode == 40078) {
+              dd.alert({
+                content: res.data.msg,
+                buttonText: '好的'
+              })
+            } else {
+              app.globalData.level = res.level
+              dd.switchTab({
+                url: '/page/home/index/index'
+              })
+            }
           },
           fail: (res) => {
             console.log("httpRequestFailAuto----", res)
             dd.alert({
-              content: JSON.stringify(res)
+              content: JSON.stringify(res),
+              buttonText: '好的'
             })
           },
           complete: () => {
@@ -37,7 +46,11 @@ Page({
         })
       },
       fail: (err) => {
-        console.log("getAuthCodeFailAuto---", err)
+        console.log("getAuthCodeFailAuto----", err)
+        dd.alert({
+          content: JSON.stringify(err),
+          buttonText: '好的'
+        })
         this.setData({
           hideList: false
         })
