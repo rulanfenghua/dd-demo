@@ -27,9 +27,28 @@ Page({
                 buttonText: '好的'
               })
             } else {
-              app.globalData.level = res.level
-              dd.switchTab({
-                url: '/page/home/index/index'
+              dd.httpRequest({
+                url: app.globalData.domain + '/empp/selectRole',
+                method: 'POST',
+                // headers: { 'Content-Type': 'application/json' },
+                dataType: 'json',
+                success: (res) => {
+                  console.log('successAutoRole----', res)
+                  app.globalData.level = res.data.msg
+                  dd.switchTab({
+                    url: '/page/home/index/index'
+                  })
+                },
+                fail: (res) => {
+                  console.log("httpRequestFailAutoRole----", res)
+                  dd.alert({
+                    content: JSON.stringify(res),
+                    buttonText: '好的'
+                  })
+                },
+                complete: () => {
+                  dd.hideLoading()
+                }
               })
             }
           },
@@ -44,6 +63,8 @@ Page({
             dd.hideLoading()
           }
         })
+
+        
       },
       fail: (err) => {
         console.log("getAuthCodeFailAuto----", err)
