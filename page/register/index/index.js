@@ -21,7 +21,7 @@ Page({
           dataType: 'json',
           success: (res) => {
             console.log('successAuto----', res)
-            if (res.data.stringCode == 40078) {
+            if (res.data.stringCode && res.data.code != 0) {
               dd.alert({
                 content: res.data.msg,
                 buttonText: '好的'
