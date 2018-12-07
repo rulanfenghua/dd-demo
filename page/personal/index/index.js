@@ -9,7 +9,7 @@ Page({
   onShow() {
     dd.getSystemInfo({
       success: (res) => {
-        var height = res.windowHeight-65
+        var height = res.windowHeight
         this.setData({
           height: height
         })
