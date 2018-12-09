@@ -52,7 +52,7 @@ Page({
         console.log("httpRequestFailApps----", res)
         dd.alert({
           content: JSON.stringify(res),
-          buttonText: '好的'
+          buttonText: '确定'
         })
       },
       complete: () => {
@@ -76,7 +76,7 @@ Page({
         console.log("httpRequestFailUser----", res)
         dd.alert({
           content: JSON.stringify(res),
-          buttonText: '好的'
+          buttonText: '确定'
         })
       },
       complete: () => {
@@ -148,7 +148,7 @@ Page({
         console.log("httpRequestFailApp----", res)
         dd.alert({
           content: JSON.stringify(res),
-          buttonText: '好的'
+          buttonText: '确定'
         })
       },
       complete: () => {
@@ -231,7 +231,7 @@ Page({
         fail: function(res) {
           dd.alert({
             content: JSON.stringify(res),
-            buttonText: '好的'
+            buttonText: '确定'
           })
           _this.setData({
             loading: false
@@ -242,9 +242,9 @@ Page({
   },
 
   // 多选组件
-  addFilter() {
+  showFilter() {
     this.setData({
-      showFilter: !this.data.showFilter
+      showFilter: !this.data.showFilter,
     })
   },
   to(to) {

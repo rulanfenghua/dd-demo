@@ -13,11 +13,41 @@ Component({
     search: '',
     to: [],
     changeTo: [],
-    users: []
+    users: [],
+    length: ''
   },
 
   didMount() {
-    this.allUsers()
+    dd.showLoading({ content: '加载中...' })
+    dd.httpRequest({
+      url: app.globalData.domain + '/work/declareBehaviorDetail/selectAllUser',
+      method: 'POST',
+      dataType: 'json',
+      data: {
+        pageSize: 1000,
+        pageNum: 1,
+        search: this.data.search
+      },
+      success: (res) => {
+        console.log('successUsers----', res)
+        var users = res.data.data.list
+        this.setData({
+          users: users,
+          length: users.length
+        })
+      },
+      fail: (res) => {
+        console.log("httpRequestFailUsers----", res)
+        dd.alert({
+          content: JSON.stringify(res),
+          buttonText: '确定'
+        })
+      },
+      complete: () => {
+        dd.hideLoading()
+      }
+    })
+    
     this.setData({
       to: []
     })
@@ -50,7 +80,7 @@ Component({
         success: (res) => {
           console.log('successUsers----', res)
           var users = res.data.data.list
-          if (users.length < this.data.users.length) {
+          if (users.length < this.data.length) {
             this.setData({
               changeTo: []
             })
@@ -58,6 +88,8 @@ Component({
           users.forEach((item) => {
             if (this.data.to.some((toItem) => toItem.userId == item.userId)) {
               item.checked = true
+            } else {
+              item.checked = false
             }
           })
 
@@ -69,7 +101,7 @@ Component({
           console.log("httpRequestFailUsers----", res)
           dd.alert({
             content: JSON.stringify(res),
-            buttonText: '好的'
+            buttonText: '确定'
           })
         },
         complete: () => {
@@ -114,7 +146,11 @@ Component({
       this.props.onShowFilter()
     },
     onReset(e) {
-      this.props.onTo([])
+      console.log(e)
+      this.setData({
+        to: []
+      })
+      this.props.onTo(this.data.to)
     },
     onSubmit(e) {
       console.log('submitTo', e.detail.value.to)
@@ -124,23 +160,35 @@ Component({
       this.props.onShowFilter()
     },
     onChange(e) {
-      console.log(e.detail.value)
+      // console.log(e.detail.value)
 
       var change = {}
       
+      console.log('e.detail.value', e.detail.value)
+      console.log('this.data.changeTo', this.data.changeTo)
       if (e.detail.value.length > this.data.changeTo.length) {
         change = e.detail.value[e.detail.value.length-1]
       }
-      if (e.detail.value.length < this.data.changeTo.length) {
+      else if (e.detail.value.length < this.data.changeTo.length) {
         change = this.data.changeTo.find((item) => {
           return !e.detail.value.some((findItem) => findItem.userId == item.userId)
         })
       }
+      else {
+        dd.showToast({
+          content: '选择失败了，请重新选择',
+        })
+        dd.navigateBack({
+          delta: 1
+        })
+        return
+      }
+      
       this.setData({
         changeTo: e.detail.value
       })
 
-      console.log('change', change)
+      // console.log('change', change)
 
       var to = this.data.to
       

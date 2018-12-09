@@ -51,7 +51,7 @@ Page({
         console.log("httpRequestFailRankDept----", res)
         dd.alert({
           content: JSON.stringify(res),
-          buttonText: '好的'
+          buttonText: '确定'
         })
       },
       complete: () => {
@@ -78,7 +78,7 @@ Page({
         console.log("httpRequestFailRankPost----", res)
         dd.alert({
           content: JSON.stringify(res),
-          buttonText: '好的'
+          buttonText: '确定'
         })
       },
       complete: () => {
@@ -105,7 +105,7 @@ Page({
         console.log("httpRequestFailRankType----", res)
         dd.alert({
           content: JSON.stringify(res),
-          buttonText: '好的'
+          buttonText: '确定'
         })
       },
       complete: () => {
@@ -157,7 +157,7 @@ Page({
         console.log("httpRequestFailRank---", res)
         dd.alert({
           content: JSON.stringify(res),
-          buttonText: '好的'
+          buttonText: '确定'
         })
       },
       complete: () => {

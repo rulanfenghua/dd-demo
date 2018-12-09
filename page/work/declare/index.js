@@ -43,7 +43,7 @@ Page({
         console.log("httpRequestFailDeclare----", res)
         dd.alert({
           content: JSON.stringify(res),
-          buttonText: '好的'
+          buttonText: '确定'
         })
       },
       complete: () => {

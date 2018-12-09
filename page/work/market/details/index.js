@@ -31,7 +31,7 @@ Page({
         console.log("httpRequestFailMarketDetails----", res)
         dd.alert({
           content: JSON.stringify(res),
-          buttonText: '好的'
+          buttonText: '确定'
         })
       },
       complete: () => {
@@ -40,7 +40,7 @@ Page({
   },
 
   change() {
-    // dd.alert({ content: '正在测试，敬请期待', buttonText: '好的' })
+    // dd.alert({ content: '正在测试，敬请期待', buttonText: '确定' })
     if (this.data.options.goodKc == 0) {
       dd.showToast({
         type: 'exception',
@@ -80,7 +80,7 @@ Page({
               console.log("httpRequestFailMarketChange----", res)
               dd.alert({
                 content: JSON.stringify(res),
-                buttonText: '好的'
+                buttonText: '确定'
               })
             },
             complete: () => {

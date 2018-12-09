@@ -79,7 +79,7 @@ Component({
           console.log("httpRequestFailWaitDetail----", res)
           dd.alert({
             content: JSON.stringify(res),
-            buttonText: '好的'
+            buttonText: '确定'
           })
         },
         complete: () => {
@@ -88,7 +88,7 @@ Component({
       })
     },
 
-    todo() {
+    todo(status) {
       var approvalId = this.props.options.approvalId
       var status = this.data.status
 
@@ -106,7 +106,7 @@ Component({
           console.log("httpRequestFailWaitDetailYes----", res)
           dd.alert({
             content: JSON.stringify(res),
-            buttonText: '好的'
+            buttonText: '确定'
           })
         },
         complete: () => {

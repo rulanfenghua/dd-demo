@@ -70,7 +70,7 @@
     <view class="select-section">
       <view class="title">抄送<text class="details">审批通过后，通知抄送人</text></view>
       <view class="add-wrapper">
-        <text class="add" onTap="addFilter">+</text>
+        <text class="add" onTap="showFilter">+</text>
         <!-- <text class="name">小绿</text> -->
       </view>
       <view class="add-wrapper" a:for="{{to}}">
@@ -82,4 +82,4 @@
     <button formType="submit" type="primary" loading="{{loading}}" class="button-form">提交</button>
   </form>
 </view>
-<chooses onTo="to" onShowFilter="addFilter" showFilter="{{showFilter}}" />
+<chooses onTo="to" showFilter="{{showFilter}}" onShowFilter="showFilter"/>
