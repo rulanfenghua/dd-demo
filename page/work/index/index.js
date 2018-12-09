@@ -97,7 +97,7 @@ Page({
         console.log("httpRequestFailWork----", res)
         dd.alert({
           content: JSON.stringify(res),
-          buttonText: '好的'
+          buttonText: '确定'
         })
       },
       complete: () => {
@@ -113,10 +113,10 @@ Page({
       case 0:
         break;
       case 1:
-        dd.alert({ content: '正在测试，敬请期待', buttonText: '好的' })
+        // dd.alert({ content: '正在测试，敬请期待', buttonText: '确定' })
         break;
       case 2:
-        dd.alert({ content: '正在测试，敬请期待', buttonText: '好的' })
+        // dd.alert({ content: '正在测试，敬请期待', buttonText: '确定' })
         break;
       case 3:
         break;
@@ -130,23 +130,23 @@ Page({
         dd.navigateTo({url: '../declare/index'})
         break;
       case 10:
-        // dd.alert({ content: '正在测试，敬请期待', buttonText: '好的' })
+        // dd.alert({ content: '正在测试，敬请期待', buttonText: '确定' })
         dd.navigateTo({url: '../market/index'})
         break;
       case 7:
         // dd.alert(
         //   {
         //     content: '正在测试，敬请期待',
-        //     buttonText: '好的'
+        //     buttonText: '确定'
         //   }
         // )
         dd.navigateTo({ url: '../award/index' })
         break;
       case 1:
-        dd.alert({ content: '正在测试，敬请期待', buttonText: '好的' })
+        // dd.alert({ content: '正在测试，敬请期待', buttonText: '确定' })
         break;
       case 5:
-        dd.alert({ content: '正在测试，敬请期待', buttonText: '好的' })
+        // dd.alert({ content: '正在测试，敬请期待', buttonText: '确定' })
         break;
     }
   },

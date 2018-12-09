@@ -27,7 +27,7 @@
           <view>
             <button size="mini" type="primary" formType="submit">确定</button>
           </view>
-          <!-- <view><button size="mini" type="warn" formType="reset">重置</button></view> -->
+          <view><button size="mini" type="warn" formType="reset">重置</button></view>
         </view>
       </form>
     </view>

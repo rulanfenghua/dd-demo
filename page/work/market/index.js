@@ -51,7 +51,7 @@ Page({
         console.log("httpRequestFailMarket----", res)
         dd.alert({
           content: JSON.stringify(res),
-          buttonText: '好的'
+          buttonText: '确定'
         })
       },
       complete: () => {
@@ -93,7 +93,7 @@ Page({
         console.log("httpRequestFailMarketList----", res)
         dd.alert({
           content: JSON.stringify(res),
-          buttonText: '好的'
+          buttonText: '确定'
         })
       },
       complete: () => {
@@ -109,7 +109,7 @@ Page({
     dd.navigateTo({ url: './logs/index' })
   },
   change(e) {
-    // dd.alert({ content: '正在测试，敬请期待', buttonText: '好的' })
+    // dd.alert({ content: '正在测试，敬请期待', buttonText: '确定' })
     if (e.currentTarget.dataset.item.goodKc == 0) {
       dd.showToast({
         type: 'exception',
@@ -120,7 +120,7 @@ Page({
     if (e.currentTarget.dataset.item.dhIntegral > this.data.data) {
       dd.alert({
         content: '您的积分不足，请赚取积分后再做兑换！',
-        buttonText: '好的'
+        buttonText: '确定'
       })
       return
     }
@@ -150,7 +150,7 @@ Page({
               console.log("httpRequestFailMarketChange----", res)
               dd.alert({
                 content: JSON.stringify(res),
-                buttonText: '好的'
+                buttonText: '确定'
               })
             },
             complete: () => {
@@ -223,6 +223,6 @@ Page({
   },
 
   confirm() {
-    dd.alert({ content: '正在测试，敬请期待', buttonText: '好的' })
+    dd.alert({ content: '正在测试，敬请期待', buttonText: '确定' })
   }
 })

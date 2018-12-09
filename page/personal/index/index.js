@@ -31,7 +31,7 @@ Page({
         console.log("httpRequestFailPersonal----", res)
         dd.alert({
           content: JSON.stringify(res),
-          buttonText: '好的'
+          buttonText: '确定'
         })
       },
       complete: () => {
@@ -73,7 +73,7 @@ Page({
         console.log("httpRequestFailEcharts----", res)
         dd.alert({
           content: JSON.stringify(res),
-          buttonText: '好的'
+          buttonText: '确定'
         })
       },
       complete: () => {
@@ -160,7 +160,7 @@ Page({
         console.log("httpRequestFailPersonalLogout----", res)
         dd.alert({
           content: JSON.stringify(res),
-          buttonText: '好的'
+          buttonText: '确定'
         })
         dd.hideLoading()
       },

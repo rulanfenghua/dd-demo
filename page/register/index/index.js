@@ -24,7 +24,7 @@ Page({
             if (res.data.stringCode && res.data.code != 0) {
               dd.alert({
                 content: res.data.msg,
-                buttonText: '好的'
+                buttonText: '确定'
               })
             } else {
               dd.httpRequest({
@@ -43,7 +43,7 @@ Page({
                   console.log("httpRequestFailAutoRole----", res)
                   dd.alert({
                     content: JSON.stringify(res),
-                    buttonText: '好的'
+                    buttonText: '确定'
                   })
                 },
                 complete: () => {
@@ -56,7 +56,7 @@ Page({
             console.log("httpRequestFailAuto----", res)
             dd.alert({
               content: JSON.stringify(res),
-              buttonText: '好的'
+              buttonText: '确定'
             })
           },
           complete: () => {
@@ -70,7 +70,7 @@ Page({
         console.log("getAuthCodeFailAuto----", err)
         dd.alert({
           content: JSON.stringify(err),
-          buttonText: '好的'
+          buttonText: '确定'
         })
         this.setData({
           hideList: false
@@ -111,7 +111,7 @@ Page({
   //               })
   //               dd.alert({
   //                 content: res.data.msg,
-  //                 buttonText: '好的'
+  //                 buttonText: '确定'
   //               })
   //             }
   //           },
@@ -119,7 +119,7 @@ Page({
   //             console.log("httpRequestFail----", res)
   //             dd.alert({
   //               content: JSON.stringify(res),
-  //               buttonText: '好的'
+  //               buttonText: '确定'
   //             })
   //           },
   //           complete: () => {
@@ -135,7 +135,7 @@ Page({
   //     fail(res) {
   //       dd.alert({
   //         content: JSON.stringify(res),
-  //         buttonText: '好的'
+  //         buttonText: '确定'
   //       })
   //     }
   //   })
@@ -172,7 +172,7 @@ Page({
         } else {
           dd.alert({
             content: res.data.msg,
-            buttonText: '好的'
+            buttonText: '确定'
           })
         }
       },
@@ -180,7 +180,7 @@ Page({
         console.log("httpRequestFail----", res)
         dd.alert({
           content: JSON.stringify(res),
-          buttonText: '好的'
+          buttonText: '确定'
         })
       },
       complete: () => {
