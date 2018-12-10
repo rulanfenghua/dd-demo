@@ -28,7 +28,7 @@ Component({
         pageNum: 1,
         search: this.data.search
       },
-      success: (res) => {
+      success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
         console.log('successUsers----', res)
         var users = res.data.data.list
         this.setData({
@@ -53,7 +53,7 @@ Component({
     })
     
     dd.getSystemInfo({
-      success: (res) => {
+      success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
         var height = res.windowHeight
         this.setData({
           height: height
@@ -77,7 +77,7 @@ Component({
           pageNum: 1,
           search: this.data.search
         },
-        success: (res) => {
+        success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
           console.log('successUsers----', res)
           var users = res.data.data.list
           if (users.length < this.data.length) {

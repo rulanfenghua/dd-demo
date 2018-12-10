@@ -35,7 +35,7 @@ Page({
       url: app.globalData.domain + '/rank/selectDept',
       method: 'POST',
       dataType: 'json',
-      success: (res) => {
+      success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
         console.log('successRankDept----', res)
         var data = res.data.data
         data.unshift({
@@ -62,7 +62,7 @@ Page({
       url: app.globalData.domain + '/rank/selectPost',
       method: 'POST',
       dataType: 'json',
-      success: (res) => {
+      success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
         console.log('successRankPost----', res)
         var data = res.data.data
         data.unshift({
@@ -89,7 +89,7 @@ Page({
       url: app.globalData.domain + '/rank/selectType',
       method: 'POST',
       dataType: 'json',
-      success: (res) => {
+      success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
         console.log('successRankType----', res)
         var data = res.data.data
         data.unshift({
@@ -114,7 +114,7 @@ Page({
   },
   onShow() {
     dd.getSystemInfo({
-      success: (res) => {
+      success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
         // var width = res.windowWidth
         var height = res.windowHeight - 84
         this.setData({
@@ -147,7 +147,7 @@ Page({
         search: this.data.search
       },
       dataType: 'json',
-      success: (res) => {
+      success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
         console.log('successRank----', res)
         this.setData({
           items: res.data.data.list

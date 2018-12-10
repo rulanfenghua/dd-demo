@@ -18,7 +18,7 @@ Page({
   },
   onShow() {
     dd.getSystemInfo({
-      success: (res) => {
+      success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
         var width = res.windowWidth / 2 - 21
         var height = width / 2 * 3 - 10
         var windowHeight = res.windowHeight
@@ -41,7 +41,7 @@ Page({
       url: app.globalData.domain + '/integralGoods/selectIntegralGoodsKYIntegral',
       method: 'POST',
       dataType: 'json',
-      success: (res) => {
+      success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
         console.log('successMarket----', res)
         this.setData({
           data: res.data.data
@@ -66,7 +66,7 @@ Page({
         pageSize: 1000,
         pageNum: 1
       },
-      success: (res) => {
+      success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
         console.log('successMarketList----', res)
         
         var items = res.data.data.list
@@ -139,10 +139,11 @@ Page({
             data: {
               goodId: e.currentTarget.dataset.item.goodId
             },
-            success: (res) => {
+            success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
               console.log('successMarketChange----', res)
               dd.showToast({
                 type: 'success',
+                duration: 3000,
                 content: '兑换成功',
               })
             },

@@ -37,7 +37,7 @@ Component({
         method: 'GET',
         // headers: { 'Content-Type': 'application/json' },
         dataType: 'json',
-        success: (res) => {
+        success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
           console.log('successWaitDetail----', res)
 
           var items = []
@@ -97,7 +97,7 @@ Component({
         method: 'GET',
         // headers: { 'Content-Type': 'application/json' },
         dataType: 'json',
-        success: (res) => {
+        success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
           console.log('successWaitDetailYes----', res)
 
           this.listShow()
