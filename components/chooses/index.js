@@ -176,6 +176,7 @@ Component({
       }
       else {
         dd.showToast({
+          duration: 3000,
           content: '选择失败了，请重新选择',
         })
         dd.navigateBack({

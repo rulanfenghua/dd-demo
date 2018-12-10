@@ -44,6 +44,7 @@ Page({
     if (this.data.options.goodKc == 0) {
       dd.showToast({
         type: 'exception',
+        duration: 3000,
         content: '没有存货了',
       })
       return

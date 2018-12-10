@@ -29,55 +29,60 @@ Page({
 
     filePaths: [],
     toFilePaths: [],
+    date: '',
 
     showFilter: false,
     to: []
   },
 
   onLoad() {
-    dd.httpRequest({
-      url: app.globalData.domain + '/work/declareBehaviorDetail/approverPel',
-      method: 'POST',
-      dataType: 'json',
-      success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
-        console.log('successApps----', res)
-        this.setData({
-          apps: res.data.data
-        })
-      },
-      fail: (res) => {
-        console.log("httpRequestFailApps----", res)
-        dd.alert({
-          content: JSON.stringify(res),
-          buttonText: '确定'
-        })
-      },
-      complete: () => {
-      }
-    })
+    // dd.httpRequest({
+    //   url: app.globalData.domain + '/work/declareBehaviorDetail/approverPel',
+    //   method: 'POST',
+    //   dataType: 'json',
+    //   success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
+    //     console.log('successApps----', res)
+    //     this.setData({
+    //       apps: res.data.data
+    //     })
+    //   },
+    //   fail: (res) => {
+    //     console.log("httpRequestFailApps----", res)
+    //     dd.alert({
+    //       content: JSON.stringify(res),
+    //       buttonText: '确定'
+    //     })
+    //   },
+    //   complete: () => {
+    //   }
+    // })
 
-    dd.httpRequest({
-      url: app.globalData.domain + '/work/selectSysUser',
-      method: 'POST',
-      dataType: 'json',
-      success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
-        console.log('successUser----', res)
-        var user = []
-        user.push(res.data.data)
+    // dd.httpRequest({
+    //   url: app.globalData.domain + '/work/selectSysUser',
+    //   method: 'POST',
+    //   dataType: 'json',
+    //   success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
+    //     console.log('successUser----', res)
+    //     var user = []
+    //     user.push(res.data.data)
 
-        this.setData({
-          user: user
-        })
-      },
-      fail: (res) => {
-        console.log("httpRequestFailUser----", res)
-        dd.alert({
-          content: JSON.stringify(res),
-          buttonText: '确定'
-        })
-      },
-      complete: () => {
-      }
+    //     this.setData({
+    //       user: user
+    //     })
+    //   },
+    //   fail: (res) => {
+    //     console.log("httpRequestFailUser----", res)
+    //     dd.alert({
+    //       content: JSON.stringify(res),
+    //       buttonText: '确定'
+    //     })
+    //   },
+    //   complete: () => {
+    //   }
+    // })
+    var date = this.format(Date.now(), 'yyyy-MM-dd hh:mm:ss')
+    this.setData({
+      date: date
     })
   },
   onShow() {
@@ -101,21 +106,22 @@ Page({
   submit(values, that) {
     console.log('this', that)
     var points = values.detail.value.points
+    var pointsAdd = values.detail.value.pointsAdd
     var textarea = values.detail.value.textarea
     var typeId = that.data.types[values.detail.value.types].typeId
-    var from = that.data.user[values.detail.value.from].userId
+    // var from = that.data.user[values.detail.value.from].userId
     // var to = that.data.users[e.detail.value.to].userId
     var to = []
     that.data.to.forEach((item) => {
       to.push(item.userId)
     })
-    var apps = that.data.apps[values.detail.value.app].userId
+    // var apps = that.data.apps[values.detail.value.app].userId
     var approvalTitle = values.detail.value.title
     var approvalContent = values.detail.value.content
 
     // console.log(!approvalTitle || !approvalContent || !points)
 
-    if (!approvalTitle || !approvalContent || !points) {
+    if (!approvalTitle || !approvalContent) {
       dd.showToast({
         type: 'fail',
         duration: 3000,
@@ -126,29 +132,40 @@ Page({
       })
       return
     }
+    if (to.length == 0) {
+      dd.showToast({
+        type: 'fail',
+        duration: 3000,
+        content: '请您选择奖扣员工'
+      })
+      that.setData({
+        loading: false
+      })
+      return
+    }
 
     console.log('toFilePaths', that.data.toFilePaths)
 
     dd.httpRequest({
-      url: app.globalData.domain + '/free/freeIntegralApprover',
+      url: app.globalData.domain + '/free/freeIntegral',
       method: 'POST',
       dataType: 'json',
       data: {
-        addIntegral: points,
+        addIntegral: pointsAdd,
+        delIntegral: points,
         approvalImg: that.data.toFilePaths,
         spRemark: textarea,
         typeId: typeId,
-        from: [from],
-        to: to,
-        apps: [apps],
+        from: to,
         approvalTitle: approvalTitle,
-        approvalContent: approvalContent
+        approvalContent: approvalContent,
+        dateTime: that.data.date
       },
       success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
         console.log('successApp----', res)
         dd.showToast({
           duration: 3000,
-          content: '申请成功', // 文字内容
+          content: '奖扣成功', // 文字内容
         })
         dd.navigateBack({
           delta: 2
@@ -181,6 +198,17 @@ Page({
         content: '请您填写关键内容'
       })
       this.setData({
+        loading: false
+      })
+      return
+    }
+    if (to.length == 0) {
+      dd.showToast({
+        type: 'fail',
+        duration: 3000,
+        content: '请您选择奖扣员工'
+      })
+      that.setData({
         loading: false
       })
       return
@@ -297,5 +325,41 @@ Page({
     // this.setData({
     //   to: to
     // })
+  },
+
+  datePicker() {
+    dd.datePicker({
+      format: 'yyyy-MM-dd HH:mm:ss',
+      startDate: this.data.date,
+      success: (res) => {
+        console.log(res)
+        this.setData({
+          date: res.date
+        })
+      },
+      fail: () => {
+        dd.showToast({
+          content: '取消选择', // 文字内容
+        })
+      }
+    });
+  },
+
+  // 时间格式
+  format(time, fmt) {
+    var date = new Date(time)
+    var o = {
+      "M+": date.getMonth() + 1, //月份
+      "d+": date.getDate(), //日
+      "h+": date.getHours(), //小时
+      "m+": date.getMinutes(), //分
+      "s+": date.getSeconds(), //秒
+      "q+": Math.floor((date.getMonth() + 3) / 3), //季度
+      "S": date.getMilliseconds() //毫秒
+    };
+    if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (date.getFullYear() + "").substr(4 - RegExp.$1.length));
+    for (var k in o)
+      if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+    return fmt;
   }
 })

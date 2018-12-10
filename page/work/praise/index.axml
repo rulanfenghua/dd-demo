@@ -1,12 +1,12 @@
 <view class="page">
   <form onSubmit="formSubmit" class="page-section">
-    <view class="page-section-title important">审批标题
+    <view class="page-section-title important">表扬标题
     </view>
     <view class="page-section-demo">
       <textarea auto-height placeholder="必填" name="title" style="font-size: 13px" auto-height="{{true}}" maxlength="-1" value="{{options.title}}" />
     </view>
     <view class="form-line" />
-    <view class="page-section-title important">审批内容  
+    <view class="page-section-title important">表扬内容  
     </view>
     <view class="page-section-demo">
       <textarea auto-height placeholder="必填" name="content" style="font-size: 13px" auto-height="{{true}}" maxlength="-1" value="{{options.content}}" />
@@ -40,9 +40,9 @@
       name="points"
       placeholder="必填"
     >
-      输入奖扣分数
+      输入表扬分数
     </input-item>
-    <view class="form-line" />
+    <!-- <view class="form-line" />
     <picker onChange="changeFrom" value="{{arrIndexFrom}}" range="{{user}}" range-key="userName" name="from">
       <view class="row">
         <view class="row-title">申请人</view>
@@ -57,7 +57,7 @@
         <view class="row-extra">当前选择：{{apps[arrIndexApp].userName}}</view>
         <image class="row-arrow" src="/image/arrowright.png" mode="aspectFill" />
       </view>
-    </picker>
+    </picker> -->
     <!-- <view class="form-line" />
     <picker onChange="changeTo" value="{{arrIndexTo}}" range="{{users}}" range-key="userName" name="to">
       <view class="row">
@@ -68,7 +68,7 @@
     </picker> -->
     <view class="form-line" />
     <view class="select-section">
-      <view class="title">抄送<text class="details">审批通过后，通知抄送人</text></view>
+      <view class="title">选择员工<text class="details">可以选择多人</text></view>
       <view class="add-wrapper">
         <text class="add" onTap="showFilter">+</text>
         <!-- <text class="name">小绿</text> -->
