@@ -8,7 +8,7 @@ Page({
   },
   onShow() {
     dd.getSystemInfo({
-      success: (res) => {
+      success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
         var height = res.windowHeight
         this.setData({
           height: height
@@ -21,7 +21,7 @@ Page({
       url: app.globalData.domain + '/personal/indexHead',
       method: 'POST',
       dataType: 'json',
-      success: (res) => {
+      success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
         console.log('successPersonal----', res)
         this.setData({
           data: res.data.data
@@ -49,7 +49,7 @@ Page({
       url: app.globalData.domain + '/personal/indexEcharts',
       method: 'POST',
       dataType: 'json',
-      success: (res) => {
+      success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
         console.log('successEcharts----', res)
         
         chartDataNew.push({
@@ -143,7 +143,7 @@ Page({
       url: app.globalData.domain + '/user/logout',
       method: 'GET',
       dataType: 'json',
-      success: (res) => {
+      success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
         console.log('successPersonalLogout----', res)
         dd.removeStorage({
           key: 'login',

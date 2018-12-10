@@ -33,7 +33,7 @@ Page({
         pageSize: 20,
         search: this.data.search
       },
-      success: (res) => {
+      success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
         console.log('successDeclare----', res)
         this.setData({
           items: res.data.data.list

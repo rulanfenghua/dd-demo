@@ -12,7 +12,7 @@ Page({
       method: 'POST',
       // headers: { 'Content-Type': 'application/json' },
       dataType: 'json',
-      success: (res) => {
+      success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
         console.log('successHome----', res)
         this.setData({
           data: res.data.data
@@ -20,6 +20,7 @@ Page({
       },
       fail: (res) => {
         console.log('httpRequestFailHome----', res)
+        
         dd.alert({
           content: JSON.stringify(res),
           buttonText: '确定'
@@ -34,7 +35,7 @@ Page({
       method: 'POST',
       // headers: { 'Content-Type': 'application/json' },
       dataType: 'json',
-      success: (res) => {
+      success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
         console.log('successHomeFirst----', res)
         this.setData({
           first: res.data.data
@@ -69,7 +70,7 @@ Page({
         pageNum: 1,
         pageSize: 1000
       },
-      success: (res) => {
+      success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
         console.log('successHomeList----', res)
         res.data.data.list.forEach((item) => {
           item.approvalImg1 = item.approvalImg1.split(',')

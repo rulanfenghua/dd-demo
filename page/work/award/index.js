@@ -39,7 +39,7 @@ Page({
       url: app.globalData.domain + '/work/declareBehaviorDetail/approverPel',
       method: 'POST',
       dataType: 'json',
-      success: (res) => {
+      success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
         console.log('successApps----', res)
         this.setData({
           apps: res.data.data
@@ -60,7 +60,7 @@ Page({
       url: app.globalData.domain + '/work/selectSysUser',
       method: 'POST',
       dataType: 'json',
-      success: (res) => {
+      success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
         console.log('successUser----', res)
         var user = []
         user.push(res.data.data)
@@ -143,7 +143,7 @@ Page({
         approvalTitle: approvalTitle,
         approvalContent: approvalContent
       },
-      success: (res) => {
+      success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
         console.log('successApp----', res)
         dd.showToast({
           content: '申请成功', // 文字内容
@@ -192,7 +192,7 @@ Page({
         fileType: 'image',
         fileName: 'file',
         filePath: this.data.filePaths[index],
-        success: (res) => {
+        success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
           success++
           console.log('dbImg', res)
           var regex = /:"(.*)","msg"/
@@ -248,7 +248,7 @@ Page({
     dd.chooseImage({
       sourceType: ['camera', 'album'],
       count: 9,
-      success: (res) => {
+      success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
         console.log('chooseImage', res)
         if (res && res.apFilePaths) {
           this.setData({

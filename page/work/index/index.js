@@ -155,7 +155,7 @@ Page({
       url: app.globalData.domain + '/work/countLogNun',
       method: 'POST',
       dataType: 'json',
-      success: (res) => {
+      success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
         console.log('successWork----', res)
         this.setData({
           data: res.data.data
