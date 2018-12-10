@@ -297,5 +297,17 @@ Page({
     // this.setData({
     //   to: to
     // })
+  },
+
+  // 图片组件
+  load() {
+    this.setData({
+      loading: false
+    })
+  },
+  filePaths(toFilePaths) {
+    this.setData({
+      toFilePaths: toFilePaths
+    })
   }
 })
