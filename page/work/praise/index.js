@@ -34,52 +34,52 @@ Page({
     to: []
   },
 
-  onLoad() {
-    dd.httpRequest({
-      url: app.globalData.domain + '/work/declareBehaviorDetail/approverPel',
-      method: 'POST',
-      dataType: 'json',
-      success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
-        console.log('successApps----', res)
-        this.setData({
-          apps: res.data.data
-        })
-      },
-      fail: (res) => {
-        console.log("httpRequestFailApps----", res)
-        dd.alert({
-          content: JSON.stringify(res),
-          buttonText: '确定'
-        })
-      },
-      complete: () => {
-      }
-    })
+  // onLoad() {
+  //   dd.httpRequest({
+  //     url: app.globalData.domain + '/work/declareBehaviorDetail/approverPel',
+  //     method: 'POST',
+  //     dataType: 'json',
+  //     success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
+  //       console.log('successApps----', res)
+  //       this.setData({
+  //         apps: res.data.data
+  //       })
+  //     },
+  //     fail: (res) => {
+  //       console.log("httpRequestFailApps----", res)
+  //       dd.alert({
+  //         content: JSON.stringify(res),
+  //         buttonText: '确定'
+  //       })
+  //     },
+  //     complete: () => {
+  //     }
+  //   })
 
-    dd.httpRequest({
-      url: app.globalData.domain + '/work/selectSysUser',
-      method: 'POST',
-      dataType: 'json',
-      success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
-        console.log('successUser----', res)
-        var user = []
-        user.push(res.data.data)
+  //   dd.httpRequest({
+  //     url: app.globalData.domain + '/work/selectSysUser',
+  //     method: 'POST',
+  //     dataType: 'json',
+  //     success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
+  //       console.log('successUser----', res)
+  //       var user = []
+  //       user.push(res.data.data)
 
-        this.setData({
-          user: user
-        })
-      },
-      fail: (res) => {
-        console.log("httpRequestFailUser----", res)
-        dd.alert({
-          content: JSON.stringify(res),
-          buttonText: '确定'
-        })
-      },
-      complete: () => {
-      }
-    })
-  },
+  //       this.setData({
+  //         user: user
+  //       })
+  //     },
+  //     fail: (res) => {
+  //       console.log("httpRequestFailUser----", res)
+  //       dd.alert({
+  //         content: JSON.stringify(res),
+  //         buttonText: '确定'
+  //       })
+  //     },
+  //     complete: () => {
+  //     }
+  //   })
+  // },
   onShow() {
     
   },

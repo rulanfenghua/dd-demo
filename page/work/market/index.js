@@ -11,10 +11,18 @@ Page({
     bottomHeight: '',
 
     goods: [],
-    sum: 0
+    sum: 0,
+
+    date: ''
   },
   onReady() {
     
+  },
+  onLoad() {
+    var date = this.format(Date.now(), 'yyyy-MM-dd')
+    this.setData({
+      date: date
+    })
   },
   onShow() {
     dd.getSystemInfo({
@@ -124,6 +132,61 @@ Page({
       })
       return
     }
+    if (false) {
+      dd.datePicker({
+        startDate: this.data.date,
+        success: (res) => {
+          console.log(res)
+          this.setData({
+            date: res.date
+          })
+          dd.confirm({
+            title: '温馨提示',
+            content: `确定兑换 ${this.data.date} 这天吗？`,
+            confirmButtonText: '兑换',
+            cancelButtonText: '再看看',
+            success: (result) => {
+              if (result.confirm) {
+                dd.showLoading({content: '兑换中...'})
+                dd.httpRequest({
+                  url: app.globalData.domain + '/integralGoods/selectIntegralAddGoods',
+                  method: 'POST',
+                  dataType: 'json',
+                  data: {
+                    goodId: e.currentTarget.dataset.item.goodId
+                  },
+                  success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
+                    console.log('successMarketChange----', res)
+                    dd.showToast({
+                      type: 'success',
+                      duration: 3000,
+                      content: '兑换成功',
+                    })
+                  },
+                  fail: (res) => {
+                    console.log("httpRequestFailMarketChange----", res)
+                    dd.alert({
+                      content: JSON.stringify(res),
+                      buttonText: '确定'
+                    })
+                  },
+                  complete: () => {
+                    dd.hideLoading()
+                    this.showList()
+                  }
+                })
+              }
+            }
+          })
+        },
+        fail: () => {
+          dd.showToast({
+            content: '取消选择'
+          })
+        }
+      });
+      return
+    }
     dd.confirm({
       title: '温馨提示',
       content: `确定兑换 ${e.currentTarget.dataset.item.goodName} 吗？`,
@@ -223,7 +286,21 @@ Page({
     this.showList()
   },
 
-  confirm() {
-    dd.alert({ content: '正在测试，敬请期待', buttonText: '确定' })
+  // 时间格式
+  format(time, fmt) {
+    var date = new Date(time)
+    var o = {
+      "M+": date.getMonth() + 1, //月份
+      "d+": date.getDate(), //日
+      "h+": date.getHours(), //小时
+      "m+": date.getMinutes(), //分
+      "s+": date.getSeconds(), //秒
+      "q+": Math.floor((date.getMonth() + 3) / 3), //季度
+      "S": date.getMilliseconds() //毫秒
+    };
+    if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (date.getFullYear() + "").substr(4 - RegExp.$1.length));
+    for (var k in o)
+      if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+    return fmt;
   }
 })

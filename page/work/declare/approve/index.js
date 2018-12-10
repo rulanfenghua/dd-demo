@@ -138,6 +138,7 @@ Page({
       success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
         console.log('successApp----', res)
         dd.showToast({
+          duration: 3000,
           content: '申请成功', // 文字内容
         })
         dd.navigateBack({

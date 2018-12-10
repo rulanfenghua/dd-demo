@@ -13,6 +13,8 @@
     "page/work/market/logs/index",
     "page/work/award/index",
     "page/work/declare/approve/index",
+    "page/work/praise/index",
+    "page/work/take/index",
 
     "page/work/index/logs/index",
     "page/work/index/wait/index",

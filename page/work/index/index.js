@@ -114,9 +114,11 @@ Page({
         break;
       case 1:
         // dd.alert({ content: '正在测试，敬请期待', buttonText: '确定' })
+        dd.navigateTo({url: '../praise/index'})
         break;
       case 2:
         // dd.alert({ content: '正在测试，敬请期待', buttonText: '确定' })
+        dd.navigateTo({url: '../take/index'})
         break;
       case 3:
         break;
