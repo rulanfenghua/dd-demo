@@ -82,7 +82,7 @@
 
 .details-title {
     font-size: 14px;
-    background: #fff;
+    /* background: #fff; */
     padding-left: 4px;
     line-height: 23px;
 }

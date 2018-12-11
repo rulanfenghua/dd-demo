@@ -39,13 +39,12 @@
         <text class="details" a:else>您选择了{{filePaths.length}}张图片</text>
       </view>
     </view> -->
-    <imgs onLoad="load" onFilePaths="filePaths" />
-    <view class="form-line" />
+    <!-- <imgs onLoad="load" onFilePaths="filePaths" />
+    <view class="form-line" /> -->
     <input-item
       className="input-text"
       type="digit"
       name="pointsAdd"
-      disabled="{{true}}"
       placeholder="0"
     >
       输入奖励分数

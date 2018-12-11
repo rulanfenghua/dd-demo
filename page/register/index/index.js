@@ -68,13 +68,72 @@ Page({
       },
       fail: (err) => {
         console.log("getAuthCodeFailAuto----", err)
-        dd.alert({
-          content: JSON.stringify(err),
-          buttonText: '确定'
+        // dd.alert({
+        //   content: JSON.stringify(err),
+        //   buttonText: '确定'
+        // })
+        console.log(err)
+        
+        const _this = this
+        dd.getStorage({
+          key: 'login',
+          success(res) {
+            console.log("storage----", res)
+            if (res.data) {
+              dd.showLoading({ content: '登陆中...' })
+              dd.httpRequest({
+                url: app.globalData.domain + '/user/login',
+                method: 'POST',
+                data: {
+                  phone: res.data.phone,
+                  password: res.data.password
+                },
+                dataType: 'json',
+                success: (res) => {
+                  console.log('success----', res)
+
+                  if (res.data.code == 0) {
+                    app.globalData.level = res.data.msg
+                    dd.switchTab({
+                      url: '/page/home/index/index'
+                    })
+                  } else {
+                    _this.setData({
+                      hideList: false
+                    })
+                    dd.alert({
+                      content: res.data.msg,
+                      buttonText: '确定'
+                    })
+                  }
+                },
+                fail: (res) => {
+                  console.log("httpRequestFail----", res)
+                  dd.alert({
+                    content: JSON.stringify(res),
+                    buttonText: '确定'
+                  })
+                },
+                complete: () => {
+                  dd.hideLoading()
+                }
+              })
+            } else {
+              _this.setData({
+                hideList: false
+              })
+            }
+          },
+          fail(res) {
+            dd.alert({
+              content: JSON.stringify(res),
+              buttonText: '确定'
+            })
+          }
         })
-        this.setData({
-          hideList: false
-        })
+        // this.setData({
+        //   hideList: false
+        // })
       },
       complete: () => {
         dd.hideLoading()
