@@ -21,7 +21,7 @@ Page({
           dataType: 'json',
           success: (res) => {
             console.log('successAuto----', res)
-            if (res.data.stringCode) {
+            if (res.data.stringCode || res.data.code) {
               dd.alert({
                 content: res.data.msg,
                 buttonText: '确定'
