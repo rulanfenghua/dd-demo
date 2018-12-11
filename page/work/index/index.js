@@ -27,11 +27,11 @@ Page({
       },
       {
         "icon": "/image/praise.png",
-        "text": "--"
+        "text": "积分表扬"
       },
       {
         "icon": "/image/manage.png",
-        "text": "--"
+        "text": "管理奖扣"
       },
       {
         "icon": "/image/push.png",
