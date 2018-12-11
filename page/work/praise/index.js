@@ -81,7 +81,8 @@ Page({
     //   complete: () => {
     //   }
     // })
-
+  },
+  onShow() {
     dd.httpRequest({
       url: app.globalData.domain + '/leader/leaderAvailableIntegral',
       method: 'POST',
@@ -102,9 +103,6 @@ Page({
       complete: () => {
       }
     })
-  },
-  onShow() {
-    
   },
 
   formSubmit(e) {

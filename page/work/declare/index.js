@@ -19,6 +19,24 @@ Page({
   },
   onShow() {
     this.listShow()
+    dd.httpRequest({
+      url: app.globalData.domain + '/userMenu/selectUserIdAndMenuId',
+      method: 'POST',
+      dataType: 'json',
+      success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
+        console.log('successMenuId----', res)
+
+      },
+      fail: (res) => {
+        console.log("httpRequestFailMenuId----", res)
+        dd.alert({
+          content: JSON.stringify(res),
+          buttonText: '确定'
+        })
+      },
+      complete: () => {
+      }
+    })
   },
 
   listShow() {
@@ -30,7 +48,7 @@ Page({
       dataType: 'json',
       data: {
         pageNum: 1,
-        pageSize: 20,
+        pageSize: 1000,
         search: this.data.search
       },
       success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }

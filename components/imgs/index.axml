@@ -5,6 +5,6 @@
     <!-- <text class="name">小绿</text> -->
   </view>
   <view class="add-wrapper-new" a:for="{{toFilePaths}}">
-    <image class="add" src="{{item}}" onTap="delete" data-index="{{index}}" mode="aspectFill"></image>
+    <image class="add" src="{{item}}" onTap="preview" data-index="{{index}}" mode="aspectFill"></image>
   </view>
 </view>
