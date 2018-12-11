@@ -2,6 +2,7 @@
   "title": "表单",
   "usingComponents":{
     "input-item":"mini-ddui/es/input-item/index",
-    "chooses": "/components/chooses/index"
+    "chooses": "/components/chooses/index",
+    "imgs": "/components/imgs/index"
   }
 }

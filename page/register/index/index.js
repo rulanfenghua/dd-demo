@@ -21,7 +21,7 @@ Page({
           dataType: 'json',
           success: (res) => {
             console.log('successAuto----', res)
-            if (res.data.stringCode && res.data.code != 0) {
+            if (res.data.stringCode) {
               dd.alert({
                 content: res.data.msg,
                 buttonText: '确定'
@@ -81,7 +81,7 @@ Page({
       }
     })
   },
-  // onLoad() {
+  // onShow() {
   //   const _this = this
   //   dd.getStorage({
   //     key: 'login',

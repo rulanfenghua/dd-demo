@@ -190,8 +190,9 @@ Page({
       sourceType: ['camera', 'album'],
       count: 9,
       success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
-        // console.log('chooseImage', res)
+        console.log('chooseImage', res)
         if (res && res.apFilePaths) {
+          // console.log(res.apFilePaths)
           this.setData({
             filePaths: res.apFilePaths,
           })
@@ -271,5 +272,17 @@ Page({
     // this.setData({
     //   to: to
     // })
+  },
+
+  // 图片组件
+  load() {
+    this.setData({
+      loading: false
+    })
+  },
+  filePaths(toFilePaths) {
+    this.setData({
+      toFilePaths: toFilePaths
+    })
   }
 })

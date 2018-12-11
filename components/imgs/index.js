@@ -20,22 +20,22 @@ Component({
         sourceType: ['camera', 'album'],
         count: 9,
         success: (res) => {
-          if (res.data && res.data.code == 2018) {
-            dd.showToast({
-              content: res.msg,
-              duration: 3000
-            });
-            dd.reLaunch({
-              url: '/page/register/index/index'
-            })
-          }
           console.log('chooseImage', res)
           if (res && res.apFilePaths) {
-            console.log(apFilePaths)
+            console.log(res.apFilePaths)
+            this.setData({
+              filePaths: res.apFilePaths
+            })
+            console.log(this.data.filePaths)
             // 上传图片到服务器
             let success = 0
             let _this = this
             let toFilePaths = []
+            if (this.data.filePaths.length == 0) {
+              this.setData({
+                toFilePaths: toFilePaths
+              })
+            }
             for (let index = 0; index < this.data.filePaths.length; index++) {
               dd.uploadFile({
                 url: app.globalData.domain + '/upload/uploadFile',
@@ -43,15 +43,6 @@ Component({
                 fileName: 'file',
                 filePath: this.data.filePaths[index],
                 success: (res) => {
-                  if (res.data && res.data.code == 2018) {
-                    dd.showToast({
-                      content: res.msg,
-                      duration: 3000
-                    });
-                    dd.reLaunch({
-                      url: '/page/register/index/index'
-                    })
-                  }
                   success++
                   console.log('dbImg', res)
                   var regex = /:"(.*)","msg"/
@@ -59,6 +50,9 @@ Component({
                   toFilePaths.push(path)
                   if (success == _this.data.filePaths.length) {
                     console.log(toFilePaths)
+                    _this.setData({
+                      toFilePaths: toFilePaths
+                    })
                     _this.props.onFilePaths(toFilePaths)
                   }
                 },
@@ -80,5 +74,9 @@ Component({
         }
       })
     },
+
+    delete() {
+      
+    }
   }
 })

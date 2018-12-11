@@ -174,7 +174,6 @@ Page({
     var approvalTitle = values.detail.value.title
     var approvalContent = values.detail.value.content
     if (!approvalTitle || !approvalContent || !points) {
-      console.log(1)
       dd.showToast({
         type: 'fail',
         duration: 3000,
