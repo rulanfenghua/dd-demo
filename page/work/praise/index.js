@@ -31,55 +31,78 @@ Page({
     toFilePaths: [],
 
     showFilter: false,
-    to: []
+    to: [],
+
+    data: 0, // 表扬积分
   },
 
-  // onLoad() {
-  //   dd.httpRequest({
-  //     url: app.globalData.domain + '/work/declareBehaviorDetail/approverPel',
-  //     method: 'POST',
-  //     dataType: 'json',
-  //     success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
-  //       console.log('successApps----', res)
-  //       this.setData({
-  //         apps: res.data.data
-  //       })
-  //     },
-  //     fail: (res) => {
-  //       console.log("httpRequestFailApps----", res)
-  //       dd.alert({
-  //         content: JSON.stringify(res),
-  //         buttonText: '确定'
-  //       })
-  //     },
-  //     complete: () => {
-  //     }
-  //   })
+  onLoad() {
+    // dd.httpRequest({
+    //   url: app.globalData.domain + '/work/declareBehaviorDetail/approverPel',
+    //   method: 'POST',
+    //   dataType: 'json',
+    //   success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
+    //     console.log('successApps----', res)
+    //     this.setData({
+    //       apps: res.data.data
+    //     })
+    //   },
+    //   fail: (res) => {
+    //     console.log("httpRequestFailApps----", res)
+    //     dd.alert({
+    //       content: JSON.stringify(res),
+    //       buttonText: '确定'
+    //     })
+    //   },
+    //   complete: () => {
+    //   }
+    // })
 
-  //   dd.httpRequest({
-  //     url: app.globalData.domain + '/work/selectSysUser',
-  //     method: 'POST',
-  //     dataType: 'json',
-  //     success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
-  //       console.log('successUser----', res)
-  //       var user = []
-  //       user.push(res.data.data)
+    // dd.httpRequest({
+    //   url: app.globalData.domain + '/work/selectSysUser',
+    //   method: 'POST',
+    //   dataType: 'json',
+    //   success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
+    //     console.log('successUser----', res)
+    //     var user = []
+    //     user.push(res.data.data)
 
-  //       this.setData({
-  //         user: user
-  //       })
-  //     },
-  //     fail: (res) => {
-  //       console.log("httpRequestFailUser----", res)
-  //       dd.alert({
-  //         content: JSON.stringify(res),
-  //         buttonText: '确定'
-  //       })
-  //     },
-  //     complete: () => {
-  //     }
-  //   })
-  // },
+    //     this.setData({
+    //       user: user
+    //     })
+    //   },
+    //   fail: (res) => {
+    //     console.log("httpRequestFailUser----", res)
+    //     dd.alert({
+    //       content: JSON.stringify(res),
+    //       buttonText: '确定'
+    //     })
+    //   },
+    //   complete: () => {
+    //   }
+    // })
+
+    dd.httpRequest({
+      url: app.globalData.domain + '/leader/leaderAvailableIntegral',
+      method: 'POST',
+      dataType: 'json',
+      success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
+        console.log('successPoints----', res)
+        this.setData({
+          data: res.data.data
+        })
+      },
+      fail: (res) => {
+        console.log("httpRequestFailPoints----", res)
+        dd.alert({
+          content: JSON.stringify(res),
+          buttonText: '确定'
+        })
+      },
+      complete: () => {
+      }
+    })
+  },
   onShow() {
     
   },
@@ -103,13 +126,13 @@ Page({
     var points = values.detail.value.points
     var textarea = values.detail.value.textarea
     var typeId = that.data.types[values.detail.value.types].typeId
-    var from = that.data.user[values.detail.value.from].userId
+    // var from = that.data.user[values.detail.value.from].userId
     // var to = that.data.users[e.detail.value.to].userId
     var to = []
     that.data.to.forEach((item) => {
       to.push(item.userId)
     })
-    var apps = that.data.apps[values.detail.value.app].userId
+    // var apps = that.data.apps[values.detail.value.app].userId
     var approvalTitle = values.detail.value.title
     var approvalContent = values.detail.value.content
 
@@ -126,11 +149,33 @@ Page({
       })
       return
     }
+    if (to.length == 0) {
+      dd.showToast({
+        type: 'fail',
+        duration: 3000,
+        content: '请您选择奖扣员工'
+      })
+      that.setData({
+        loading: false
+      })
+      return
+    }
+    if (points * to.length > this.data.data) {
+      dd.showToast({
+        type: 'fail',
+        duration: 3000,
+        content: '您的表扬积分不足'
+      })
+      that.setData({
+        loading: false
+      })
+      return
+    }
 
     console.log('toFilePaths', that.data.toFilePaths)
 
     dd.httpRequest({
-      url: app.globalData.domain + '/free/freeIntegralApprover',
+      url: app.globalData.domain + '/leader/leaderIntegral',
       method: 'POST',
       dataType: 'json',
       data: {
@@ -138,11 +183,10 @@ Page({
         approvalImg: that.data.toFilePaths,
         spRemark: textarea,
         typeId: typeId,
-        from: [from],
-        to: to,
-        apps: [apps],
+        from: to,
         approvalTitle: approvalTitle,
-        approvalContent: approvalContent
+        approvalContent: approvalContent,
+        dateTime: ''
       },
       success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
         console.log('successApp----', res)
@@ -174,7 +218,6 @@ Page({
     var approvalTitle = values.detail.value.title
     var approvalContent = values.detail.value.content
     if (!approvalTitle || !approvalContent || !points) {
-      console.log(1)
       dd.showToast({
         type: 'fail',
         duration: 3000,
@@ -297,5 +340,17 @@ Page({
     // this.setData({
     //   to: to
     // })
+  },
+
+  // 图片组件
+  load() {
+    this.setData({
+      loading: false
+    })
+  },
+  filePaths(toFilePaths) {
+    this.setData({
+      toFilePaths: toFilePaths
+    })
   }
 })

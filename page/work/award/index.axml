@@ -27,12 +27,13 @@
       <textarea auto-height placeholder="输入备注信息" name="textarea" style="font-size: 13px" />
     </view>
     <view class="form-line" />
-    <view class="picture-btns">
+    <!-- <view class="picture-btns">
       <view onTap="chooseImage">选择照片
         <text class="details" a:if="{{filePaths.length == 0}}">图片大小不能超过4M</text>
         <text class="details" a:else>您选择了{{filePaths.length}}张图片</text>
       </view>
-    </view>
+    </view> -->
+    <imgs onLoad="load" onFilePaths="filePaths" />
     <view class="form-line" />
     <input-item
       className="input-text important"

@@ -79,9 +79,41 @@ Page({
       complete: () => {
       }
     })
+
+    this.allUsers()
   },
   onShow() {
     
+  },
+
+  allUsers() {
+    dd.httpRequest({
+      url: app.globalData.domain + '/work/declareBehaviorDetail/selectAllDeptUser',
+      method: 'POST',
+      dataType: 'json',
+      data: {
+        pageSize: 1000,
+        pageNum: 1,
+        search: ''
+      },
+      success: (res) => {
+        if (res.data && res.data.code == 2018) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }) }
+        console.log('successUsersDept----', res)
+        var users = res.data.data.list
+        this.setData({
+          to: users
+        })
+      },
+      fail: (res) => {
+        console.log("httpRequestFailUsersDept----", res)
+        dd.alert({
+          content: JSON.stringify(res),
+          buttonText: '确定'
+        })
+      },
+      complete: () => {
+      }
+    })
   },
 
   formSubmit(e) {
@@ -174,7 +206,6 @@ Page({
     var approvalTitle = values.detail.value.title
     var approvalContent = values.detail.value.content
     if (!approvalTitle || !approvalContent || !points) {
-      console.log(1)
       dd.showToast({
         type: 'fail',
         duration: 3000,
@@ -297,5 +328,17 @@ Page({
     // this.setData({
     //   to: to
     // })
+  },
+
+  // 图片组件
+  load() {
+    this.setData({
+      loading: false
+    })
+  },
+  filePaths(toFilePaths) {
+    this.setData({
+      toFilePaths: toFilePaths
+    })
   }
 })
