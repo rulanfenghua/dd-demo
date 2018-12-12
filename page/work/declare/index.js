@@ -60,9 +60,9 @@ Page({
         console.log('successDeclare----', res)
         var items = res.data.data.list
         items.forEach((item) => {
-          console.log(this.data.menuIds)
-          console.log(item.menuId)
-          if (this.data.menuIds.some((toItem) => toItem == item.menuId)) {
+          // console.log(this.data.menuIds)
+          // console.log(item.menuId)
+          if (this.data.menuIds.some((toItem) => toItem == item.behaviorId)) {
             item.checked = true
           } else {
             item.checked = false
