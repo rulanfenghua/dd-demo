@@ -63,7 +63,6 @@ Page({
           console.log(this.data.menuIds)
           console.log(item.menuId)
           if (this.data.menuIds.some((toItem) => toItem == item.menuId)) {
-            console.log(1)
             item.checked = true
           } else {
             item.checked = false
