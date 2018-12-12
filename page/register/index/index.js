@@ -159,7 +159,7 @@ Page({
             success: (res) => {
               console.log('success----', res)
 
-              if (res.data.code == 0) {
+              if (res.data.code == 0 && !res.data.stringCode) {
                 app.globalData.level = res.data.msg
                 dd.switchTab({
                   url: '/page/home/index/index'
@@ -214,7 +214,7 @@ Page({
       success: (res) => {
         console.log('success----', res)
 
-        if (res.data.code == 0) {
+        if (res.data.code == 0 && !res.data.stringCode) {
           app.globalData.level = res.data.msg
           dd.setStorage({
             key: 'login',
