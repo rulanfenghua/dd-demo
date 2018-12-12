@@ -15,26 +15,60 @@ Page({
       },
       {
         title: '业绩积分'
-    }]
+    }],
+
+    menuIds: '', // 禁用标题id
   },
   onShow() {
-    this.listShow()
+    dd.httpRequest({
+      url: app.globalData.domain + '/userMenu/selectUserIdAndMenuId',
+      method: 'POST',
+      dataType: 'json',
+      success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
+        console.log('successMenuId----', res)
+        var menuIds = res.data.data.split(',')
+        console.log(menuIds)
+        this.setData({
+          menuIds: menuIds
+        })
+      },
+      fail: (res) => {
+        console.log("httpRequestFailMenuId----", res)
+        dd.alert({
+          content: JSON.stringify(res),
+          buttonText: '确定'
+        })
+      },
+      complete: () => {
+        this.listShow()
+      }
+    })
   },
 
   listShow() {
     dd.showLoading({content: '加载中...'})
-
     dd.httpRequest({
       url: app.globalData.domain + this.data.url,
       method: 'POST',
       dataType: 'json',
       data: {
         pageNum: 1,
-        pageSize: 20,
+        pageSize: 1000,
         search: this.data.search
       },
       success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
         console.log('successDeclare----', res)
+        var items = res.data.data.list
+        items.forEach((item) => {
+          console.log(this.data.menuIds)
+          console.log(item.menuId)
+          if (this.data.menuIds.some((toItem) => toItem == item.menuId)) {
+            console.log(1)
+            item.checked = true
+          } else {
+            item.checked = false
+          }
+        })
         this.setData({
           items: res.data.data.list
         })

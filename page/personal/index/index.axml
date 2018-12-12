@@ -29,5 +29,5 @@
     </view>
   </view>
   </view>
-  <button type="default" plain hover-class="none" onTap="logout">重新登陆</button>
+  <button type="default" plain hover-class="none" onTap="logout">退出登陆</button>
 </view>

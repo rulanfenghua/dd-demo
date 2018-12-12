@@ -27,6 +27,7 @@
         onClick="onItemClick"
         multipleLine="{{true}}"
         wrap="{{true}}"
+        disabled="{{item.checked}}"
       >
         <text class="title">{{item.behaviorTitle}}</text>
         <view class="brief">
