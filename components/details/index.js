@@ -91,7 +91,7 @@ Component({
     todo(status) {
       var approvalId = this.props.options.approvalId
       var status = this.data.status
-
+      dd.showLoading({ content: '审批中...' })
       dd.httpRequest({
         url: app.globalData.domain + '/approversPel/approversYesNo/' + approvalId + '/' + status,
         method: 'GET',
@@ -99,7 +99,7 @@ Component({
         dataType: 'json',
         success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
           console.log('successWaitDetailYes----', res)
-
+          dd.showToast({content: '审批成功', duration: 3000 })
           this.listShow()
         },
         fail: (res) => {
@@ -110,6 +110,7 @@ Component({
           })
         },
         complete: () => {
+          dd.hideLoading()
         }
       })
     },
@@ -136,6 +137,32 @@ Component({
       // this.todo()
 
       dd.navigateBack()
+    },
+    fromBack() {
+      var approvalId = this.props.options.approvalId
+      dd.showLoading({ content: '提交中...' })
+      console.log()
+      dd.httpRequest({
+        url: app.globalData.domain + '/userMenu/selectDelMenu/' + approvalId,
+        method: 'GET',
+        // headers: { 'Content-Type': 'application/json' },
+        dataType: 'json',
+        success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
+          console.log('successWaitDetailYes----', res)
+          dd.showToast({content: '提交成功', duration: 3000 })
+          dd.navigateBack()
+        },
+        fail: (res) => {
+          console.log("httpRequestFailWaitDetailYes----", res)
+          dd.alert({
+            content: JSON.stringify(res),
+            buttonText: '确定'
+          })
+        },
+        complete: () => {
+          dd.hideLoading()
+        }
+      })
     },
 
     preview(e) {

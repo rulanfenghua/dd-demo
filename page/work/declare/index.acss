@@ -109,3 +109,26 @@
   float: right;
   color: #999;
 }
+
+.true {
+  background: #555;
+  position: relative;
+  border-radius: 2px;
+}
+
+.true .brief-bottom-left .points {
+  color: #000;
+}
+
+.true .brief-bottom-right {
+  color: #000;
+}
+
+.true:hover::after {
+  content: '您今天已经申请过此条目了，如需再次申请请撤销上次申请';
+  color: #46adf4;
+  font-size: 13px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
