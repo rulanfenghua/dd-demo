@@ -40,8 +40,9 @@
     </view>
     <image class="image" a:for="{{data.approvalImg}}" src="{{item}}" onTap="preview" data-index="{{index}}" mode="widthFix" />
   </view>
-  <steps activeIndex="{{activeIndex}}" failIndex="{{failIndex}}" items="{{items}}" direction="vertical" a:if="{{status != 0 || steps}}"></steps>
-  <view class="page-section-btns" a:else>
+  
+  
+  <view class="page-section-btns" a:if="{{status == 0 && !steps}}">
     <view>
       <button size="mini" type="ghost" onTap="todoBack">撤销审批</button>
     </view>
@@ -52,4 +53,13 @@
       <button size="mini" type="warn" onTap="todoStop">审批不过</button>
     </view>
   </view>
+  <view class="page-section-btns" a:elif="{{status == 0 && from}}">
+    <view>
+      <button size="mini" type="ghost" onTap="todoBack">返回</button>
+    </view>
+    <view>
+      <button size="mini" type="warn" onTap="fromBack">撤销申请</button>
+    </view>
+  </view>
+  <steps activeIndex="{{activeIndex}}" failIndex="{{failIndex}}" items="{{items}}" direction="vertical" a:else></steps>
 </view>

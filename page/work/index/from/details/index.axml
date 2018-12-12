@@ -1,1 +1,1 @@
-<details options="{{options}}" test="{{test}}" />
+<details options="{{options}}" from="{{true}}" />

@@ -18,7 +18,7 @@
   <list className="list">
       <block a:for="{{items}}" class="list-block">
       <list-item
-        className="list-item"
+        className="list-item {{item.checked}}"
         key="item-{{index}}"
         index="{{index}}"
         last="{{index === (items.length - 1)}}"

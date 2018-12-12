@@ -23,7 +23,7 @@ Page({
   },
 
   onLoad(options) {
-    // console.log(options)
+    console.log(options)
 
     var pointsArray = []
     var median = parseInt(options.min ? options.min : '0')
