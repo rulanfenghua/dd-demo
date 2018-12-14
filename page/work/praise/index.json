@@ -1,5 +1,5 @@
 {
-  "title": "表单",
+  "defaultTitle": "表单",
   "usingComponents":{
     "input-item":"mini-ddui/es/input-item/index",
     "chooses": "/components/chooses/index",

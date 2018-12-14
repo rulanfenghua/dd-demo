@@ -1,5 +1,5 @@
 {
-  "title": "工作台",
+  "defaultTitle": "工作台",
   "usingComponents": {
     "grid": "mini-ddui/es/grid/index"
   }
