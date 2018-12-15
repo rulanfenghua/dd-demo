@@ -27,7 +27,7 @@
       <list-item
         className="list-item"
         key="item-{{index}}"
-        index="{{index}}"
+        index="{{item.userId}}"
         last="{{index === (items.length - 1)}}"
         arrow="{{item.arrow}}"
         align="{{item.align}}"

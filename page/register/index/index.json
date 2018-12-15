@@ -1,5 +1,5 @@
 {
-  "title": "登陆",
+  "defaultTitle": "登陆",
   "usingComponents": {
     "input-item": "mini-ddui/es/input-item/index"
   }

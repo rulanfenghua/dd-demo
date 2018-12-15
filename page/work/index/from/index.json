@@ -1,5 +1,5 @@
 {
-  "title": "积分审批",
+  "defaultTitle": "我发起的",
   "usingComponents": {
     "list": "mini-ddui/es/list/index",
     "list-item": "mini-ddui/es/list/list-item/index",

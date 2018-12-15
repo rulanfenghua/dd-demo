@@ -68,7 +68,8 @@ Page({
       dataType: 'json',
       data: {
         pageNum: 1,
-        pageSize: 1000
+        pageSize: 1000,
+        userId: ''
       },
       success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
         console.log('successHomeList----', res)
