@@ -169,6 +169,7 @@ Page({
 
   onItemClick({index}) {
     console.log('list点击', index)
+    dd.navigateTo({ url: `./details/index?userId=${index}` })
   },
   handleTabClick({ index }) {
     this.setData({

@@ -1,0 +1,33 @@
+<view class="chart">
+  <dd-charts canvasId="ddchart-canvas" onDraw="onDraw" />
+</view>
+
+<list className="list">
+  <view solt="header" class="list-header" >
+    <text>积分动态</text>  
+  </view>
+  <block a:for="{{items}}" class="list-block">
+    <list-item
+      className="list-item"
+      key="item-{{index}}"
+      index="{{item.approvalId}}"
+      last="{{index === (items.length - 1)}}"
+      thumb="{{item.userImg ? item.userImg : '/image/logo.png'}}"
+      arrow="{{item.arrow}}"
+      align="{{item.align}}"
+      multipleLine="{{true}}"
+      wrap="{{true}}"
+    >
+      <text class="name">{{item.userName}}</text>
+      <view class="brief">
+        <view class="brief-title">{{item.approvalTitle}}</view>
+        <view class="brief-content">{{item.approvalContent}}</view>
+        <image class="brief-image" src="{{item}}" a:for="{{item.approvalImg1}}" onTap="preview" data-index="{{index}}" mode="widthFix" />
+        <view class="brief-time">{{item.spTime}}</view>
+      </view>
+      <view slot="extra" class="extra">
+        {{item.sqIntegral>0 ? '+' : ''}}{{item.sqIntegral}}    {{item.integralTypeId == '1' ? 'A分' : (item.integralTypeId == '2' ? 'B分' : 'C分')}}
+      </view>
+    </list-item>
+  </block> 
+</list>
