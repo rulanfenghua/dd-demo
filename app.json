@@ -16,6 +16,7 @@
     "page/work/declare/approve/index",
     "page/work/praise/index",
     "page/work/take/index",
+    "page/work/like/index",
 
     "page/work/index/logs/index",
     "page/work/index/wait/index",
