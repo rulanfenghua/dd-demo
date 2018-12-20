@@ -235,6 +235,12 @@
   background: url("/image/database.png") 100%/100%;
 }
 
+.list-header .header-text {
+  float: right;
+  margin-right: 34px;
+  color: #46adf4;
+}
+
 /* 列表样式复写 */
 .list-item {
   position: relative;

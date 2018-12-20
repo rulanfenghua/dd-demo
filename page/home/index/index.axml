@@ -54,7 +54,7 @@
     </view>
   </view>
   <list className="list">
-    <view solt="header" class="list-header" >
+    <view solt="header" class="list-header" onTap="likeTo">
       <text class="header-title">积分动态</text>
       <text class="header-text">查看点赞详情</text>
       <text class="right-arrow"></text>

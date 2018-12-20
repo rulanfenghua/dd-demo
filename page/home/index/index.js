@@ -98,6 +98,12 @@ Page({
       url: '/page/rank/index/index'
     })
   },
+  likeTo() {
+    console.log(1)
+    dd.navigateTo({
+      url: '/page/work/like/index'
+    })
+  },
   onItemClick({index}) {
     console.log('list点击', index)
 
