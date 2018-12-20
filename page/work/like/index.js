@@ -102,8 +102,13 @@ Page({
   onItemClick({index}) {
     console.log(index)
     if (!this.data.has) {
-      dd.showToast({ content: '您的点赞机会已经用完了', duration: 3000 })
-      return
+      dd.showToast({ 
+        content: '您的点赞机会已经用完了', 
+        duration: 3000,
+        success: () => {
+          return
+        }
+      })
     }
     dd.httpRequest({
       url: app.globalData.domain + '/lovePraise/updataUser',
