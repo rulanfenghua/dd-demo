@@ -111,7 +111,7 @@ Page({
       },
       {
         "icon": "/image/to.png",
-        "text": "--"
+        "text": "爱心点赞"
       },
       {
         "icon": "/image/app.png",
