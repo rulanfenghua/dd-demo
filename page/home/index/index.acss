@@ -209,7 +209,7 @@
   position: relative;
 }
 
-.list-header text {
+.list-header .header-title {
   font-size: 14px;
   color: #aaa;
   margin-left: 30px;
@@ -225,7 +225,7 @@
   border-bottom: 1px solid #ddd;
 }
 
-.list-header text::before {
+.list-header .header-title::before {
   content: "";
   position: absolute;
   left: -19px;
@@ -233,6 +233,12 @@
   width: 15px;
   height: 15px;
   background: url("/image/database.png") 100%/100%;
+}
+
+.list-header .header-text {
+  float: right;
+  margin-right: 34px;
+  color: #46adf4;
 }
 
 /* 列表样式复写 */

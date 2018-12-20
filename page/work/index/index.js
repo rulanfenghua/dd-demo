@@ -216,7 +216,7 @@ Page({
         // dd.alert({ content: '正在测试，敬请期待', buttonText: '确定' })
         break;
       case 5:
-        // dd.alert({ content: '正在测试，敬请期待', buttonText: '确定' })
+        dd.navigateTo({ url: '../like/index' })
         break;
     }
   },
