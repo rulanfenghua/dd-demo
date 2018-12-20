@@ -111,7 +111,7 @@
 .am-list-extra {
   position: absolute;
   top: 13px;
-  right: 14px;
+  right: 17px;
 }
 
 .am-list-thumb {
