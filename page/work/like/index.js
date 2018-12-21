@@ -8,7 +8,9 @@ Page({
     active: false,
 
     has: true, // 点赞标识
-    user: {}
+    user: {},
+
+    pick: true // 提示标识
   },
   onShow() {
     this.listShow()
@@ -101,14 +103,14 @@ Page({
 
   onItemClick({index}) {
     console.log(index)
+    
     if (!this.data.has) {
-      dd.showToast({ 
-        content: '您的点赞机会已经用完了', 
-        duration: 3000,
-        success: () => {
-          return
-        }
+      dd.alert({
+        content: '您的点赞机会已经用完了，请等待下周点赞',
+        buttonText: '确定'
       })
+      
+      return
     }
     dd.httpRequest({
       url: app.globalData.domain + '/lovePraise/updataUser',

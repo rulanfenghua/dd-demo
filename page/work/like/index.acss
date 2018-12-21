@@ -110,8 +110,8 @@
 
 .am-list-extra {
   position: absolute;
-  top: 13px;
-  right: 17px;
+  top: 0px;
+  right: 19px;
 }
 
 .am-list-thumb {
@@ -151,7 +151,7 @@
 .extra {
   color: #46adf4;
   font-weight: bold;
-  font-size: 14px;
+  font-size: 13px;
 }
 
 .like-title {
