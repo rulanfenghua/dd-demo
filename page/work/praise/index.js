@@ -33,63 +33,42 @@ Page({
     showFilter: false,
     to: [],
 
-    data: 0, // 表扬积分
+    data: 0, // 奖励积分
+    pointsArray: [], // 积分选择
+    arrIndexPoints: 0,
+
+    date: '',
   },
 
   onLoad() {
-    // dd.httpRequest({
-    //   url: app.globalData.domain + '/work/declareBehaviorDetail/approverPel',
-    //   method: 'POST',
-    //   dataType: 'json',
-    //   success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
-    //     console.log('successApps----', res)
-    //     this.setData({
-    //       apps: res.data.data
-    //     })
-    //   },
-    //   fail: (res) => {
-    //     console.log("httpRequestFailApps----", res)
-    //     dd.alert({
-    //       content: JSON.stringify(res),
-    //       buttonText: '确定'
-    //     })
-    //   },
-    //   complete: () => {
-    //   }
-    // })
+    var date = this.format(Date.now(), 'yyyy-MM-dd hh:mm:ss')
+    this.setData({
+      date: date
+    })
 
-    // dd.httpRequest({
-    //   url: app.globalData.domain + '/work/selectSysUser',
-    //   method: 'POST',
-    //   dataType: 'json',
-    //   success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
-    //     console.log('successUser----', res)
-    //     var user = []
-    //     user.push(res.data.data)
-
-    //     this.setData({
-    //       user: user
-    //     })
-    //   },
-    //   fail: (res) => {
-    //     console.log("httpRequestFailUser----", res)
-    //     dd.alert({
-    //       content: JSON.stringify(res),
-    //       buttonText: '确定'
-    //     })
-    //   },
-    //   complete: () => {
-    //   }
-    // })
-  },
-  onShow() {
+    dd.showLoading({ content: '加载中...' })
     dd.httpRequest({
       url: app.globalData.domain + '/leader/leaderAvailableIntegral',
       method: 'POST',
       dataType: 'json',
-      success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
+      success: (res) => {
+        if (res.data && res.data.code == 2018) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }) }
         console.log('successPoints----', res)
+        var pointsArray = []
+        var max = 500
+        var median = 0
+        if (res.data.data <= 500) {
+          max= res.data.data
+        }
+        
+        pointsArray.push(median)
+        while (median < parseInt(max)) {
+          median += 10
+          pointsArray.push(median)
+        }
+
         this.setData({
+          pointsArray: pointsArray,
           data: res.data.data
         })
       },
@@ -101,8 +80,12 @@ Page({
         })
       },
       complete: () => {
+        dd.hideLoading()
       }
     })
+  },
+  onShow() {
+    
   },
 
   formSubmit(e) {
@@ -121,9 +104,9 @@ Page({
   },
   submit(values, that) {
     console.log('this', that)
-    var points = values.detail.value.points
+    var points = that.data.pointsArray[values.detail.value.points]
     var textarea = values.detail.value.textarea
-    var typeId = that.data.types[values.detail.value.types].typeId
+    // var typeId = that.data.types[values.detail.value.types].typeId
     // var from = that.data.user[values.detail.value.from].userId
     // var to = that.data.users[e.detail.value.to].userId
     var to = []
@@ -136,7 +119,7 @@ Page({
 
     // console.log(!approvalTitle || !approvalContent || !points)
 
-    if (!approvalTitle || !approvalContent || !points) {
+    if (!approvalTitle || !points || !approvalContent) {
       dd.showToast({
         type: 'fail',
         duration: 3000,
@@ -180,7 +163,7 @@ Page({
         addIntegral: points,
         approvalImg: that.data.toFilePaths,
         spRemark: textarea,
-        typeId: typeId,
+        // typeId: typeId,
         from: to,
         approvalTitle: approvalTitle,
         approvalContent: approvalContent,
@@ -284,7 +267,7 @@ Page({
   changePoints(e) {
     console.log('picker发送选择改变，携带值为', e.detail.value);
     this.setData({
-      arrIndexType: e.detail.value,
+      arrIndexPoints: e.detail.value,
     });
   },
 
@@ -350,5 +333,23 @@ Page({
     this.setData({
       toFilePaths: toFilePaths
     })
+  },
+
+  // 时间格式
+  format(time, fmt) {
+    var date = new Date(time)
+    var o = {
+      "M+": date.getMonth() + 1, //月份
+      "d+": date.getDate(), //日
+      "h+": date.getHours(), //小时
+      "m+": date.getMinutes(), //分
+      "s+": date.getSeconds(), //秒
+      "q+": Math.floor((date.getMonth() + 3) / 3), //季度
+      "S": date.getMilliseconds() //毫秒
+    };
+    if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (date.getFullYear() + "").substr(4 - RegExp.$1.length));
+    for (var k in o)
+      if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+    return fmt;
   }
 })

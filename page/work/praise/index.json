@@ -1,5 +1,5 @@
 {
-  "defaultTitle": "表单",
+  "defaultTitle": "积分支票",
   "usingComponents":{
     "input-item":"mini-ddui/es/input-item/index",
     "chooses": "/components/chooses/index",

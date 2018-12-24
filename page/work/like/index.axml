@@ -9,7 +9,8 @@
     </view>
   </view>
   </view>
-  <view class="like-title">您还有 {{has? "1" : "0"}} 次点赞的机会，点赞一次 50 积分</view>
+  <view class="like-title"><text>每周有 1 次点赞的机会，您目前剩余 {{has? "1" : "0"}} </text>
+  </view>
   <list-item className="list-item item-user" thumb="{{item.avatar ? item.avatar : '/image/logo.png'}}" arrow="{{false}}" multipleLine="{{true}}" wrap="{{true}}">
     <text class="name">{{user.userName}}        
     </text>
@@ -18,7 +19,7 @@
         <text class="brief-bottom-left">{{user.remark ? "已经被 " + user.remark + " 点赞了" : "你现在还没有被人点赞"}}</text>
       </view>
     </view>
-    <view slot="extra" class="extra">+ {{user.count * 50}}</view>
+    <view slot="extra" class="extra">+ {{user.count * 20}}</view>
   </list-item>
   <list className="list">
     <block a:for="{{items}}" class="list-block">
@@ -33,7 +34,7 @@
             <image class="brief-bottom-right" src="{{item.liked ? '/image/like-active.png' : '/image/like.png'}}" style="width: 30px; height: 30px"></image>
           </view>
         </view>
-        <view slot="extra" class="extra">+ {{item.count * 50}}</view>
+        <view slot="extra" class="extra">+ {{item.count * 20}}</view>
       </list-item>
     </block>
   </list>

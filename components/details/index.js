@@ -11,7 +11,9 @@ Component({
 
     items: [],
     activeIndex: 1,
-    failIndex: 0
+    failIndex: 0,
+
+    type: false, // 支票积分类型判断
   },
 
   didMount() {
@@ -39,12 +41,22 @@ Component({
         dataType: 'json',
         success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
           console.log('successWaitDetail----', res)
-
           var items = []
-          items.push({
-            title: `${res.data.data.userName}  提交审批`,
-            description: `${res.data.data.userDept}  ${res.data.data.sqTime}`
-          })
+          if (!res.data.data.integralTypeId) {
+            this.setData({
+              type: true
+            })
+            items.push({
+              title: `${res.data.data.appName}  提交审批`,
+              description: `${res.data.data.appDept}  ${res.data.data.sqTime}`
+            })
+          } else {
+            items.push({
+              title: `${res.data.data.userName}  提交审批`,
+              description: `${res.data.data.userDept}  ${res.data.data.sqTime}`
+            })
+          }
+          
           if (res.data.data.status == 1) {
             items.push({
               title: `${res.data.data.appName}  审批通过`,

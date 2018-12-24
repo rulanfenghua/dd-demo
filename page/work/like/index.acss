@@ -160,6 +160,10 @@
   color: rgb(70, 173, 244);
 }
 
+.like-title text {
+  display: block;
+}
+
 .item-user {
   margin-bottom: 14px;
   border-top: 1px solid #eee;
