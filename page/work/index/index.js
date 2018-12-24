@@ -27,7 +27,7 @@ Page({
       },
       {
         "icon": "/image/praise.png",
-        "text": "积分表扬"
+        "text": "积分支票"
       },
       {
         "icon": "/image/manage.png",
