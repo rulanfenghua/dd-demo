@@ -83,7 +83,7 @@ Page({
       }
     })
 
-    this.allUsers()
+    // this.allUsers()
   },
   onShow() {
    
