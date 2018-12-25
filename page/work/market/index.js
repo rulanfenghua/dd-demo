@@ -28,7 +28,7 @@ Page({
     dd.getSystemInfo({
       success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
         var width = res.windowWidth / 2 - 21
-        var height = width / 2 * 3 - 10
+        var height = width / 2 * 3
         var windowHeight = res.windowHeight
 
         this.setData({
@@ -230,7 +230,7 @@ Page({
     var goodId = e.currentTarget.dataset.item.goodId
     var goodName = e.currentTarget.dataset.item.goodName
     var goodKc = e.currentTarget.dataset.item.goodKc
-    var ydhNum = e.currentTarget.dataset.item.ydhNum
+    var ydhNum = e.currentTarget.dataset.item.ydhNum ? e.currentTarget.dataset.item.ydhNum : 0
     var goodLbImg = e.currentTarget.dataset.item.goodLbImg
     var dhIntegral = e.currentTarget.dataset.item.dhIntegral
     var data = this.data.data
