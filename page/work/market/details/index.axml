@@ -10,7 +10,7 @@
         >
         <block a:for="{{imgs}}">
             <swiper-item key="{{index}}">
-                <image src="{{item}}" mode="aspectFill" style="width: 100%"/>
+                <image src="{{item}}" mode="aspectFit" style="width: 100%"/>
             </swiper-item>
         </block>
         </swiper>
