@@ -47,7 +47,7 @@ Component({
               type: true
             })
             items.push({
-              title: `${res.data.data.appName}  提交审批`,
+              title: `${res.data.data.appName}  开出积分支票`,
               description: `${res.data.data.appDept}  ${res.data.data.sqTime}`
             })
           } else {
@@ -55,33 +55,32 @@ Component({
               title: `${res.data.data.userName}  提交审批`,
               description: `${res.data.data.userDept}  ${res.data.data.sqTime}`
             })
+
+            if (res.data.data.status == 1) {
+              items.push({
+                title: `${res.data.data.appName}  审批通过`,
+                description: `${res.data.data.appDept}  ${res.data.data.spTime}`
+              })
+
+              this.setData({
+                activeIndex: 2
+              })
+            } else if (res.data.data.status == 0) {
+              items.push({
+                title: `${res.data.data.appName}  审批中`,
+                description: `${res.data.data.appDept}`
+              })
+            } else if (res.data.data.status == 2) {
+              items.push({
+                title: `${res.data.data.appName}  审批不过`,
+                description: `${res.data.data.appDept}  ${res.data.data.spTime}`
+              })
+
+              this.setData({
+                failIndex: 2
+              })
+            }
           }
-          
-          if (res.data.data.status == 1) {
-            items.push({
-              title: `${res.data.data.appName}  审批通过`,
-              description: `${res.data.data.appDept}  ${res.data.data.spTime}`
-            })
-
-            this.setData({
-              activeIndex: 2
-            })
-          } else if (res.data.data.status == 0) {
-            items.push({
-              title: `${res.data.data.appName}  审批中`,
-              description: `${res.data.data.appDept}`
-            })
-          } else if (res.data.data.status == 2) {
-            items.push({
-              title: `${res.data.data.appName}  审批不过`,
-              description: `${res.data.data.appDept}  ${res.data.data.spTime}`
-            })
-
-            this.setData({
-              failIndex: 2
-            })
-          }
-
           this.setData({
             data: res.data.data,
             items: items
