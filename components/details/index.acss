@@ -46,8 +46,8 @@
 
 .main .image {
   display: inline-block;
-  height: 140px;
-  width: 140px;
+  /* height: 100px; */
+  width: 100px;
   margin-right: 14px;
   /* margin-bottom: 14px; */
 }
