@@ -150,6 +150,9 @@ Page({
       case 5:
         dd.navigateTo({ url: '../like/index' })
         break;
+      case 2:
+        dd.navigateTo({ url: '../bounty/index' })
+        break;
     }
   },
   logs() {

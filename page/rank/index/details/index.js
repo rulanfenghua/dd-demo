@@ -17,7 +17,6 @@ Page({
   onDraw(ddChart, F2) {
     //dd-charts组件内部会回调此方法，返回图表实例ddChart
     //提示：可以把异步获取数据及渲染图表逻辑放onDraw回调里面
-    console.log(1)
     var chartDataNew = []
     ddChart.clear()
     dd.httpRequest({
@@ -93,7 +92,7 @@ Page({
     dd.showLoading({content: '加载中...'})
 
     dd.httpRequest({
-      url: app.globalData.domain + '/home/list',
+      url: app.globalData.domain + '/rank/selectPersonalList',
       method: 'POST',
       // headers: { 'Content-Type': 'application/json' },
       dataType: 'json',

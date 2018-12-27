@@ -1,0 +1,40 @@
+<view class="page">
+  <view class="tabs">
+    <tabs tabs="{{tabs}}" onTabClick="handleTabClick" onChange="handleTabChange">
+    </tabs>
+  </view>
+  <!-- <view class="search-filter">
+  <view class="select" onTap="showSelect"></view>
+  <view class="page-section-demo">
+    <view class="search-outer">
+      <input class="search-input" placeholder="搜索" value="{{search}}" onFocus="focusSearch" onBlur="blurSearch" onConfirm="doneSearch" onInput="handleSearch" />
+      <text class="search-cancel {{active ? 'focus' : ''}}" onTap="clearSearch">取消      
+      </text>
+    </view>
+  </view>
+  </view> -->
+  <view class="like-title"><text>提示信息，点击下面的条目选择接受该任务</text>
+  <list className="list">
+    <block a:for="{{items}}" class="list-block">
+      <list-item className="list-item" key="item-{{index}}" index="{{index}}" last="{{index === (items.length - 1)}}" arrow="{{false}}" align="{{item.align}}" onClick="onItemClick" multipleLine="{{true}}" wrap="{{true}}">
+        <text class="name">{{item.title}}        
+        </text>
+        <view class="brief">
+          <view class="brief-title">{{item.content}}          
+          </view>
+          <view class="brief-bottom">
+            <text class="brief-bottom-left">{{item.sqTime}}
+            </text>
+            <text class="brief-bottom-right">{{item.status == '0' ? '发布中' : (item.status == '1' ? '已完成' : '未完成')}}
+            </text>
+          </view>
+          
+        </view>
+        <view slot="extra" class="extra">{{item.taskIntegral>0 ? '+' : ''}}{{item.taskIntegral}}                
+        </view>
+      </list-item>
+      <view class="brief-users" onTap="toUsers">users
+      </view>
+    </block>
+  </list>
+</view>
