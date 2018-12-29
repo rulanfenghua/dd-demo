@@ -46,7 +46,7 @@ Page({
       date: date
     })
 
-    dd.showLoading({ content: '加载中...' })
+    // dd.showLoading({ content: '加载中...' })
     dd.httpRequest({
       url: app.globalData.domain + '/leader/leaderAvailableIntegral',
       method: 'POST',
@@ -80,7 +80,7 @@ Page({
         })
       },
       complete: () => {
-        dd.hideLoading()
+        // dd.hideLoading()
       }
     })
   },
