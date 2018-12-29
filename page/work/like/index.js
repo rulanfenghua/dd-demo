@@ -40,7 +40,7 @@ Page({
           user.count = 0
         }
         list.forEach((item) => {
-          console.log(item)
+          // console.log(item)
           if (item.remark) {
             item.count = item.remark.split(',').length
           } else {
