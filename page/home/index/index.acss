@@ -4,11 +4,9 @@
 }
 
 /* 头部 */
-.top {
+/* .top {
   height: 140px;
   margin-bottom: 10px;
-  /* border: 1px solid #ccc;
-  border-radius: 4px; */
   box-shadow: 0 0 2px #ccc;
   background-position: 60% 20%;
 }
@@ -88,7 +86,7 @@
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
   overflow: hidden;
-}
+} */
 
 /* content部分 */
 .content {
