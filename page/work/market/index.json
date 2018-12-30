@@ -1,3 +1,6 @@
 {
-  "defaultTitle": "积分商城"
+  "defaultTitle": "积分商城",
+  "usingComponents": {
+    "top": "/components/top/index"
+  }
 }

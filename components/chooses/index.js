@@ -21,7 +21,8 @@ Component({
     dd.showLoading({ content: '加载中...' })
     dd.httpRequest({
       // url: app.globalData.domain + '/work/declareBehaviorDetail/selectAllUser',
-      url: app.globalData.domain + '/work/declareBehaviorDetail/selectAllDeptUser',
+      // url: app.globalData.domain + '/work/declareBehaviorDetail/selectAllDeptUser',
+      url: app.globalData.domain + '/leader/selectLeaderdepts',
       method: 'POST',
       dataType: 'json',
       data: {
@@ -102,7 +103,8 @@ Component({
       dd.showLoading({ content: '加载中...' })
       dd.httpRequest({
         // url: app.globalData.domain + '/work/declareBehaviorDetail/selectAllUser',
-        url: app.globalData.domain + '/work/declareBehaviorDetail/selectAllDeptUser',
+        // url: app.globalData.domain + '/work/declareBehaviorDetail/selectAllDeptUser',
+        url: app.globalData.domain + '/leader/selectLeaderdepts',
         method: 'POST',
         dataType: 'json',
         data: {
