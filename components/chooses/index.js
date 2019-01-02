@@ -40,10 +40,8 @@ Component({
       },
       fail: (res) => {
         console.log("httpRequestFailUsers----", res)
-        dd.alert({
-          content: JSON.stringify(res),
-          buttonText: '确定'
-        })
+        var content = JSON.stringify(res); switch (res.error) {case 13: content = '连接超时'; break; case 12: content = '网络出错'; break; case 19: content = '访问拒绝'; } dd.alert({content: content, buttonText: '确定'});
+
       },
       complete: () => {
         dd.hideLoading()
@@ -68,37 +66,6 @@ Component({
   },
 
   methods: {
-    allUsersDept() {
-      dd.showLoading({ content: '加载中...' })
-      dd.httpRequest({
-        url: app.globalData.domain + '/work/declareBehaviorDetail/selectAllDeptUser',
-        method: 'POST',
-        dataType: 'json',
-        data: {
-          pageSize: 1000,
-          pageNum: 1,
-          search: ''
-        },
-        success: (res) => {
-          if (res.data && res.data.code == 2018) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }) }
-          console.log('successUsersDept----', res)
-          var users = res.data.data.list
-          this.setData({
-            to: users
-          })
-        },
-        fail: (res) => {
-          console.log("httpRequestFailUsersDept----", res)
-          dd.alert({
-            content: JSON.stringify(res),
-            buttonText: '确定'
-          })
-        },
-        complete: () => {
-          dd.hideLoading()
-        }
-      })
-    },
     allUsers() {
       dd.showLoading({ content: '加载中...' })
       dd.httpRequest({
@@ -134,10 +101,7 @@ Component({
         },
         fail: (res) => {
           console.log("httpRequestFailUsers----", res)
-          dd.alert({
-            content: JSON.stringify(res),
-            buttonText: '确定'
-          })
+          var content = JSON.stringify(res); switch (res.error) {case 13: content = '连接超时'; break; case 12: content = '网络出错'; break; case 19: content = '访问拒绝'; } dd.alert({content: content, buttonText: '确定'});
         },
         complete: () => {
           dd.hideLoading()

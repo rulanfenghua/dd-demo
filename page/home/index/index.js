@@ -21,10 +21,8 @@ Page({
       fail: (res) => {
         console.log('httpRequestFailHome----', res)
         
-        dd.alert({
-          content: JSON.stringify(res),
-          buttonText: '确定'
-        })
+        var content = JSON.stringify(res); switch (res.error) {case 13: content = '连接超时'; break; case 12: content = '网络出错'; break; case 19: content = '访问拒绝'; } dd.alert({content: content, buttonText: '确定'});
+
       },
       complete: () => {
       }
@@ -43,10 +41,8 @@ Page({
       },
       fail: (res) => {
         console.log('httpRequestFailHomeFirst----', res)
-        dd.alert({
-          content: JSON.stringify(res),
-          buttonText: '确定'
-        })
+        var content = JSON.stringify(res); switch (res.error) {case 13: content = '连接超时'; break; case 12: content = '网络出错'; break; case 19: content = '访问拒绝'; } dd.alert({content: content, buttonText: '确定'});
+
       },
       complete: () => {
       }
@@ -54,9 +50,9 @@ Page({
 
     this.listShow()
   },
-  onReachBottom() {
-    this.listShow()
-  },
+  // onReachBottom() {
+  //   this.listShow()
+  // },
 
   listShow() {
     dd.showLoading({content: '加载中...'})
@@ -82,10 +78,8 @@ Page({
       },
       fail: (res) => {
         console.log('httpRequestFailHomeList---', res)
-        dd.alert({
-          content: JSON.stringify(res),
-          buttonText: '确定'
-        })
+        var content = JSON.stringify(res); switch (res.error) {case 13: content = '连接超时'; break; case 12: content = '网络出错'; break; case 19: content = '访问拒绝'; } dd.alert({content: content, buttonText: '确定'});
+
       },
       complete: () => {
         dd.hideLoading()
