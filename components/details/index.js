@@ -88,10 +88,7 @@ Component({
         },
         fail: (res) => {
           console.log("httpRequestFailWaitDetail----", res)
-          dd.alert({
-            content: JSON.stringify(res),
-            buttonText: '确定'
-          })
+          var content = JSON.stringify(res); switch (res.error) {case 13: content = '连接超时'; break; case 12: content = '网络出错'; break; case 19: content = '访问拒绝'; } dd.alert({content: content, buttonText: '确定'});
         },
         complete: () => {
           dd.hideLoading()
@@ -100,28 +97,63 @@ Component({
     },
 
     todo(status) {
-      var approvalId = this.props.options.approvalId
-      var status = this.data.status
-      dd.showLoading({ content: '审批中...' })
-      dd.httpRequest({
-        url: app.globalData.domain + '/approversPel/approversYesNo/' + approvalId + '/' + status,
-        method: 'GET',
-        // headers: { 'Content-Type': 'application/json' },
-        dataType: 'json',
-        success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
-          console.log('successWaitDetailYes----', res)
-          dd.showToast({content: '审批成功', duration: 3000 })
-          this.listShow()
-        },
-        fail: (res) => {
-          console.log("httpRequestFailWaitDetailYes----", res)
-          dd.alert({
-            content: JSON.stringify(res),
-            buttonText: '确定'
-          })
-        },
-        complete: () => {
-          dd.hideLoading()
+      dd.confirm({
+        title: '提示',
+        content: '确认审批吗？',
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        success: (result) => {
+          if (result.confirm) {
+            var approvalId = this.props.options.approvalId
+            var status = this.data.status
+            dd.showLoading({
+              content: '审批中...'
+            })
+            dd.httpRequest({
+              url: app.globalData.domain + '/approversPel/approversYesNo/' + approvalId + '/' + status,
+              method: 'GET',
+              // headers: { 'Content-Type': 'application/json' },
+              dataType: 'json',
+              success: (res) => {
+                if (res.data && res.data.code == 2018) {
+                  dd.showToast({
+                    content: res.msg,
+                    duration: 3000
+                  });
+                  dd.reLaunch({
+                    url: '/page/register/index/index'
+                  })
+                }
+                console.log('successWaitDetailYes----', res)
+                dd.showToast({
+                  content: '审批成功',
+                  duration: 3000
+                })
+                this.listShow()
+              },
+              fail: (res) => {
+                console.log("httpRequestFailWaitDetailYes----", res)
+                var content = JSON.stringify(res);
+                switch (res.error) {
+                  case 13:
+                    content = '连接超时';
+                    break;
+                  case 12:
+                    content = '网络出错';
+                    break;
+                  case 19:
+                    content = '访问拒绝';
+                }
+                dd.alert({
+                  content: content,
+                  buttonText: '确定'
+                });
+              },
+              complete: () => {
+                dd.hideLoading()
+              }
+            })
+          }
         }
       })
     },
@@ -150,28 +182,62 @@ Component({
       dd.navigateBack()
     },
     fromBack() {
-      var approvalId = this.props.options.approvalId
-      dd.showLoading({ content: '提交中...' })
-      console.log()
-      dd.httpRequest({
-        url: app.globalData.domain + '/userMenu/selectDelMenu/' + approvalId,
-        method: 'GET',
-        // headers: { 'Content-Type': 'application/json' },
-        dataType: 'json',
-        success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
-          console.log('successWaitDetailYes----', res)
-          dd.showToast({content: '提交成功', duration: 3000 })
-          dd.navigateBack()
-        },
-        fail: (res) => {
-          console.log("httpRequestFailWaitDetailYes----", res)
-          dd.alert({
-            content: JSON.stringify(res),
-            buttonText: '确定'
-          })
-        },
-        complete: () => {
-          dd.hideLoading()
+      dd.confirm({
+        title: '提示',
+        content: '确认撤销吗？',
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        success: (result) => {
+          if (result.confirm) {
+            var approvalId = this.props.options.approvalId
+            dd.showLoading({
+              content: '提交中...'
+            })
+            dd.httpRequest({
+              url: app.globalData.domain + '/userMenu/selectDelMenu/' + approvalId,
+              method: 'GET',
+              // headers: { 'Content-Type': 'application/json' },
+              dataType: 'json',
+              success: (res) => {
+                if (res.data && res.data.code == 2018) {
+                  dd.showToast({
+                    content: res.msg,
+                    duration: 3000
+                  });
+                  dd.reLaunch({
+                    url: '/page/register/index/index'
+                  })
+                }
+                console.log('successWaitDetailYes----', res)
+                dd.showToast({
+                  content: '提交成功',
+                  duration: 3000
+                })
+                dd.navigateBack()
+              },
+              fail: (res) => {
+                console.log("httpRequestFailWaitDetailYes----", res)
+                var content = JSON.stringify(res);
+                switch (res.error) {
+                  case 13:
+                    content = '连接超时';
+                    break;
+                  case 12:
+                    content = '网络出错';
+                    break;
+                  case 19:
+                    content = '访问拒绝';
+                }
+                dd.alert({
+                  content: content,
+                  buttonText: '确定'
+                });
+              },
+              complete: () => {
+                dd.hideLoading()
+              }
+            })
+          }
         }
       })
     },
