@@ -30,7 +30,8 @@ Component({
         pageNum: 1,
         search: this.data.search
       },
-      success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
+      success: (res) => {if ((res.data.code != 0 && !res.data.code ) || res.data.code == 1001) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }); return}
+
         console.log('successUsers----', res)
         var users = res.data.data.list
         this.setData({
@@ -53,7 +54,8 @@ Component({
     })
     
     dd.getSystemInfo({
-      success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
+      success: (res) => {if ((res.data.code != 0 && !res.data.code ) || res.data.code == 1001) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }); return}
+
         var height = res.windowHeight
         this.setData({
           height: height
@@ -79,7 +81,8 @@ Component({
           pageNum: 1,
           search: this.data.search
         },
-        success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
+        success: (res) => {if ((res.data.code != 0 && !res.data.code ) || res.data.code == 1001) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }); return}
+
           console.log('successUsers----', res)
           var users = res.data.data.list
           if (users.length < this.data.length) {

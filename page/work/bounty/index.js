@@ -32,7 +32,8 @@ Page({
         pageSize: 1000,
         times: this.data.status, // tab栏审批未审批
       },
-      success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
+      success: (res) => {if ((res.data.code != 0 && !res.data.code ) || res.data.code == 1001) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }); return}
+
         console.log('successWait----', res)
         res.data.data.list.forEach((item) => {
           item.sqTime = this.format(item.createTime, 'yyyy-MM-dd hh:mm:ss')

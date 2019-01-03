@@ -8,7 +8,8 @@ Page({
   },
   onShow() {
     dd.getSystemInfo({
-      success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
+      success: (res) => {if ((res.data.code != 0 && !res.data.code ) || res.data.code == 1001) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }); return}
+
         var height = res.windowHeight
         this.setData({
           height: height
@@ -21,7 +22,8 @@ Page({
       url: app.globalData.domain + '/personal/indexHead',
       method: 'POST',
       dataType: 'json',
-      success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
+      success: (res) => {if ((res.data.code != 0 && !res.data.code ) || res.data.code == 1001) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }); return}
+
         console.log('successPersonal----', res)
         this.setData({
           data: res.data.data
@@ -50,7 +52,8 @@ Page({
       data: {
         userId: ''
       },
-      success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
+      success: (res) => {if ((res.data.code != 0 && !res.data.code ) || res.data.code == 1001) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }); return}
+
         console.log('successEcharts----', res)
         
         chartDataNew.push({
@@ -142,7 +145,8 @@ Page({
       url: app.globalData.domain + '/user/logout',
       method: 'GET',
       dataType: 'json',
-      success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
+      success: (res) => {if ((res.data.code != 0 && !res.data.code ) || res.data.code == 1001) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }); return}
+
         console.log('successPersonalLogout----', res)
         dd.removeStorage({
           key: 'login',

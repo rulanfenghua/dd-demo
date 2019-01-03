@@ -12,7 +12,8 @@ Page({
       method: 'POST',
       // headers: { 'Content-Type': 'application/json' },
       dataType: 'json',
-      success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
+      success: (res) => {if ((res.data.code != 0 && !res.data.code ) || res.data.code == 1001) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }); return}
+
         console.log('successHome----', res)
         this.setData({
           data: res.data.data
@@ -33,7 +34,8 @@ Page({
       method: 'POST',
       // headers: { 'Content-Type': 'application/json' },
       dataType: 'json',
-      success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
+      success: (res) => {if ((res.data.code != 0 && !res.data.code ) || res.data.code == 1001) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }); return}
+
         console.log('successHomeFirst----', res)
         this.setData({
           first: res.data.data
@@ -67,7 +69,8 @@ Page({
         pageSize: 1000,
         userId: ''
       },
-      success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
+      success: (res) => {if ((res.data.code != 0 && !res.data.code ) || res.data.code == 1001) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }); return}
+
         console.log('successHomeList----', res)
         res.data.data.list.forEach((item) => {
           item.approvalImg1 = item.approvalImg1.split(',')
