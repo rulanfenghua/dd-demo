@@ -26,7 +26,7 @@ Page({
         search: this.data.search
       },
       success: (res) => {
-        if (res.data && res.data.code == 2018) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }) }
+        if (res.data && res.data.code == 1001) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }) }
         console.log('successLike----', res)
         var has = true
         var list = res.data.data.userList
@@ -118,7 +118,7 @@ Page({
         userId: index.userId
       },
       success: (res) => {
-        if (res.data && res.data.code == 2018) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }) }
+        if (res.data && res.data.code == 1001) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }) }
         console.log('successLikePost----', res)
         dd.showToast({ content: '点赞成功', duration: 3000 })
         this.listShow()

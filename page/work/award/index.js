@@ -39,7 +39,8 @@ Page({
       url: app.globalData.domain + '/work/declareBehaviorDetail/approverPel',
       method: 'POST',
       dataType: 'json',
-      success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
+      success: (res) => {if ((res.data.code != 0 && !res.data.code ) || res.data.code == 1001) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }); return}
+
         console.log('successApps----', res)
         this.setData({
           apps: res.data.data
@@ -58,7 +59,8 @@ Page({
       url: app.globalData.domain + '/work/selectSysUser',
       method: 'POST',
       dataType: 'json',
-      success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
+      success: (res) => {if ((res.data.code != 0 && !res.data.code ) || res.data.code == 1001) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }); return}
+
         console.log('successUser----', res)
         var user = []
         user.push(res.data.data)
@@ -93,7 +95,7 @@ Page({
         search: ''
       },
       success: (res) => {
-        if (res.data && res.data.code == 2018) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }) }
+        if (res.data && res.data.code == 1001) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }) }
         console.log('successUsersDept----', res)
         var users = res.data.data.list
         this.setData({
@@ -170,7 +172,8 @@ Page({
         approvalTitle: approvalTitle,
         approvalContent: approvalContent
       },
-      success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
+      success: (res) => {if ((res.data.code != 0 && !res.data.code ) || res.data.code == 1001) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }); return}
+
         console.log('successApp----', res)
         dd.showToast({
           duration: 3000,
@@ -218,7 +221,8 @@ Page({
         fileType: 'image',
         fileName: 'file',
         filePath: this.data.filePaths[index],
-        success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
+        success: (res) => {if ((res.data.code != 0 && !res.data.code ) || res.data.code == 1001) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }); return}
+
           success++
           console.log('dbImg', res)
           var regex = /:"(.*)","msg"/
@@ -271,7 +275,8 @@ Page({
     dd.chooseImage({
       sourceType: ['camera', 'album'],
       count: 9,
-      success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
+      success: (res) => {if ((res.data.code != 0 && !res.data.code ) || res.data.code == 1001) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }); return}
+
         console.log('chooseImage', res)
         if (res && res.apFilePaths) {
           this.setData({

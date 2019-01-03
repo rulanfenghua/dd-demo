@@ -32,7 +32,8 @@ Page({
                         authCode: res.authCode
                     },
                     dataType: 'json',
-                    success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
+                    success: (res) => {if ((res.data.code != 0 && !res.data.code ) || res.data.code == 1001) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }); return}
+
                         // dd.alert({content: "step2"});
                         console.log('success----',res)
                         let userId = res.data.result.userId;

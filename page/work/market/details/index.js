@@ -21,7 +21,8 @@ Page({
       url: app.globalData.domain + '/integralGoods/selectIntegralGoodsDetailRecordCountNum/' + this.data.options.goodId,
       method: 'POST',
       dataType: 'json',
-      success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
+      success: (res) => {if ((res.data.code != 0 && !res.data.code ) || res.data.code == 1001) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }); return}
+
         console.log('successMarketDetails----', res)
         this.setData({
           data: res.data.data
@@ -68,7 +69,8 @@ Page({
             data: {
               goodId: this.data.options.goodId
             },
-            success: (res) => {if (res.data && res.data.code == 2018) {dd.showToast({content: res.msg, duration: 3000 }); dd.reLaunch({url: '/page/register/index/index'}) }
+            success: (res) => {if ((res.data.code != 0 && !res.data.code ) || res.data.code == 1001) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }); return}
+
               console.log('successMarketChange----', res)
               dd.showToast({
                 type: 'success',
