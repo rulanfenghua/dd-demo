@@ -126,6 +126,9 @@ Component({
             content: '审批成功',
             duration: 3000
           })
+          dd.setData({
+            fail: false
+          })
           this.listShow()
         },
         fail: (res) => {
@@ -155,7 +158,7 @@ Component({
     todoPass() {
       dd.confirm({
         title: '提示',
-        content: '确认审批吗？',
+        content: '确认通过审批吗？',
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         success: (result) => {
@@ -170,7 +173,7 @@ Component({
       var _this = this
       dd.showActionSheet({
         title: '选择拒绝理由',
-        items: ['不填', '其他'],
+        items: ['不填', '填写拒绝理由'],
         cancelButtonText: '取消',
         success({ index }) {
           switch (index) {
@@ -183,6 +186,17 @@ Component({
           }
         }
       })
+    },
+    failBack() {
+      this.setData({ fail: false })
+    },
+    formSubmit(e) {
+      console.log('formSubmit----', e.detail.value)
+      this.setData({
+        status: 2,
+        failString: e.detail.value.title
+      })
+      this.todo()
     },
     todoBack() {
       // this.setData({
