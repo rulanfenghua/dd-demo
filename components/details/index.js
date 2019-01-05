@@ -14,6 +14,9 @@ Component({
     failIndex: 0,
 
     type: false, // 支票积分类型判断
+    failString: '', // 拒绝理由
+
+    fail: false, // 拒绝理由弹出标识
   },
 
   didMount() {
@@ -98,6 +101,58 @@ Component({
     },
 
     todo(status) {
+      var approvalId = this.props.options.approvalId
+      var status = this.data.status
+      dd.showLoading({
+        content: '审批中...'
+      })
+      dd.httpRequest({
+        url: app.globalData.domain + '/approversPel/approversYesNo/' + approvalId + '/' + status,
+        method: 'GET',
+        // headers: { 'Content-Type': 'application/json' },
+        dataType: 'json',
+        success: (res) => {
+          if (res.data && res.data.code == 1001) {
+            dd.showToast({
+              content: res.msg,
+              duration: 3000
+            });
+            dd.reLaunch({
+              url: '/page/register/index/index'
+            })
+          }
+          console.log('successWaitDetailYes----', res)
+          dd.showToast({
+            content: '审批成功',
+            duration: 3000
+          })
+          this.listShow()
+        },
+        fail: (res) => {
+          console.log("httpRequestFailWaitDetailYes----", res)
+          var content = JSON.stringify(res);
+          switch (res.error) {
+            case 13:
+              content = '连接超时';
+              break;
+            case 12:
+              content = '网络出错';
+              break;
+            case 19:
+              content = '访问拒绝';
+          }
+          dd.alert({
+            content: content,
+            buttonText: '确定'
+          });
+        },
+        complete: () => {
+          dd.hideLoading()
+        }
+      })
+    },
+
+    todoPass() {
       dd.confirm({
         title: '提示',
         content: '确认审批吗？',
@@ -105,73 +160,29 @@ Component({
         cancelButtonText: '取消',
         success: (result) => {
           if (result.confirm) {
-            var approvalId = this.props.options.approvalId
-            var status = this.data.status
-            dd.showLoading({
-              content: '审批中...'
-            })
-            dd.httpRequest({
-              url: app.globalData.domain + '/approversPel/approversYesNo/' + approvalId + '/' + status,
-              method: 'GET',
-              // headers: { 'Content-Type': 'application/json' },
-              dataType: 'json',
-              success: (res) => {
-                if (res.data && res.data.code == 1001) {
-                  dd.showToast({
-                    content: res.msg,
-                    duration: 3000
-                  });
-                  dd.reLaunch({
-                    url: '/page/register/index/index'
-                  })
-                }
-                console.log('successWaitDetailYes----', res)
-                dd.showToast({
-                  content: '审批成功',
-                  duration: 3000
-                })
-                this.listShow()
-              },
-              fail: (res) => {
-                console.log("httpRequestFailWaitDetailYes----", res)
-                var content = JSON.stringify(res);
-                switch (res.error) {
-                  case 13:
-                    content = '连接超时';
-                    break;
-                  case 12:
-                    content = '网络出错';
-                    break;
-                  case 19:
-                    content = '访问拒绝';
-                }
-                dd.alert({
-                  content: content,
-                  buttonText: '确定'
-                });
-              },
-              complete: () => {
-                dd.hideLoading()
-              }
-            })
+            this.setData({ status: 1 })
+            this.todo()
           }
         }
       })
     },
-
-    todoPass() {
-      this.setData({
-        status: 1
-      })
-
-      this.todo()
-    },
     todoStop() {
-      this.setData({
-        status: 2
+      var _this = this
+      dd.showActionSheet({
+        title: '选择拒绝理由',
+        items: ['不填', '其他'],
+        cancelButtonText: '取消',
+        success({ index }) {
+          switch (index) {
+            case 0: _this.setData({ failString: '' })
+            _this.setData({ status: 2 })
+            _this.todo()
+            break;
+            case 1: _this.setData({ fail: true })
+            break;
+          }
+        }
       })
-
-      this.todo()
     },
     todoBack() {
       // this.setData({

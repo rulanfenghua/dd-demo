@@ -70,3 +70,22 @@
 .am-vertical-step-description {
   font-size: 12px;
 }
+
+.filter {
+  background: rgb(34, 34, 34);
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity .3s,z-index .3s;
+  transition-delay: .1s;
+  overflow: hidden;
+}
+
+.filter.show-filter {
+  opacity: 0.3;
+  z-index: 199;
+}

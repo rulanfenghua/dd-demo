@@ -44,8 +44,6 @@
     </view>
     <image class="image" a:for="{{data.approvalImg}}" src="{{item}}" onTap="preview" data-index="{{index}}" mode="widthFix" />
   </view>
-  
-  
   <view class="page-section-btns" a:if="{{status == 0 && !steps}}">
     <view>
       <button size="mini" type="ghost" onTap="todoBack">撤销审批</button>
@@ -66,4 +64,8 @@
     </view>
   </view>
   <steps activeIndex="{{activeIndex}}" failIndex="{{failIndex}}" items="{{items}}" direction="vertical" a:else></steps>
+</view>
+
+<view class="filter {{fail ? 'show-filter' : ''}}">
+
 </view>
