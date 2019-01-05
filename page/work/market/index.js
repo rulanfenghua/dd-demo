@@ -26,7 +26,7 @@ Page({
   },
   onShow() {
     dd.getSystemInfo({
-      success: (res) => {if ((res.data.code != 0 && !res.data.code ) || res.data.code == 1001) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }); return}
+      success: (res) => {
 
         var width = res.windowWidth / 2 - 21
         var height = width / 2 * 3
@@ -108,10 +108,7 @@ Page({
       }
     })
   },
-  onReachBottom() {
-    this.showList()
-  },
-
+  
   logs() {
     dd.navigateTo({ url: './logs/index' })
   },

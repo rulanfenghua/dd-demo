@@ -44,8 +44,6 @@
     </view>
     <image class="image" a:for="{{data.approvalImg}}" src="{{item}}" onTap="preview" data-index="{{index}}" mode="widthFix" />
   </view>
-  
-  
   <view class="page-section-btns" a:if="{{status == 0 && !steps}}">
     <view>
       <button size="mini" type="ghost" onTap="todoBack">撤销审批</button>
@@ -67,3 +65,23 @@
   </view>
   <steps activeIndex="{{activeIndex}}" failIndex="{{failIndex}}" items="{{items}}" direction="vertical" a:else></steps>
 </view>
+
+<view class="filter {{fail ? 'show-filter' : ''}}">
+  
+</view>
+<form onSubmit="formSubmit" class="page-section form {{fail ? 'show-form' : ''}}">
+  <view class="page-section-title">填写拒绝理由
+  </view>
+  <view class="page-section-demo">
+    <textarea auto-height placeholder="" name="title" style="font-size: 13px" auto-height="{{true}}" maxlength="-1" value="{{options.title}}" disabled="{{false}}"/>
+  </view>
+  <view class="form-line" />
+  <view class="page-section-btns">
+    <view>
+      <button size="mini" type="ghost" onTap="failBack">返回</button>
+    </view>
+    <view>
+      <button formType="submit" type="primary" class="button-form" size="mini">确定</button>
+    </view>
+  </view>
+</form>
