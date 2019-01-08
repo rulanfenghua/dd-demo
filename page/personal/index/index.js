@@ -8,7 +8,7 @@ Page({
   },
   onShow() {
     dd.getSystemInfo({
-      success: (res) => {if ((res.data.code != 0 && !res.data.code ) || res.data.code == 1001) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }); return}
+      success: (res) => {
 
         var height = res.windowHeight
         this.setData({
