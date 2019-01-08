@@ -12,6 +12,7 @@
     "page/work/market/index",
     "page/work/market/details/index",
     "page/work/market/logs/index",
+    "page/work/market/success/index",
     "page/work/award/index",
     "page/work/declare/approve/index",
     "page/work/praise/index",

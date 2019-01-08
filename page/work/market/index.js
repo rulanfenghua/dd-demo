@@ -202,11 +202,7 @@ Page({
             success: (res) => {if ((res.data.code != 0 && !res.data.code ) || res.data.code == 1001) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }); return}
 
               console.log('successMarketChange----', res)
-              dd.showToast({
-                type: 'success',
-                duration: 3000,
-                content: '兑换成功',
-              })
+              dd.navigateTo({ url: './success/index' })
             },
             fail: (res) => {
               console.log("httpRequestFailMarketChange----", res)
