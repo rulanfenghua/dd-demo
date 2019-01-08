@@ -3,7 +3,9 @@ let app = getApp()
 Page({
   data: {
     options: {},
-    items: []
+    items: [],
+
+    right: [{'type': 'delete', 'text': '撤销'}]
   },
   onLoad(options) {
     console.log(options)
@@ -44,5 +46,9 @@ Page({
         dd.hideLoading()
       }
     })
+  },
+
+  onRightItemClick(e) {
+    console.log(e)
   }
 })
