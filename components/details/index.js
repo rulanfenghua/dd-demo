@@ -126,10 +126,10 @@ Component({
             content: '审批成功',
             duration: 3000
           })
-          dd.setData({
+          this.setData({
             fail: false
           })
-          this.listShow()
+          dd.navigateBack()
         },
         fail: (res) => {
           console.log("httpRequestFailWaitDetailYes----", res)
