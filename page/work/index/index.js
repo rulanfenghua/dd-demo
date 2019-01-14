@@ -23,19 +23,11 @@ Page({
     listContent: [
       {
         "icon": "/image/nothing.png",
-        "text": "--"
-      },
-      {
-        "icon": "/image/praise.png",
-        "text": "积分支票"
+        "text": "发布任务"
       },
       {
         "icon": "/image/manage.png",
         "text": "管理奖扣"
-      },
-      {
-        "icon": "/image/push.png",
-        "text": "--"
       }
     ],
     // listMain: [
@@ -90,44 +82,24 @@ Page({
     // ],
     listMain: [
       {
-        "icon": "/image/city.png",
-        "text": "--"
-      },
-      {
-        "icon": "/image/page.png",
-        "text": "--"
-      },
-      {
         "icon": "/image/task2.png",
-        "text": "--"
+        "text": "悬赏任务"
       },
       {
         "icon": "/image/test.png",
         "text": "申报积分"
       },
       {
-        "icon": "/image/call.png",
-        "text": "--"
-      },
-      {
         "icon": "/image/to.png",
         "text": "爱心点赞"
       },
       {
-        "icon": "/image/app.png",
-        "text": "--"
-      },
-      {
         "icon": "/image/free.png",
-        "text": "自由奖扣"
+        "text": "自由奖励"
       },
       {
-        "icon": "/image/book.png",
-        "text": "--"
-      },
-      {
-        "icon": "/image/question.png",
-        "text": "--"
+        "icon": "/image/app.png",
+        "text": "积分申诉"
       },
       {
         "icon": "/image/mall.png",
@@ -135,7 +107,7 @@ Page({
       },
       {
         "icon": "/image/gift.png",
-        "text": "--"
+        "text": "积分抽奖"
       }
     ],
 
@@ -177,15 +149,16 @@ Page({
     console.log(e.detail)
 
     switch (e.detail.index) {
-      case 0:
-        break;
       case 1:
+        dd.navigateTo({url: '../take/index'})
+        break;
+      case 0:
         // dd.alert({ content: '正在测试，敬请期待', buttonText: '确定' })
-        dd.navigateTo({url: '../praise/index'})
+        // dd.navigateTo({url: '../praise/index'})
         break;
       case 2:
         // dd.alert({ content: '正在测试，敬请期待', buttonText: '确定' })
-        dd.navigateTo({url: '../take/index'})
+        // dd.navigateTo({url: '../take/index'})
         break;
       case 3:
         break;
@@ -195,14 +168,14 @@ Page({
     console.log(e.detail)
 
     switch (e.detail.index) {
-      case 3:
+      case 1:
         dd.navigateTo({url: '../declare/index'})
         break;
-      case 10:
+      case 5:
         // dd.alert({ content: '正在测试，敬请期待', buttonText: '确定' })
         dd.navigateTo({url: '../market/index'})
         break;
-      case 7:
+      case 3:
         // dd.alert(
         //   {
         //     content: '正在测试，敬请期待',
@@ -211,13 +184,13 @@ Page({
         // )
         dd.navigateTo({ url: '../award/index' })
         break;
-      case 1:
+      case 6:
         // dd.alert({ content: '正在测试，敬请期待', buttonText: '确定' })
         break;
-      case 5:
+      case 2:
         dd.navigateTo({ url: '../like/index' })
         break;
-      case 2:
+      case 0:
         dd.navigateTo({ url: '../bounty/index' })
         break;
     }

@@ -10,19 +10,20 @@
     <list-item
       className="list-item"
       key="item-{{index}}"
-      index="{{item.approvalId}}"
+      index="{{item.approvalImg1}}"
       last="{{index === (items.length - 1)}}"
       thumb="{{item.userImg ? item.userImg : '/image/logo.png'}}"
       arrow="{{item.arrow}}"
       align="{{item.align}}"
       multipleLine="{{true}}"
       wrap="{{true}}"
+      onClick="onItemClick"
     >
       <text class="name">{{item.userName}}</text>
       <view class="brief">
         <view class="brief-title">{{item.approvalTitle}}</view>
         <view class="brief-content">{{item.approvalContent}}</view>
-        <image class="brief-image" src="{{item}}" a:for="{{item.approvalImg1}}" onTap="preview" data-index="{{index}}" mode="widthFix" />
+        <image class="brief-image" src="{{item}}" a:for="{{item.approvalImg1}}" mode="widthFix" />
         <view class="brief-time">{{item.spTime}}</view>
       </view>
       <view slot="extra" class="extra">

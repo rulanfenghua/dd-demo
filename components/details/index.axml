@@ -46,7 +46,7 @@
   </view>
   <view class="page-section-btns" a:if="{{status == 0 && !steps}}">
     <view>
-      <button size="mini" type="ghost" onTap="todoBack">撤销审批</button>
+      <button size="mini" type="ghost" onTap="todoBack">返回</button>
     </view>
     <view>
       <button size="mini" type="primary" onTap="todoPass">审批通过</button>

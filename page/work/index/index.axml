@@ -1,11 +1,11 @@
 <view class="page">
   <top />
   <view class="content">
-    <view class="content-title">审批日记</view>
+    <view class="content-title">管理日志</view>
     <view class="content-list">
       <view class="number">
         <text class="number-amount" onTap="logs">{{data.counNum ? data.counNum : '-'}}</text>
-        <text class="number-text">审批日志</text>
+        <text class="number-text">我发起的</text>
       </view>
       <view class="number">
         <text class="number-amount" onTap="wait">{{data.dwsp ? data.dwsp : '-'}}</text>
@@ -13,7 +13,7 @@
       </view>
       <view class="number">
         <text class="number-amount" onTap="initiate">{{data.counNum1 ? data.counNum1 : '-'}}</text>
-        <text class="number-text">我发起的</text>
+        <text class="number-text">申请日志</text>
       </view>
       <view class="number">
         <text class="number-amount" onTap="copy">{{data.csrs ? data.csrs : '-'}}</text>

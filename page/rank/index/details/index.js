@@ -97,7 +97,7 @@ Page({
       dataType: 'json',
       data: {
         pageNum: 1,
-        pageSize: 1000,
+        pageSize: 100,
         userId: this.data.options.userId
       },
       success: (res) => {if ((res.data.code != 0 && !res.data.code ) || res.data.code == 1001) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }); return}
@@ -120,16 +120,10 @@ Page({
       }
     })
   },
-  onItemClick({approvalId}) {
-    console.log('list点击', approvalId)
-
-    dd.navigateTo({ url: `/page/work/index/logs/details/index?approvalId=${approvalId}` })
-  },
-  preview(e) {
-    console.log(e)
+  onItemClick({index}) {
+    console.log('list点击', index)
     dd.previewImage({
-      current: e.target.dataset.index,
-      urls: this.data.items.approvalImg1
+      urls: index
     })
   }
 })
