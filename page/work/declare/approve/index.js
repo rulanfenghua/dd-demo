@@ -170,9 +170,7 @@ Page({
           duration: 3000,
           content: '申请成功', // 文字内容
         })
-        dd.navigateBack({
-          delta: 2
-        })
+        dd.navigateBack()
       },
       fail: (res) => {
         console.log("httpRequestFailApp----", res)
