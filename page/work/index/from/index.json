@@ -1,5 +1,5 @@
 {
-  "defaultTitle": "我发起的",
+  "defaultTitle": "申请日志",
   "usingComponents": {
     "list": "mini-ddui/es/list/index",
     "list-item": "mini-ddui/es/list/list-item/index",
