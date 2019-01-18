@@ -43,7 +43,7 @@ Page({
 
         console.log('successApps----', res)
         this.setData({
-          apps: res.data.data
+          'apps[0]': res.data.data
         })
       },
       fail: (res) => {

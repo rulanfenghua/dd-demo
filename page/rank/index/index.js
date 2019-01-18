@@ -41,7 +41,7 @@ Page({
         var data = res.data.data
         data.unshift({
           id: '',
-          name: '全部',
+          name: '默认',
           checked: 'true'
         })
         this.setData({
@@ -67,7 +67,7 @@ Page({
         var data = res.data.data
         data.unshift({
           id: '',
-          name: '全部',
+          name: '默认',
           checked: 'true'
         })
         this.setData({
@@ -93,7 +93,7 @@ Page({
         var data = res.data.data
         data.unshift({
           id: '',
-          name: '全部',
+          name: '默认',
           checked: 'true'
         })
         this.setData({
