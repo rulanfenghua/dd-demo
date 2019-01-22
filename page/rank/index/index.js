@@ -122,13 +122,6 @@ Page({
       }
     })
 
-    this.showList()
-  },
-  onReachBottom() {
-    this.showList()
-  },
-
-  showList() {
     dd.showLoading({content: '加载中...'})
     dd.httpRequest({
       url: app.globalData.domain + '/rank/index',
@@ -159,6 +152,44 @@ Page({
       },
       complete: () => {
         dd.hideLoading()
+      }
+    })
+  },
+  // onReachBottom() {
+  //   this.showList()
+  // },
+
+  showList() {
+    // dd.showLoading({content: '加载中...'})
+    dd.httpRequest({
+      url: app.globalData.domain + '/rank/index',
+      method: 'POST',
+      data: {
+        pageNum: 1,
+        pageSize: 1000,
+        deptId: this.data.deptId,
+        postId: this.data.postId,
+        typeId: this.data.typeId,
+        times: this.data.times,
+        spTime1: '',
+        spTime2: '',
+        search: this.data.search
+      },
+      dataType: 'json',
+      success: (res) => {if ((res.data.code != 0 && !res.data.code ) || res.data.code == 1001) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }); return}
+
+        console.log('successRank----', res)
+        this.setData({
+          items: res.data.data.list
+        })
+      },
+      fail: (res) => {
+        console.log("httpRequestFailRank---", res)
+        var content = JSON.stringify(res); switch (res.error) {case 13: content = '连接超时'; break; case 12: content = '网络出错'; break; case 19: content = '访问拒绝'; } dd.alert({content: content, buttonText: '确定'});
+
+      },
+      complete: () => {
+        // dd.hideLoading()
       }
     })
     console.log(this.data)
@@ -192,7 +223,8 @@ Page({
     this.setData({
       search: e.detail.value
     })
-    // this.showList()
+    this.showList()
+    // dd.hideKeyboard()
   },
   clearSearch() {
     this.setData({

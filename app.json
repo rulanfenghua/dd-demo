@@ -20,6 +20,7 @@
     "page/work/like/index",
     "page/work/bounty/index",
     "page/work/bounty/details/index",
+    "page/work/publish/index",
 
     "page/work/index/logs/index",
     "page/work/index/wait/index",

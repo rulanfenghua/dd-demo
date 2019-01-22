@@ -8,6 +8,7 @@ Component({
   data: {
     data: {},
     status: 0,
+    passStatus: 0, // 传递状态
 
     items: [],
     activeIndex: 1,
@@ -102,12 +103,14 @@ Component({
 
     todo(status) {
       var approvalId = this.props.options.approvalId
-      var status = this.data.status
+      var status = this.data.passStatus
+      var failString = encodeURI(encodeURI(this.data.failString))
+      var url = app.globalData.domain + '/approversPel/approversYesNo/' + approvalId + '/' + status + '?disapproveUndo=' + failString
       dd.showLoading({
         content: '审批中...'
       })
       dd.httpRequest({
-        url: app.globalData.domain + '/approversPel/approversYesNo/' + approvalId + '/' + status,
+        url: url,
         method: 'GET',
         // headers: { 'Content-Type': 'application/json' },
         dataType: 'json',
@@ -125,9 +128,6 @@ Component({
           dd.showToast({
             content: '审批成功',
             duration: 3000
-          })
-          this.setData({
-            fail: false
           })
           dd.navigateBack()
         },
@@ -150,6 +150,7 @@ Component({
           });
         },
         complete: () => {
+          this.setData({fail: false})
           dd.hideLoading()
         }
       })
@@ -163,7 +164,7 @@ Component({
         cancelButtonText: '取消',
         success: (result) => {
           if (result.confirm) {
-            this.setData({ status: 1 })
+            this.setData({ passStatus: 1 })
             this.todo()
           }
         }
@@ -178,7 +179,7 @@ Component({
         success({ index }) {
           switch (index) {
             case 0: _this.setData({ failString: '' })
-            _this.setData({ status: 2 })
+            _this.setData({ passStatus: 2 })
             _this.todo()
             break;
             case 1: _this.setData({ fail: true })
@@ -193,7 +194,7 @@ Component({
     formSubmit(e) {
       console.log('formSubmit----', e.detail.value)
       this.setData({
-        status: 2,
+        passStatus: 2,
         failString: e.detail.value.title
       })
       this.todo()

@@ -76,7 +76,7 @@ Page({
   },
   onShow() {
     console.log('level', app.globalData.level)
-    if (app.globalData.level == 'admin' || app.globalData.level == 'superAdmin') {
+    if (app.globalData.level != 'common' && app.globalData.level != 'admin') {
       this.setData({
         hidden: false
       })
@@ -110,6 +110,7 @@ Page({
 
     switch (e.detail.index) {
       case 0:
+        dd.navigateTo({url: '../publish/index'})
         break;
       case 1:
         // dd.alert({ content: '正在测试，敬请期待', buttonText: '确定' })
