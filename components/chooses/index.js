@@ -69,7 +69,7 @@ Component({
 
   methods: {
     allUsers() {
-      dd.showLoading({ content: '加载中...' })
+      // dd.showLoading({ content: '加载中...' })
       dd.httpRequest({
         // url: app.globalData.domain + '/work/declareBehaviorDetail/selectAllUser',
         // url: app.globalData.domain + '/work/declareBehaviorDetail/selectAllDeptUser',
@@ -107,7 +107,7 @@ Component({
           var content = JSON.stringify(res); switch (res.error) {case 13: content = '连接超时'; break; case 12: content = '网络出错'; break; case 19: content = '访问拒绝'; } dd.alert({content: content, buttonText: '确定'});
         },
         complete: () => {
-          dd.hideLoading()
+          // dd.hideLoading()
         }
       })
     },
@@ -119,7 +119,7 @@ Component({
       this.setData({
         search: e.detail.value
       })
-      // this.allUsers()
+      this.allUsers()
     },
     clearSearch() {
       this.setData({

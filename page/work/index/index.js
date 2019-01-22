@@ -116,7 +116,7 @@ Page({
   },
   onShow() {
     console.log('level', app.globalData.level)
-    if (app.globalData.level == 'admin' || app.globalData.level == 'superAdmin') {
+    if (app.globalData.level != 'common' && app.globalData.level != 'admin') {
       this.setData({
         hidden: false
       })
