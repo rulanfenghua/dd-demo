@@ -1,5 +1,5 @@
 <view class="filter {{showFilter ? 'show-filter' : ''}}">
-  <!-- <button type="default" plain hover-class="none" class="top-button" onTap="back">点击这里返回</button> -->
+  <button type="default" plain hover-class="none" class="top-button" onTap="all">选择全部</button>
   <view class="search-filter">
     <view class="select" onTap="showSelect"></view>
     <view class="page-section-demo search">
@@ -12,23 +12,24 @@
   <view>
     <form onSubmit="onSubmit" onReset="onReset" class="filter-form">
       <view class="page-section">
-        <checkbox-group onChange="onChange" name="to" style="height: {{height - 81}}px" class="checkbox-wrapper">
-          <label class="checkbox" a:for="{{users}}" key="{{item.userId}}">
-            <checkbox value="{{item}}" checked="{{item.checked}}" disabled="{{item.disabled}}" class="checkbox-label"/>
+        <view onChange="onChange" style="height: {{height - 81}}px" class="checkbox-wrapper">
+          <view class="checkbox" a:for="{{users}}" key="{{item.userId}}" onTap="choose" data-index="{{item}}">
+            <view class="{{item.checked ? 'item-checked' : 'item-none'}}"/>
             <image src="{{item.avatar ? item.avatar : '/image/logo.png'}}" />
             <text class="checkbox-text">{{item.userName}}</text>
             <text class="checkbox-details">{{item.deptName}}</text>
-          </label>
-        </checkbox-group>
+          </view>
+        </view>
         <view class="page-section-btns">
           <view>
             <button size="mini" type="ghost" onTap="back">取消</button>
           </view>
           <view>
-            <button size="mini" type="primary" formType="submit">确定</button>
+            <button size="mini" type="primary" onTap="submit">确定</button>
           </view>
-          <view><button size="mini" type="warn" formType="reset">重置</button></view>
+          <view><button size="mini" type="warn" onTap="reset">重置</button></view>
         </view>
-      </form>
-    </view>
+      </view>
+    </form>
   </view>
+</view>

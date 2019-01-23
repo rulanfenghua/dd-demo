@@ -161,6 +161,24 @@
   margin-right: 14px;
 }
 
+.item-checked {
+  float: right;
+  background: url(/image/checked.png) no-repeat center/contain;
+  width: 30px;
+  height: 30px;
+  margin-top: 9px;
+  margin-right: 9px;
+}
+
+.item-none {
+  float: right;
+  background: url(/image/none.png) no-repeat center/contain;
+  width: 30px;
+  height: 30px;
+  margin-top: 9px;
+  margin-right: 9px;
+}
+
 .checkbox image {
   height: 40px;
   width: 40px;
