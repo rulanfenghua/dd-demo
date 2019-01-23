@@ -13,8 +13,8 @@
     </view>
   </view>
   </view> -->
-  <view class="like-title"><text>提示信息，点击下面的条目选择接受该任务</text>
-  <list className="list">
+  <view class="like-title"><text>提示信息，点击下面的条目选择接受该任务</text></view>
+  <list className="list" a:if="{{items.length}}">
     <block a:for="{{items}}" class="list-block">
       <list-item className="list-item" key="item-{{index}}" index="{{index}}" last="{{index === (items.length - 1)}}" arrow="{{false}}" align="{{item.align}}" onClick="onItemClick" multipleLine="{{true}}" wrap="{{true}}">
         <text class="name">{{item.title}}        
@@ -37,4 +37,5 @@
       </view>
     </block>
   </list>
+  <view a:else class="list-none">暂无任务</view>
 </view>

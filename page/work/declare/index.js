@@ -20,6 +20,7 @@ Page({
     menuIds: '', // 禁用标题id
   },
   onShow() {
+    dd.showLoading({content: '加载中...'})
     dd.httpRequest({
       url: app.globalData.domain + '/userMenu/selectUserIdAndMenuId',
       method: 'POST',
@@ -36,10 +37,8 @@ Page({
       fail: (res) => {
         console.log("httpRequestFailMenuId----", res)
         var content = JSON.stringify(res); switch (res.error) {case 13: content = '连接超时'; break; case 12: content = '网络出错'; break; case 19: content = '访问拒绝'; } dd.alert({content: content, buttonText: '确定'});
-
       },
       complete: () => {
-        dd.showLoading({content: '加载中...'})
         dd.httpRequest({
           url: app.globalData.domain + this.data.url,
           method: 'POST',
@@ -50,7 +49,6 @@ Page({
             search: this.data.search
           },
           success: (res) => {if ((res.data.code != 0 && !res.data.code ) || res.data.code == 1001) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }); return}
-
             console.log('successDeclare----', res)
             var items = res.data.data.list
             items.forEach((item) => {
@@ -69,7 +67,6 @@ Page({
           fail: (res) => {
             console.log("httpRequestFailDeclare----", res)
             var content = JSON.stringify(res); switch (res.error) {case 13: content = '连接超时'; break; case 12: content = '网络出错'; break; case 19: content = '访问拒绝'; } dd.alert({content: content, buttonText: '确定'});
-
           },
           complete: () => {
             dd.hideLoading()

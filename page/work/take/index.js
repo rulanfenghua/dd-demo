@@ -7,25 +7,12 @@ Page({
     users: [],
     apps: [],
     user: [], // 申请人
-    types: [
-      {
-        type: '品德积分',
-        typeId: 1
-      },
-      {
-        type: '业绩积分',
-        typeId: 2
-      },
-      {
-        type: '行为积分',
-        typeId: 3
-      }
-    ],
+    types: [],
 
     arrIndexFrom: 0,
     arrIndexApp: 0,
     arrIndexTo: 0,
-    arrIndexType: 2,
+    arrIndexType: 3,
 
     filePaths: [],
     toFilePaths: [],
@@ -82,6 +69,24 @@ Page({
     //   complete: () => {
     //   }
     // })
+    dd.httpRequest({
+      url: app.globalData.domain + '/rank/selectType',
+      method: 'POST',
+      dataType: 'json',
+      success: (res) => {if ((res.data.code != 0 && !res.data.code ) || res.data.code == 1001) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }); return}
+        console.log('successType----', res)
+        this.setData({
+          types: res.data.data
+        })
+      },
+      fail: (res) => {
+        console.log("httpRequestFailUser----", res)
+        var content = JSON.stringify(res); switch (res.error) {case 13: content = '连接超时'; break; case 12: content = '网络出错'; break; case 19: content = '访问拒绝'; } dd.alert({content: content, buttonText: '确定'});
+      },
+      complete: () => {
+      }
+    })
+
     var date = this.format(Date.now(), 'yyyy-MM-dd hh:mm:ss')
     this.setData({
       date: date
@@ -110,7 +115,7 @@ Page({
     var points = values.detail.value.points
     var pointsAdd = values.detail.value.pointsAdd
     var textarea = values.detail.value.textarea
-    var typeId = that.data.types[values.detail.value.types].typeId
+    var typeId = that.data.types[values.detail.value.types].id
     // var from = that.data.user[values.detail.value.from].userId
     // var to = that.data.users[e.detail.value.to].userId
     var to = []

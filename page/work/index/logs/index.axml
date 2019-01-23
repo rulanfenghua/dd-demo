@@ -1,5 +1,5 @@
 <view class="page">
-  <list className="list">
+  <list className="list" a:if="{{items.length}}">
     <block a:for="{{items}}" class="list-block">
       <list-item className="list-item" key="item-{{index}}" index="{{index}}" last="{{index === (items.length - 1)}}" thumb="{{item.userImg ? item.userImg : '/image/logo.png'}}" arrow="{{false}}" align="{{item.align}}" onClick="onItemClick" multipleLine="{{true}}" wrap="{{true}}">
         <text class="name">{{item.userName}}
@@ -19,4 +19,5 @@
       </list-item>
     </block>
   </list>
+  <view a:else class="list-none">暂无内容</view>
 </view>

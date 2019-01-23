@@ -12,11 +12,11 @@
       <textarea auto-height placeholder="必填" name="content" style="font-size: 13px" auto-height="{{true}}" maxlength="-1" value="{{options.content}}" />
     </view>
     <view class="form-line" />
-    <picker onChange="changePoints" value="{{arrIndexType}}" range="{{types}}" range-key="type" name="types">
+    <picker onChange="changePoints" value="{{arrIndexType}}" range="{{types}}" range-key="name" name="types">
       <view class="row">
         <view class="row-title">积分类型
         </view>
-        <view class="row-extra">当前选择：{{types[arrIndexType].type}}                
+        <view class="row-extra">当前选择：{{types[arrIndexType].name}}                
         </view>
         <image class="row-arrow" src="/image/arrowright.png" mode="aspectFill" />
       </view>
