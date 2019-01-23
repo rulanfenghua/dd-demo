@@ -151,3 +151,12 @@
   font-weight: bold;
   font-size: 13px;
 }
+
+.list-none {
+  font-weight: bolder;
+  font-size: 14px;
+  /* font-family: serif; */
+  color: rgb(70, 173, 244);
+  text-align: center;
+  padding-top: 50%;
+}

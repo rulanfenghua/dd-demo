@@ -160,4 +160,14 @@
   line-height: 40px;
   text-align: center;
   color: rgb(70, 173, 244);
+  border-bottom: 1px solid;
+}
+
+.list-none {
+  font-weight: bolder;
+  font-size: 14px;
+  /* font-family: serif; */
+  color: rgb(70, 173, 244);
+  text-align: center;
+  padding-top: 50%;
 }
