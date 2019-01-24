@@ -7,20 +7,7 @@ Page({
     users: [],
     apps: [],
     user: [], // 申请人
-    types: [
-      {
-        type: '品德积分',
-        typeId: 1
-      },
-      {
-        type: '业绩积分',
-        typeId: 2
-      },
-      {
-        type: '行为积分',
-        typeId: 3
-      }
-    ],
+    types: [],
 
     arrIndexFrom: 0,
     arrIndexApp: 0,
@@ -37,13 +24,35 @@ Page({
     pointsArray: [], // 积分选择
     arrIndexPoints: 0,
 
-    date: '',
+    date1: '',
+    date2: '',
+    date: ''
   },
 
   onLoad() {
-    var date = this.format(Date.now(), 'yyyy-MM-dd hh:mm:ss')
+    var date = this.format(Date.now(), 'yyyy-MM-dd')
     this.setData({
+      date1: date,
+      date2: date,
       date: date
+    })
+
+    dd.httpRequest({
+      url: app.globalData.domain + '/rank/selectType',
+      method: 'POST',
+      dataType: 'json',
+      success: (res) => {if ((res.data.code != 0 && !res.data.code ) || res.data.code == 1001) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }); return}
+        console.log('successType----', res)
+        this.setData({
+          types: res.data.data
+        })
+      },
+      fail: (res) => {
+        console.log("httpRequestFailUser----", res)
+        var content = JSON.stringify(res); switch (res.error) {case 13: content = '连接超时'; break; case 12: content = '网络出错'; break; case 19: content = '访问拒绝'; } dd.alert({content: content, buttonText: '确定'});
+      },
+      complete: () => {
+      }
     })
 
     // dd.showLoading({ content: '加载中...' })
@@ -104,7 +113,7 @@ Page({
     console.log('this', that)
     var points = that.data.pointsArray[values.detail.value.points]
     var textarea = values.detail.value.textarea
-    // var typeId = that.data.types[values.detail.value.types].typeId
+    var typeId = that.data.types[values.detail.value.types].id
     // var from = that.data.user[values.detail.value.from].userId
     // var to = that.data.users[e.detail.value.to].userId
     var to = []
@@ -139,7 +148,7 @@ Page({
       })
       return
     }
-    if (points * to.length > this.data.data) {
+    if (points * 3 > this.data.data) {
       dd.showToast({
         type: 'fail',
         duration: 3000,
@@ -154,21 +163,23 @@ Page({
     console.log('toFilePaths', that.data.toFilePaths)
 
     dd.httpRequest({
-      url: app.globalData.domain + '/leader/leaderIntegral',
+      url: app.globalData.domain + '/releaseTask/saveReleTask',
       method: 'POST',
       dataType: 'json',
       data: {
-        addIntegral: points,
-        approvalImg: that.data.toFilePaths,
-        spRemark: textarea,
-        // typeId: typeId,
-        from: to,
-        approvalTitle: approvalTitle,
-        approvalContent: approvalContent,
-        dateTime: ''
+        taskIntegral: points,
+        // approvalImg: that.data.toFilePaths,
+        remark: textarea,
+        integralTypeId: typeId,
+        deptId: to,
+        title: approvalTitle,
+        content: approvalContent,
+        taskTypeId: 1, // 任务类型
+        peopleNum: 3, // 抢单人数
+        startTime: this.data.date1,
+        endTime: this.data.date2
       },
       success: (res) => {if ((res.data.code != 0 && !res.data.code ) || res.data.code == 1001) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }); return}
-
         console.log('successApp----', res)
         dd.showToast({
           duration: 3000,
@@ -181,7 +192,6 @@ Page({
       fail: (res) => {
         console.log("httpRequestFailApp----", res)
         var content = JSON.stringify(res); switch (res.error) {case 13: content = '连接超时'; break; case 12: content = '网络出错'; break; case 19: content = '访问拒绝'; } dd.alert({content: content, buttonText: '确定'});
-
       },
       complete: () => {
         that.setData({
@@ -329,6 +339,49 @@ Page({
     this.setData({
       toFilePaths: toFilePaths
     })
+  },
+
+  datePicker1() {
+    dd.datePicker({
+      format: 'yyyy-MM-dd',
+      startDate: this.data.date,
+      success: (res) => {
+        console.log(res)
+        if (res.date > this.data.date2) {
+          this.setData({
+            date1: res.date,
+            date2: res.date
+          })
+        } else {
+          this.setData({
+            date1: res.date
+          })
+        }
+      },
+      fail: () => {
+        dd.showToast({
+          content: '取消选择', // 文字内容
+        })
+      }
+    });
+  },
+
+  datePicker2() {
+    dd.datePicker({
+      format: 'yyyy-MM-dd',
+      startDate: this.data.date1,
+      success: (res) => {
+        console.log(res)
+        this.setData({
+          date2: res.date
+        })
+      },
+      fail: () => {
+        dd.showToast({
+          content: '取消选择', // 文字内容
+        })
+      }
+    });
   },
 
   // 时间格式

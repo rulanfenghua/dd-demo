@@ -124,7 +124,7 @@
   color: #000;
 }
 
-.true:hover::after {
+.true:active::after {
   content: '您今天已经申请过此条目了，如需再次申请请撤销上次申请';
   color: #46adf4;
   font-size: 13px;
