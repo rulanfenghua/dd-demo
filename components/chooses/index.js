@@ -10,7 +10,9 @@ Component({
     active: false,
     search: '',
     to: [],
-    users: []
+    users: [],
+
+    reset: false // 重置标识
   },
 
   didMount() {
@@ -214,13 +216,15 @@ Component({
     },
     reset() {
       this.setData({
-        to: []
+        to: [],
+        reset: false
       })
       this.allUsers()
     },
     all() {
       this.setData({
-        to: this.data.users
+        to: this.data.users,
+        reset: true
       })
       this.allUsers()
     }

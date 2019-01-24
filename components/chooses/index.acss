@@ -9,7 +9,7 @@
   opacity: 0;
   transition: left .3s,opacity .3s,z-index .3s;
   transition-delay: .1s;
-  overflow: hidden;
+  overflow: auto;
 }
 
 .filter.show-filter {
@@ -143,6 +143,10 @@
   position: relative;
   height: 48px;
   line-height: 48px;
+}
+
+.checkbox:active {
+  background: #eee;
 }
 
 .checkbox::after {
