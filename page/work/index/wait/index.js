@@ -26,7 +26,7 @@ Page({
       dataType: 'json',
       data: {
         pageNum: 1,
-        pageSize: 1000,
+        pageSize: 100,
         status: this.data.status, // tab栏审批未审批
         search: this.data.search
       },

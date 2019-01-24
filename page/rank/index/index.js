@@ -128,7 +128,7 @@ Page({
       method: 'POST',
       data: {
         pageNum: 1,
-        pageSize: 1000,
+        pageSize: 100,
         deptId: this.data.deptId,
         postId: this.data.postId,
         typeId: this.data.typeId,
@@ -166,7 +166,7 @@ Page({
       method: 'POST',
       data: {
         pageNum: 1,
-        pageSize: 1000,
+        pageSize: 100,
         deptId: this.data.deptId,
         postId: this.data.postId,
         typeId: this.data.typeId,
