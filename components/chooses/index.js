@@ -113,10 +113,8 @@ Component({
     },
     clearSearch() {
       this.setData({
-        search: '',
         active: false,
       })
-      this.allUsers()
       dd.hideKeyboard()
     },
     focusSearch() {

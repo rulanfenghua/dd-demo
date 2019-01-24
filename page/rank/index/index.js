@@ -228,11 +228,9 @@ Page({
   },
   clearSearch() {
     this.setData({
-      search: '',
       active: false,
       show: false
     })
-    this.showList()
     dd.hideKeyboard()
   },
   focusSearch() {

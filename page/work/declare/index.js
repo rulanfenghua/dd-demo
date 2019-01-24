@@ -123,11 +123,9 @@ Page({
   },
   clearSearch() {
     this.setData({
-      search: '',
       active: false
     })
-    this.listShow()
-    // dd.hideKeyboard()
+    dd.hideKeyboard()
   },
   focusSearch() {
     this.setData({

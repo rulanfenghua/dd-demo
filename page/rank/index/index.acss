@@ -9,8 +9,6 @@
   background: #fff;
   display: flex;
   margin-bottom: 10px;
-  position: sticky;
-  top: 0;
 }
 
 .top .select, .top .tabs, .top .search {

@@ -35,7 +35,7 @@
   "window": {
     "enableWK": "YES",
     "enableDSL": true,
-    "defaultTitle": "媚思嘉积分平台",
+    "defaultTitle": "积分平台",
     "backgroundColor": "#F5F5F9",
     "pullRefresh": false,
     "allowsBounceVertical": true
