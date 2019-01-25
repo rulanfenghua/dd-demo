@@ -20,12 +20,17 @@ Component({
 
     dd.showLoading({ content: '加载中...' })
     dd.httpRequest({
-      url: app.globalData.domain + '/releaseTask/releaseTaskPage',
+      url: app.globalData.domain + '/leader/selectLeaderdepts',
       method: 'POST',
       dataType: 'json',
+      data: {
+        pageSize: 1000,
+        pageNum: 1,
+        search: this.data.search
+      },
       success: (res) => {if ((res.data.code != 0 && !res.data.code ) || res.data.code == 1001) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }); return}
         console.log('successUsers----', res)
-        var users = res.data.data.users
+        var users = res.data.data.list
         users.forEach((item) => {
           if (this.data.to.some((toItem) => toItem.userId == item.userId)) {
             item.checked = true
@@ -64,17 +69,17 @@ Component({
     allUsers() {
       // dd.showLoading({ content: '加载中...' })
       dd.httpRequest({
-        url: app.globalData.domain + '/releaseTask/releaseTaskPage',
+        url: app.globalData.domain + '/leader/selectLeaderdepts',
         method: 'POST',
         dataType: 'json',
-        // data: {
-        //   pageSize: 1000,
-        //   pageNum: 1,
-        //   search: this.data.search
-        // },
+        data: {
+          pageSize: 1000,
+          pageNum: 1,
+          search: this.data.search
+        },
         success: (res) => {if ((res.data.code != 0 && !res.data.code ) || res.data.code == 1001) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }); return}
           console.log('successUsers----', res)
-          var users = res.data.data.users
+          var users = res.data.data.list
           users.forEach((item) => {
             if (this.data.to.some((toItem) => toItem.userId == item.userId)) {
               item.checked = true

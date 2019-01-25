@@ -4,20 +4,13 @@ Page({
   data: {
     loading: false,
     
-    users: [],
-    apps: [],
-    user: [], // 申请人
     types: [],
 
-    arrIndexFrom: 0,
-    arrIndexApp: 0,
-    arrIndexTo: 0,
     arrIndexType: 2,
 
     filePaths: [],
     toFilePaths: [],
 
-    showFilter: false,
     to: [],
 
     data: 0, // 奖励积分
@@ -26,29 +19,37 @@ Page({
 
     date1: '',
     date2: '',
-    date: ''
+    date: '',
+
+    tabsFilter: [
+      { title: '部门' },
+      { title: '职位' }
+    ],
+
+    showFilter: false,
+
+    deptId: [],
+    postId: [],
+
+    // width: '',
+    height: ''
   },
 
   onLoad() {
-    var date = this.format(Date.now(), 'yyyy-MM-dd')
-    this.setData({
-      date1: date,
-      date2: date,
-      date: date
-    })
-
     dd.httpRequest({
-      url: app.globalData.domain + '/rank/selectType',
+      url: app.globalData.domain + '/releaseTask/releaseTaskPage',
       method: 'POST',
       dataType: 'json',
       success: (res) => {if ((res.data.code != 0 && !res.data.code ) || res.data.code == 1001) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }); return}
-        console.log('successType----', res)
+        console.log('successPublish----', res)
         this.setData({
-          types: res.data.data
+          types: res.data.data.its,
+          'tabsFilter[0].tags': res.data.data.depts,
+          'tabsFilter[1].tags': res.data.data.sysRoles
         })
       },
       fail: (res) => {
-        console.log("httpRequestFailUser----", res)
+        console.log("httpRequestFailPublish----", res)
         var content = JSON.stringify(res); switch (res.error) {case 13: content = '连接超时'; break; case 12: content = '网络出错'; break; case 19: content = '访问拒绝'; } dd.alert({content: content, buttonText: '确定'});
       },
       complete: () => {
@@ -92,7 +93,23 @@ Page({
     })
   },
   onShow() {
-    
+    dd.getSystemInfo({
+      success: (res) => {
+        // var width = res.windowWidth
+        var height = res.windowHeight - 84
+        this.setData({
+          // width: width,
+          height: height
+        })
+      }
+    })
+
+    var date = this.format(Date.now(), 'yyyy-MM-dd')
+    this.setData({
+      date1: date,
+      date2: date,
+      date: date
+    })
   },
 
   formSubmit(e) {
@@ -113,7 +130,7 @@ Page({
     console.log('this', that)
     var points = that.data.pointsArray[values.detail.value.points]
     var textarea = values.detail.value.textarea
-    var typeId = that.data.types[values.detail.value.types].id
+    var typeId = that.data.types[values.detail.value.types].typeId
     // var from = that.data.user[values.detail.value.from].userId
     // var to = that.data.users[e.detail.value.to].userId
     var to = []
@@ -171,13 +188,15 @@ Page({
         // approvalImg: that.data.toFilePaths,
         remark: textarea,
         integralTypeId: typeId,
-        deptId: to,
+        
         title: approvalTitle,
         content: approvalContent,
         taskTypeId: 1, // 任务类型
         peopleNum: 3, // 抢单人数
-        startTime: this.data.date1,
-        endTime: this.data.date2
+        sort: this.data.date1,
+        status: this.data.date2,
+        deptId: this.data.deptId,
+        remark: this.data.postId
       },
       success: (res) => {if ((res.data.code != 0 && !res.data.code ) || res.data.code == 1001) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }); return}
         console.log('successApp----', res)
@@ -251,22 +270,10 @@ Page({
     }
   },
 
-  changeFrom(e) {
+  changeTypes(e) {
     console.log('picker发送选择改变，携带值为', e.detail.value);
     this.setData({
-      arrIndexFrom: e.detail.value,
-    });
-  },
-  changeApp(e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value);
-    this.setData({
-      arrIndexApp: e.detail.value,
-    });
-  },
-  changeTo(e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value);
-    this.setData({
-      arrIndexTo: e.detail.value,
+      arrIndexType: e.detail.value,
     });
   },
   changePoints(e) {
@@ -314,19 +321,6 @@ Page({
     // 删除头像
     console.log(e)
 
-    // var users = this.data.users
-    // var index = users.findIndex((item) => item.userId == this.data.to[e.target.dataset.index].userId)
-    // users[index].checked = false
-    // console.log(index, users)
-    // this.setData({
-    //   users: users
-    // })
-
-    // var to = this.data.to
-    // to.splice(e.target.dataset.index, 1)
-    // this.setData({
-    //   to: to
-    // })
   },
 
   // 图片组件
@@ -382,6 +376,41 @@ Page({
         })
       }
     });
+  },
+
+  // filter部分页面逻辑
+  handleTabFilterClick({ index }) {
+  },
+  handleTabFilterChange({ index }) { },
+
+  showSelect() {
+    this.setData({
+      showFilter: true
+    })
+  },
+
+  onSubmit(e) {
+    console.log(e.detail.value)
+    for (var prop in e.detail.value) {
+      switch (prop) {
+        case 'tags0':
+          this.setData({'deptId': e.detail.value[prop] })
+          break;
+        case 'tags1':
+          this.setData({ 'postId': e.detail.value[prop] })
+          break;
+      }
+    }
+    
+    this.setData({
+      showFilter: false
+    })
+  },
+
+  back() {
+    this.setData({
+      showFilter: false
+    })
   },
 
   // 时间格式

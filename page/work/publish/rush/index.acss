@@ -137,3 +137,81 @@
   font-size: 13px;
   color: #888;
 }
+
+/* filter部分页面样式 */
+.filter {
+  background: #fff;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  top: 0;
+  left: -30%;
+  opacity: 0;
+  transition: left .3s,opacity .3s,z-index .3s;
+  transition-delay: .1s;
+  overflow: hidden;
+}
+
+.filter.show-filter {
+  opacity: 1;
+  left: 0;
+  z-index: 199;
+}
+
+.filter-form {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+}
+
+.am-tabs {
+  flex: 1;
+}
+
+.radio-group {
+  /* padding: 10px 10px 0 10px; */
+  height: 100%;
+  overflow: auto;
+}
+
+.radio {
+  display: inline-block;
+  /* margin-bottom: 20rpx;
+  margin-right: 170rpx; */
+  margin: 20rpx 20rpx;
+}
+.radio-text {
+  line-height: 1.8;
+  font-size: 14px;
+}
+
+.page-section-btns {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: #fff;
+}
+
+.top-button {
+  margin: 0;
+  border: none;
+  font-size: 14px;
+  border-bottom: 1px solid rgba(50, 150, 250, 0.5);
+  height: 40px;
+}
+
+/* tab栏样式复写 */
+.am-tabs-bar {
+  height: 40px;
+}
+
+.am-tabs-bar-content-fixed {
+  height: 40px;
+}
+
+.am-tabs-bar-tab {
+  height: 40px;
+  font-size: 14px;
+  font-weight: bold;
+}

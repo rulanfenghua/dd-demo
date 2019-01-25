@@ -1,8 +1,8 @@
 {
-  "defaultTitle": "积分支票",
+  "defaultTitle": "抢单任务",
   "usingComponents":{
     "input-item":"mini-ddui/es/input-item/index",
-    "chooses": "/components/chooses/index",
-    "imgs": "/components/imgs/index"
+    "tabs":"mini-ddui/es/tabs/index",
+    "tab-content": "mini-ddui/es/tabs/tab-content/index"
   }
 }
