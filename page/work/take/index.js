@@ -4,14 +4,8 @@ Page({
   data: {
     loading: false,
     
-    users: [],
-    apps: [],
-    user: [], // 申请人
     types: [],
 
-    arrIndexFrom: 0,
-    arrIndexApp: 0,
-    arrIndexTo: 0,
     arrIndexType: 3,
 
     filePaths: [],
@@ -19,56 +13,33 @@ Page({
     date: '',
 
     showFilter: false,
-    to: []
+    to: [],
+
+    data: 0, // 奖励积分
   },
 
   onLoad() {
-    // dd.httpRequest({
-    //   url: app.globalData.domain + '/work/declareBehaviorDetail/approverPel',
-    //   method: 'POST',
-    //   dataType: 'json',
-    //   success: (res) => {if ((res.data.code != 0 && !res.data.code ) || res.data.code == 1001) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }); return}
+    dd.httpRequest({
+      url: app.globalData.domain + '/free/managementIntegral',
+      method: 'POST',
+      dataType: 'json',
+      success: (res) => {
+        if (res.data && res.data.code == 1001) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }) }
+        console.log('successPoints----', res)
+        this.setData({
+          data: res.data.data
+        })
+      },
+      fail: (res) => {
+        console.log("httpRequestFailPoints----", res)
+        var content = JSON.stringify(res); switch (res.error) {case 13: content = '连接超时'; break; case 12: content = '网络出错'; break; case 19: content = '访问拒绝'; } dd.alert({content: content, buttonText: '确定'});
 
-    //     console.log('successApps----', res)
-    //     this.setData({
-    //       apps: res.data.data
-    //     })
-    //   },
-    //   fail: (res) => {
-    //     console.log("httpRequestFailApps----", res)
-    //     dd.alert({
-    //       content: JSON.stringify(res),
-    //       buttonText: '确定'
-    //     })
-    //   },
-    //   complete: () => {
-    //   }
-    // })
+      },
+      complete: () => {
+        // dd.hideLoading()
+      }
+    })
 
-    // dd.httpRequest({
-    //   url: app.globalData.domain + '/work/selectSysUser',
-    //   method: 'POST',
-    //   dataType: 'json',
-    //   success: (res) => {if ((res.data.code != 0 && !res.data.code ) || res.data.code == 1001) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }); return}
-
-    //     console.log('successUser----', res)
-    //     var user = []
-    //     user.push(res.data.data)
-
-    //     this.setData({
-    //       user: user
-    //     })
-    //   },
-    //   fail: (res) => {
-    //     console.log("httpRequestFailUser----", res)
-    //     dd.alert({
-    //       content: JSON.stringify(res),
-    //       buttonText: '确定'
-    //     })
-    //   },
-    //   complete: () => {
-    //   }
-    // })
     dd.httpRequest({
       url: app.globalData.domain + '/rank/selectType',
       method: 'POST',
@@ -144,6 +115,17 @@ Page({
         type: 'fail',
         duration: 3000,
         content: '请您选择奖扣员工'
+      })
+      that.setData({
+        loading: false
+      })
+      return
+    }
+    if (points * to.length > this.data.data) {
+      dd.showToast({
+        type: 'fail',
+        duration: 3000,
+        content: '您的可用积分不足'
       })
       that.setData({
         loading: false

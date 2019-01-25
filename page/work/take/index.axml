@@ -45,6 +45,14 @@
       className="input-text"
       type="digit"
       name="pointsAdd"
+      disabled
+    >
+      <text style="color: rgb(136, 136, 136);">可用积分 {{data}}</text>
+    </input-item>
+    <input-item
+      className="input-text"
+      type="digit"
+      name="pointsAdd"
       placeholder="0"
     >
       输入奖励分数

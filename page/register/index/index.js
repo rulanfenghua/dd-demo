@@ -2,7 +2,6 @@ let app = getApp()
 
 Page({
   data: {
-    hideList: true,
     authCode: ''
   },
   // onLoad() {
@@ -158,16 +157,12 @@ Page({
             dataType: 'json',
             success: (res) => {
               console.log('success----', res)
-
               if (res.data.code == 0 && !res.data.stringCode) {
                 app.globalData.level = res.data.msg
                 dd.switchTab({
                   url: '/page/home/index/index'
                 })
               } else {
-                _this.setData({
-                  hideList: false
-                })
                 dd.alert({
                   content: res.data.msg,
                   buttonText: '确定'
@@ -182,15 +177,10 @@ Page({
               dd.hideLoading()
             }
           })
-        } else {
-          _this.setData({
-            hideList: false
-          })
         }
       },
       fail(res) {
         var content = JSON.stringify(res); switch (res.error) {case 13: content = '连接超时'; break; case 12: content = '网络出错'; break; case 19: content = '访问拒绝'; } dd.alert({content: content, buttonText: '确定'});
-
       }
     })
   },
@@ -233,7 +223,6 @@ Page({
       fail: (res) => {
         console.log("httpRequestFail----", res)
         var content = JSON.stringify(res); switch (res.error) {case 13: content = '连接超时'; break; case 12: content = '网络出错'; break; case 19: content = '访问拒绝'; } dd.alert({content: content, buttonText: '确定'});
-
       },
       complete: () => {
         dd.hideLoading()

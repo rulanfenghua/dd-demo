@@ -1,0 +1,14 @@
+.item-first {
+  height: 200px;
+  background: red;
+}
+
+.item-second {
+  height: 200px;
+  background: blue;
+}
+
+.item-third {
+  height: 200px;
+  background: green;
+}

@@ -192,7 +192,7 @@ Page({
         // dd.hideLoading()
       }
     })
-    console.log(this.data)
+    // console.log(this.data)
   },
 
   onItemClick({index}) {
@@ -259,6 +259,7 @@ Page({
 
   // filter部分页面逻辑
   onSubmit(e) {
+    console.log(e.detail.value)
     for (var prop in e.detail.value) {
       switch (prop) {
         case 'tags0':
