@@ -1,4 +1,4 @@
-<view class="filter {{showFilter ? 'show-filter' : ''}}" style="height: {{height}}px">
+<view class="filter {{showFilter ? 'show-filter' : ''}}" style="height: {{height - 24}}px">
   <!-- <button type="primary" class="top-button" onTap="all">选择全部</button> -->
   <view class="search-filter">
     <view class="select" onTap="showSelect"></view>
