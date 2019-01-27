@@ -41,7 +41,7 @@
       name="points"
       placeholder="必填"
     >
-      输入奖扣分数
+      输入分数
     </input-item>
     <view class="form-line" />
     <picker onChange="changeFrom" value="{{arrIndexFrom}}" range="{{user}}" range-key="userName" name="from">

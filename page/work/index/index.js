@@ -124,6 +124,26 @@ Page({
       })
     }
 
+    dd.httpRequest({
+      url: app.globalData.domain + '/task/selectTaskNum',
+      method: 'GET',
+      dataType: 'json',
+      success: (res) => {if ((res.data.code != 0 && !res.data.code ) || res.data.code == 1001) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }); return}
+
+        console.log('successNum----', res)
+        this.setData({
+          count: res.data.data
+        })
+      },
+      fail: (res) => {
+        console.log("httpRequestFailNum----", res)
+        var content = JSON.stringify(res); switch (res.error) {case 13: content = '连接超时'; break; case 12: content = '网络出错'; break; case 19: content = '访问拒绝'; } dd.alert({content: content, buttonText: '确定'});
+
+      },
+      complete: () => {
+      }
+    })
+
     dd.showLoading({content: '加载中...'})
     dd.httpRequest({
       url: app.globalData.domain + '/work/countLogNun',
@@ -155,8 +175,7 @@ Page({
         dd.navigateTo({url: '../take/index'})
         break;
       case 0:
-        // dd.alert({ content: '正在测试，敬请期待', buttonText: '确定' })
-        // dd.navigateTo({url: '../praise/index'})
+        dd.navigateTo({url: '../publish/index'})
         break;
       case 2:
         // dd.alert({ content: '正在测试，敬请期待', buttonText: '确定' })
