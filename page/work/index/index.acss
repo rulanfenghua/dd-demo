@@ -84,7 +84,7 @@
   width: 17px;
   background: red;
   color: #fff;
-  line-height: 17px;
+  line-height: 16px;
   text-align: center;
   border-radius: 50%;
 }

@@ -32,7 +32,7 @@ Page({
     postId: [],
 
     // width: '',
-    height: ''
+    height: '',
   },
 
   onLoad() {
@@ -129,11 +129,11 @@ Page({
   submit(values, that) {
     console.log('this', that)
     var points = that.data.pointsArray[values.detail.value.points]
+    var peopleNum = values.detail.value.count
     var textarea = values.detail.value.textarea
     var typeId = that.data.types[values.detail.value.types].typeId
     // var from = that.data.user[values.detail.value.from].userId
     // var to = that.data.users[e.detail.value.to].userId
-    var to = []
     that.data.to.forEach((item) => {
       to.push(item.userId)
     })
@@ -143,7 +143,7 @@ Page({
 
     // console.log(!approvalTitle || !approvalContent || !points)
 
-    if (!approvalTitle || !points || !approvalContent) {
+    if (!approvalTitle || !points || !approvalContent || !count) {
       dd.showToast({
         type: 'fail',
         duration: 3000,
@@ -154,18 +154,7 @@ Page({
       })
       return
     }
-    if (to.length == 0) {
-      dd.showToast({
-        type: 'fail',
-        duration: 3000,
-        content: '请您选择奖扣员工'
-      })
-      that.setData({
-        loading: false
-      })
-      return
-    }
-    if (points * 3 > this.data.data) {
+    if (points * peopleNum > this.data.data) {
       dd.showToast({
         type: 'fail',
         duration: 3000,
@@ -192,7 +181,7 @@ Page({
         title: approvalTitle,
         content: approvalContent,
         taskTypeId: 1, // 任务类型
-        peopleNum: 3, // 抢单人数
+        peopleNum: peopleNum, // 抢单人数
         sort: this.data.date1,
         status: this.data.date2,
         deptId: this.data.deptId,
@@ -394,7 +383,7 @@ Page({
     for (var prop in e.detail.value) {
       switch (prop) {
         case 'tags0':
-          this.setData({'deptId': e.detail.value[prop] })
+          this.setData({ 'deptId': e.detail.value[prop] })
           break;
         case 'tags1':
           this.setData({ 'postId': e.detail.value[prop] })

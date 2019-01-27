@@ -215,3 +215,12 @@
   font-size: 14px;
   font-weight: bold;
 }
+
+.range-select {
+  border: none;
+  font-size: 14px;
+  height: 44px;
+  margin: 0px 14px;
+  line-height: 44px;
+  text-align: left;
+}

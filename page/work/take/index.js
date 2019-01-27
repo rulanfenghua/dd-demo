@@ -121,7 +121,7 @@ Page({
       })
       return
     }
-    if (points * to.length > this.data.data) {
+    if (pointsAdd * to.length > this.data.data) {
       dd.showToast({
         type: 'fail',
         duration: 3000,

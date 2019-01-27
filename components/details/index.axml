@@ -34,11 +34,11 @@
       <text class="item-left">积分类型</text>
       <text class="item-right">{{data.integralTypeId == '1' ? '品德积分' : (data.integralTypeId == '2' ? '业绩积分' : '行为积分')}}</text>
     </view>
-    <view class="item">
+    <view class="item" a:if="!{{data.kIntegral}}">
       <text class="item-left">申请积分</text>
       <text class="item-right">{{data.addIntegral}}</text>
     </view>
-    <view class="item" a:if="{{data.kIntegral}}">
+    <view class="item" a:else>
       <text class="item-left">扣除积分</text>
       <text class="item-right">{{data.kIntegral}}</text>
     </view>
