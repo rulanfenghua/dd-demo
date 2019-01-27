@@ -105,12 +105,12 @@ Page({
   onItemClick({index}) {
     console.log('list点击', index)
 
-    // var approvalId = this.data.items[index].approvalId
-    // dd.navigateTo({ url: `/page/work/index/logs/details/index?approvalId=${approvalId}` })
+    var approvalId = this.data.items[index].approvalId
+    dd.navigateTo({ url: `/page/work/index/logs/details/index?approvalId=${approvalId}` })
 
-    dd.previewImage({
-      urls: this.data.items[index].approvalImg1 // 无法获取图片排序
-    })
+    // dd.previewImage({
+    //   urls: this.data.items[index].approvalImg1 // 无法获取图片排序
+    // })
   },
 
   preview(e) {
