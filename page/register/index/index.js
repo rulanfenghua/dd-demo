@@ -2,7 +2,10 @@ let app = getApp()
 
 Page({
   data: {
-    authCode: ''
+    authCode: '',
+
+    phone: '',
+    password: ''
   },
   // onLoad() {
   //   dd.showLoading({content: '加载中...'})
@@ -146,6 +149,10 @@ Page({
       success(res) {
         console.log("storage----", res)
         if (res.data) {
+          _this.setData({
+            phone: res.data.phone,
+            password: res.data.password
+          })
           dd.showLoading({ content: '登陆中...' })
           dd.httpRequest({
             url: app.globalData.domain + '/user/login',

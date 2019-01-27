@@ -6,6 +6,7 @@
       className="phone"
       name="phone"
       type="number"
+      value="{{phone}}"
       placeholder="输入您的手机号"
     >
     </input-item>
@@ -13,6 +14,7 @@
       className="password"
       name="password"
       placeholder="输入您的密码"
+      value="{{password}}"
       password="true"
       onConfirm="login"
     >

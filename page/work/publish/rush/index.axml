@@ -6,7 +6,7 @@
       <textarea auto-height placeholder="必填" name="title" style="font-size: 13px" auto-height="{{true}}" maxlength="-1" value="{{options.title}}" />
     </view>
     <view class="form-line" />
-    <view class="page-section-title important">支票内容
+    <view class="page-section-title important">任务内容
     </view>
     <view class="page-section-demo">
       <textarea auto-height placeholder="必填" name="content" style="font-size: 13px" auto-height="{{true}}" maxlength="-1" value="{{options.content}}" />
@@ -26,7 +26,7 @@
     <view class="page-section-demo">
       <textarea auto-height placeholder="输入备注信息" name="textarea" style="font-size: 13px" />
     </view>
-    <view class="form-line" />
+    <!-- <view class="form-line" />
     <view class="picture-btns">
       <view onTap="datePicker1">选择开始日期
         <text class="details">{{date1}}</text>
@@ -37,7 +37,16 @@
       <view onTap="datePicker2">选择结束日期
         <text class="details">{{date2}}</text>
       </view>
-    </view>
+    </view> -->
+    <view class="form-line" />
+    <input-item
+      className="input-text important"
+      type="digit"
+      name="count"
+      placeholder="0"
+    >
+      输入限制人数
+    </input-item>
     <view class="form-line" />
     <picker onChange="changePoints" value="{{arrIndexPoints}}" range="{{pointsArray}}" name="points" >
       <view class="row important">
@@ -49,7 +58,7 @@
       </view>
     </picker>
     <view class="form-line" />
-    <button type="default" size="mini" onTap="showSelect" class="select">筛选<text class="right-arrow"></text></button>
+    <button type="default" plain onTap="showSelect" class="range-select">选择范围<text class="right-arrow"></text></button>
     <view class="form-line" />
     <button formType="submit" type="primary" loading="{{loading}}" class="button-form">提交</button>
   </form>
