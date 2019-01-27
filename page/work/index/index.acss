@@ -65,6 +65,7 @@
   color: #999;
   font-size: 13px;
   padding-left: 10px;
+  position: relative;
 }
 
 /* grid样式复写 */
@@ -75,4 +76,15 @@
 .am-grid-icon-container {
   height: 40px;
   width: 40px;
+}
+
+.count {
+  position: absolute;
+  height: 17px;
+  width: 17px;
+  background: red;
+  color: #fff;
+  line-height: 17px;
+  text-align: center;
+  border-radius: 50%;
 }

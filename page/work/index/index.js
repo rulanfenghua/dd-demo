@@ -72,7 +72,9 @@ Page({
     ],
 
     hidden: true,
-    data: {}
+    data: {},
+
+    count: 2, // 任务数量标识
   },
   onShow() {
     console.log('level', app.globalData.level)
