@@ -26,8 +26,15 @@
         <image class="brief-image" src="{{item}}" a:for="{{item.approvalImg1}}" mode="widthFix" />
         <view class="brief-time">{{item.spTime}}</view>
       </view>
-      <view slot="extra" class="extra">
-        {{item.sqIntegral>0 ? '+' : ''}}{{item.sqIntegral}}    {{item.integralTypeId == '1' ? 'A分' : (item.integralTypeId == '2' ? 'B分' : 'C分')}}
+      <view slot="extra" class="extra" a:if="{{!(item.kIntegral > 0)}}">
+        +{{item.sqIntegral}}    {{item.integralTypeId == '1' ? 'A分' : (item.integralTypeId == '2' ? 'B分' : (item.integralTypeId == '3' ? 'C分'
+        : (item.integralTypeId == '4' ? '奖扣分' : (item.integralTypeId == '5' ? '奖励分' : (item.integralTypeId == '6' ? '点赞分' : (item.integralTypeId == '7'
+        ? '任务分' : 'C分'))))))}}
+      </view>
+      <view slot="extra" class="extra" a:else>
+        -{{item.kIntegral}}    {{item.integralTypeId == '1' ? 'A分' : (item.integralTypeId == '2' ? 'B分' : (item.integralTypeId == '3' ? 'C分'
+        : (item.integralTypeId == '4' ? '奖扣分' : (item.integralTypeId == '5' ? '奖励分' : (item.integralTypeId == '6' ? '点赞分' : (item.integralTypeId == '7'
+        ? '任务分' : 'C分'))))))}}
       </view>
     </list-item>
   </block> 

@@ -98,7 +98,6 @@ Page({
     })
   },
   likeTo() {
-    console.log(1)
     dd.navigateTo({
       url: '/page/work/like/index'
     })
