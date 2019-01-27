@@ -157,7 +157,9 @@
 .like-title {
   line-height: 40px;
   text-align: center;
-  color: #fff;
+  color: rgb(70, 173, 244);
+  background: #fff;
+  margin-top: 4px;
   margin-bottom: 4px;
 }
 
