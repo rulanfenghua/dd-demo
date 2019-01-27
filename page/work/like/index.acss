@@ -158,6 +158,9 @@
   line-height: 40px;
   text-align: center;
   color: rgb(70, 173, 244);
+  background: #fff;
+  margin-top: 4px;
+  margin-bottom: 4px;
 }
 
 .like-title text {

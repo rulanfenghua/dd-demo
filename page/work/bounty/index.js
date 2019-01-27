@@ -8,13 +8,13 @@ Page({
     active: false,
 
     tabs: [{
-      title: '日常任务'
+      title: '抢单任务'
     },
     {
       title: '挑战任务'
     },
     {
-      title: '抢单任务'
+      title: '日常任务'
     }]
   },
   onShow() {

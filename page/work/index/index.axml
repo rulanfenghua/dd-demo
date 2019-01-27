@@ -26,7 +26,10 @@
     <grid class="content-grid" columnNum="{{4}}" list="{{listContent}}" onGridItemClick="onContentClick" hasLine="{{true}}"></grid>
   </view>
   <view class="main">
-    <view class="main-title">日常积分</view>
-    <grid class="main-grid" columnNum="{{4}}" list="{{listMain}}" onGridItemClick="onMainClick" hasLine="{{true}}"></grid>
+    <view class="main-title">日常积分
+      <view class="count" a:if="{{count > 0}}">{{count}}</view>
+    </view>
+    <grid class="main-grid" columnNum="{{4}}" list="{{listMain}}" onGridItemClick="onMainClick" hasLine="{{true}}">
+    </grid>
   </view>
 </view>
