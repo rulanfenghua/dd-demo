@@ -97,7 +97,7 @@ Page({
       dataType: 'json',
       data: {
         pageNum: 1,
-        pageSize: 1000,
+        pageSize: 100,
         userId: this.data.options.userId
       },
       success: (res) => {if ((res.data.code != 0 && !res.data.code ) || res.data.code == 1001) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }); return}

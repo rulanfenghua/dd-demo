@@ -93,7 +93,7 @@ Page({
       method: 'POST',
       dataType: 'json',
       data: {
-        pageSize: 1000,
+        pageSize: 100,
         pageNum: 1,
         search: ''
       },
