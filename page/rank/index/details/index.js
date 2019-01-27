@@ -122,8 +122,10 @@ Page({
   },
   onItemClick({index}) {
     console.log('list点击', index)
-    dd.previewImage({
-      urls: index
-    })
+    if (index[0]) {
+      dd.previewImage({
+        urls: index
+      })
+    }
   }
 })
