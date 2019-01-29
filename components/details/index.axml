@@ -26,11 +26,7 @@
       <text class="item-left">申请时间</text>
       <text class="item-right">{{data.sqTime}}</text>
     </view>
-    <view class="item" a:if="{{type}}">
-      <text class="item-left">积分类型</text>
-      <text class="item-right">积分支票</text>
-    </view>
-    <view class="item" a:else>
+    <view class="item">
       <text class="item-left">积分类型</text>
       <text class="item-right">{{data.integralTypeId == '1' ? '品德分' : (data.integralTypeId == '2' ? '业绩分' : (data.integralTypeId == '3' ? '行为分' : (data.integralTypeId == '4' ? '奖扣分' : (data.integralTypeId == '5' ? '奖励分' : (data.integralTypeId == '6' ? '点赞分' : (data.integralTypeId == '7' ? '任务分' : '行为分'))))))}}</text>
     </view>

@@ -114,7 +114,7 @@ Page({
     hidden: true,
     data: {},
 
-    count: 2, // 任务数量标识
+    count: 0, // 任务数量标识
   },
   onShow() {
     console.log('level', app.globalData.level)

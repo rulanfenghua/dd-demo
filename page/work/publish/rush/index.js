@@ -6,7 +6,7 @@ Page({
     
     types: [],
 
-    arrIndexType: 2,
+    arrIndexType: 6,
 
     filePaths: [],
     toFilePaths: [],

@@ -14,7 +14,6 @@ Component({
     activeIndex: 1,
     failIndex: 0,
 
-    type: false, // 支票积分类型判断
     failString: '', // 拒绝理由
 
     fail: false, // 拒绝理由弹出标识
@@ -47,15 +46,18 @@ Component({
 
           console.log('successWaitDetail----', res)
           var items = []
-          if (!res.data.data.integralTypeId) {
-            this.setData({
-              type: true
-            })
+          if (res.data.data.integralTypeId == 4) {
             items.push({
-              title: `${res.data.data.appName}  开出积分支票`,
+              title: `${res.data.data.appName}  管理奖扣`,
               description: `${res.data.data.appDept}  ${res.data.data.sqTime}`
             })
-          } else {
+          } else if (res.data.data.integralTypeId == 6) {
+            items.push({
+              title: `${res.data.data.appName}  点赞`,
+              description: `${res.data.data.appDept}  ${res.data.data.sqTime}`
+            })
+          }
+          else {
             items.push({
               title: `${res.data.data.userName}  提交审批`,
               description: `${res.data.data.userDept}  ${res.data.data.sqTime}`
