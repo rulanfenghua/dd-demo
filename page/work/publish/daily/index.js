@@ -129,7 +129,7 @@ Page({
   submit(values, that) {
     console.log('this', that)
     var points = that.data.pointsArray[values.detail.value.points]
-    var peopleNum = values.detail.value.count
+    // var peopleNum = values.detail.value.count
     var textarea = values.detail.value.textarea
     var typeId = that.data.types[values.detail.value.types].typeId
     // var from = that.data.user[values.detail.value.from].userId
@@ -143,7 +143,7 @@ Page({
 
     // console.log(!approvalTitle || !approvalContent || !points)
 
-    if (!approvalTitle || !points || !approvalContent || !peopleNum) {
+    if (!approvalTitle || !points || !approvalContent) {
       dd.showToast({
         type: 'fail',
         duration: 3000,
@@ -154,17 +154,17 @@ Page({
       })
       return
     }
-    if (points * peopleNum > this.data.data) {
-      dd.showToast({
-        type: 'fail',
-        duration: 3000,
-        content: '您的表扬积分不足'
-      })
-      that.setData({
-        loading: false
-      })
-      return
-    }
+    // if (points * peopleNum > this.data.data) {
+    //   dd.showToast({
+    //     type: 'fail',
+    //     duration: 3000,
+    //     content: '您的表扬积分不足'
+    //   })
+    //   that.setData({
+    //     loading: false
+    //   })
+    //   return
+    // }
 
     console.log('toFilePaths', that.data.toFilePaths)
 
@@ -180,10 +180,10 @@ Page({
         
         title: approvalTitle,
         content: approvalContent,
-        taskTypeId: 2, // 任务类型
-        peopleNum: peopleNum, // 抢单人数
-        // sort: this.data.date1,
-        // status: this.data.date2,
+        taskTypeId: 1, // 任务类型
+        // peopleNum: peopleNum, // 抢单人数
+        sort: this.data.date1,
+        status: this.data.date2,
         deptId: this.data.deptId,
         remark: this.data.postId
       },

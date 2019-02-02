@@ -180,10 +180,10 @@ Page({
         
         title: approvalTitle,
         content: approvalContent,
-        taskTypeId: 2, // 任务类型
+        taskTypeId: 3, // 任务类型
         peopleNum: peopleNum, // 抢单人数
-        // sort: this.data.date1,
-        // status: this.data.date2,
+        sort: this.data.date1,
+        status: this.data.date2,
         deptId: this.data.deptId,
         remark: this.data.postId
       },

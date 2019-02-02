@@ -19,9 +19,11 @@
     "page/work/take/index",
     "page/work/like/index",
     "page/work/bounty/index",
-    "page/work/bounty/details/index",
+    "page/work/bounty/commit/index",
     "page/work/publish/index",
     "page/work/publish/rush/index",
+    "page/work/publish/time/index",
+    "page/work/publish/daily/index",
 
     "page/work/index/logs/index",
     "page/work/index/wait/index",

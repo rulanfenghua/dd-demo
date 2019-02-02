@@ -26,7 +26,7 @@
     <view class="page-section-demo">
       <textarea auto-height placeholder="输入备注信息" name="textarea" style="font-size: 13px" />
     </view>
-    <!-- <view class="form-line" />
+    <view class="form-line" />
     <view class="picture-btns">
       <view onTap="datePicker1">选择开始日期
         <text class="details">{{date1}}</text>
@@ -37,7 +37,7 @@
       <view onTap="datePicker2">选择结束日期
         <text class="details">{{date2}}</text>
       </view>
-    </view> -->
+    </view>
     <view class="form-line" />
     <input-item
       className="input-text important"

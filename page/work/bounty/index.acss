@@ -90,8 +90,14 @@
 }
 
 /* 列表样式复写 */
+.list {
+  box-shadow: none;
+}
+
 .list-item {
   position: relative;
+  box-shadow: #ddd 2px;
+  border-radius: 4px;
 }
 
 .list-item::after {
@@ -102,10 +108,6 @@
   position: absolute;
   bottom: 0;
   border-bottom: 1px solid #ddd;
-}
-
-.am-list-line-bottom {
-  display: none;
 }
 
 .am-list-extra {
@@ -170,4 +172,38 @@
   color: rgb(70, 173, 244);
   text-align: center;
   padding-top: 50%;
+}
+
+.content {
+  /* margin-top: 10px; */
+  /* box-shadow: 0 0 2px #ccc; */
+  background: #fff;
+  border-radius: 4px;
+  color: #444;
+}
+
+.content-item {
+  height: 30px;
+  font-size: 12px;
+  /* color: #444; */
+  font-family: Tahoma, Helvetica, Arial, "\\5B8B体", sans-serif;
+  line-height: 30px;
+  padding-left: 10px;
+  position: relative;
+}
+
+.right-arrow {
+  position: absolute;
+  right: 14px;
+}
+
+.content-item .number {
+    margin-left: 4px;
+    color: #999;
+}
+
+.content .change {
+    text-align: center;
+    /* background: #ff862d; */
+    background: #46adf4;
 }
