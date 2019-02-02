@@ -5,7 +5,6 @@ Page({
     options: {},
     loading: false,
     
-    users: [],
     apps: [],
     user: [], // 申请人
 
@@ -26,12 +25,7 @@ Page({
     console.log(options)
 
     var pointsArray = []
-    var median = parseInt(options.min ? options.min : '0')
-    pointsArray.push(median)
-    while (median < parseInt(options.max)) {
-      median += 10
-      pointsArray.push(median)
-    }
+    pointsArray.push(options.points)
 
     this.setData({
       options: options,
@@ -39,20 +33,22 @@ Page({
     })
 
     dd.httpRequest({
-      url: app.globalData.domain + '/work/declareBehaviorDetail/approverPel',
-      method: 'POST',
+      url: app.globalData.domain + '/task/selectDetails/'+ options.id,
+      method: 'GET',
       dataType: 'json',
       success: (res) => {if ((res.data.code != 0 && !res.data.code ) || res.data.code == 1001) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }); return}
-
         console.log('successApps----', res)
+        var app = {
+          userId: res.data.data.releaseUserId,
+          userName: res.data.data.releaseUserName
+        }
         this.setData({
-          'apps[0]': res.data.data
+          'apps[0]': app
         })
       },
       fail: (res) => {
         console.log("httpRequestFailApps----", res)
         var content = JSON.stringify(res); switch (res.error) {case 13: content = '连接超时'; break; case 12: content = '网络出错'; break; case 19: content = '访问拒绝'; } dd.alert({content: content, buttonText: '确定'});
-
       },
       complete: () => {
       }
@@ -87,34 +83,6 @@ Page({
    
   },
 
-  allUsers() {
-    dd.httpRequest({
-      url: app.globalData.domain + '/work/declareBehaviorDetail/selectAllDeptUser',
-      method: 'POST',
-      dataType: 'json',
-      data: {
-        pageSize: 100,
-        pageNum: 1,
-        search: ''
-      },
-      success: (res) => {
-        if (res.data && res.data.code == 1001) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }) }
-        console.log('successUsersDept----', res)
-        var users = res.data.data.list
-        this.setData({
-          to: users
-        })
-      },
-      fail: (res) => {
-        console.log("httpRequestFailUsersDept----", res)
-        var content = JSON.stringify(res); switch (res.error) {case 13: content = '连接超时'; break; case 12: content = '网络出错'; break; case 19: content = '访问拒绝'; } dd.alert({content: content, buttonText: '确定'});
-
-      },
-      complete: () => {
-      }
-    })
-  },
-
   formSubmit(e) {
     console.log('formSubmit----', e.detail.value)
 
@@ -132,36 +100,29 @@ Page({
   },
   submit(values, that) {
     console.log('this', that)
-    var points = that.data.pointsArray[values.detail.value.points]
     var textarea = values.detail.value.textarea
-    var typeId = that.data.options.type
-    var from = that.data.user[values.detail.value.from].userId
+    var taskTypeId = that.data.options.typeId
     // var to = that.data.users[e.detail.value.to].userId
     var to = []
     that.data.to.forEach((item) => {
       to.push(item.userId)
     })
-    var apps = that.data.apps[values.detail.value.app].userId
-    var approvalTitle = that.data.options.title
-    var approvalContent = that.data.options.content
-    var approvalId = that.data.options.id
+    var releaseUserId = that.data.apps[values.detail.value.app].userId
+    var taskId = that.data.options.id
 
     // console.log(that.data.toFilePaths)
     dd.httpRequest({
-      url: app.globalData.domain + '/work/addIntegralApprover',
+      url: app.globalData.domain + '/task/addTask',
       method: 'POST',
       dataType: 'json',
       data: {
-        addIntegral: points,
-        approvalImg: that.data.toFilePaths,
-        spRemark: textarea,
-        typeId: typeId,
-        from: [from],
+        pic: that.data.toFilePaths,
+        remark: textarea,
+        taskTypeId: taskTypeId,
         to: to,
-        apps: [apps],
-        approvalTitle: approvalTitle,
-        approvalContent: approvalContent,
-        approvalId: approvalId
+        releaseUserId: releaseUserId,
+        taskId: taskId,
+        integralTypeId: 7
       },
       success: (res) => {if ((res.data.code != 0 && !res.data.code ) || res.data.code == 1001) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }); return}
 
@@ -175,7 +136,6 @@ Page({
       fail: (res) => {
         console.log("httpRequestFailApp----", res)
         var content = JSON.stringify(res); switch (res.error) {case 13: content = '连接超时'; break; case 12: content = '网络出错'; break; case 19: content = '访问拒绝'; } dd.alert({content: content, buttonText: '确定'});
-
       },
       complete: () => {
         that.setData({
@@ -278,26 +238,7 @@ Page({
       to: to
     })
   },
-
-  deleteUser(e) {
-    // 删除头像
-    // console.log(e)
-
-    // var users = this.data.users
-    // var index = users.findIndex((item) => item.userId == this.data.to[e.target.dataset.index].userId)
-    // users[index].checked = false
-    // console.log(index, users)
-    // this.setData({
-    //   users: users
-    // })
-
-    // var to = this.data.to
-    // to.splice(e.target.dataset.index, 1)
-    // this.setData({
-    //   to: to
-    // })
-  },
-
+  
   // 图片组件
   load() {
     this.setData({

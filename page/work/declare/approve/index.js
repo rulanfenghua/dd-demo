@@ -5,7 +5,6 @@ Page({
     options: {},
     loading: false,
     
-    users: [],
     apps: [],
     user: [], // 申请人
 

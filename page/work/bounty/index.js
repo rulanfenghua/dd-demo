@@ -34,10 +34,6 @@ Page({
       },
       success: (res) => {if ((res.data.code != 0 && !res.data.code ) || res.data.code == 1001) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }); return}
         console.log('successBounty----', res)
-        res.data.data.list.forEach((item) => {
-          // item.sqTime = this.format(item.createTime, 'yyyy-MM-dd hh:mm:ss')
-          item.commit = false
-        })
         this.setData({
           items: res.data.data.list
         })
@@ -100,24 +96,16 @@ Page({
     var index = e.target.dataset.index
     dd.showLoading({content: '申请中...'})
     dd.httpRequest({
-      url: app.globalData.domain + '/task/allTask',
-      method: 'POST',
+      url: app.globalData.domain + '/task/updateUserAndTaskStatus'+ `/${this.data.items[index].rtId}/${this.data.items[index].status}`,
+      method: 'GET',
       dataType: 'json',
-      data: {
-        taskId: this.data.items[index].rtId,
-        taskStatus: this.data.times[index].status
-      },
       success: (res) => {if ((res.data.code != 0 && !res.data.code ) || res.data.code == 1001) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }); return}
         console.log('successChange----', res)
         dd.showToast({
           content: '申请成功',
           duration: 3000
         })
-        var items = this.data.items
-        items[index].commit = true
-        this.setData({
-          items: items
-        })
+        this.listShow()
       },
       fail: (res) => {
         console.log('httpRequestFailChange----', res)
@@ -126,6 +114,19 @@ Page({
       complete: () => {
         dd.hideLoading()
       }
+    })
+  },
+  commit(e) {
+    var index = e.target.dataset.index
+    var title = this.data.items[index].title
+    var content = this.data.items[index].content
+    var points = this.data.items[index].taskIntegral
+    var id = this.data.items[index].rtId
+    var typeId = this.data.items[index].taskTypeId
+    var url = `./commit/index?title=${title}&content=${content}&points=${points}&id=${id}&typeId=${typeId}`
+
+    dd.navigateTo({
+      url: url
     })
   },
 

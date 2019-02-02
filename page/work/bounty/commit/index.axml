@@ -1,12 +1,12 @@
 <view class="page">
   <form onSubmit="formSubmit" class="page-section">
-    <view class="page-section-title">审批标题
+    <view class="page-section-title">任务目标
     </view>
     <view class="page-section-demo">
       <textarea auto-height placeholder="" name="title" style="font-size: 13px" auto-height="{{true}}" maxlength="-1" value="{{options.title}}" disabled="{{true}}"/>
     </view>
     <view class="form-line" />
-    <view class="page-section-title">审批内容  
+    <view class="page-section-title">任务内容  
     </view>
     <view class="page-section-demo">
       <textarea auto-height placeholder="" name="content" style="font-size: 13px" auto-height="{{true}}" maxlength="-1" value="{{options.content}}" disabled="{{true}}"/>
@@ -16,7 +16,7 @@
       className="input-text"
       name="type"
       disabled="true"
-      value="{{options.type == '1' ? '品德积分' : (options.type == '2' ? '业绩积分' : '行为积分')}}"
+      value="任务积分"
     >
       积分类型
     </input-item>

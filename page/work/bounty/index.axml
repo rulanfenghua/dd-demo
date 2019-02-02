@@ -24,7 +24,7 @@
           <view class="brief-bottom">
             <text class="brief-bottom-left">限制人数：{{item.peopleNum}}
             </text>
-            <text class="brief-bottom-right">{{item.status == '0' ? '发布中' : (item.status == '1' ? '已完成' : '未完成')}}
+            <text class="brief-bottom-right">{{item.status == '0' ? '发布中' : (item.status == '1' ? '已领取' : (item.status == '2' ? '审批中' : (item.status == '3' ? '已完成' : '已拒绝')))}}
             </text>
           </view>
         </view>
@@ -35,11 +35,11 @@
           <view class="content-item people" a:if="{{users.length}}">
               <text class="text">他们已经接受了该任务</text><text class="number"></text>
           </view>
-          <view class="content-item change" onTap="change" a:if="{{!item.commit}}" data-index="{{index}}">
+          <view class="content-item change" onTap="change" a:if="{{item.status == 0}}" data-index="{{index}}">
               <text class="text">选择接受这项任务</text>
               <text class="right-arrow"></text>
           </view>
-          <view class="content-item change" onTap="commit" a:else data-index="{{index}}">
+          <view class="content-item change" onTap="commit" a:if="{{item.status == 1}}" data-index="{{index}}">
               <text class="text">提交完成这项任务</text>
               <text class="right-arrow"></text>
           </view>
