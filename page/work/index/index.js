@@ -214,6 +214,9 @@ Page({
       case 0:
         dd.navigateTo({ url: '../bounty/index' })
         break;
+      case 4:
+        dd.navigateTo({ url: '../callto/index' })
+        break;
     }
   },
   logs() {
