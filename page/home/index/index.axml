@@ -77,7 +77,7 @@
         <view class="brief">
           <view class="brief-title">{{item.approvalTitle}}</view>
           <view class="brief-content">{{item.approvalContent}}</view>
-          <image class="brief-image" src="{{item}}" a:if="{{item.approvalImg1[0]}}" a:for="{{item.approvalImg1}}" catchTap="preview" data-index="{{index}}" mode="widthFix" />
+          <image class="brief-image" src="{{item}}" a:if="{{item}}" a:for="{{item.approvalImg1}}" catchTap="preview" data-index="{{index}}" mode="widthFix" />
           <view class="brief-time">{{item.spTime}}</view>
         </view>
         <view slot="extra" class="extra" a:if="{{!(item.kIntegral > 0)}}">

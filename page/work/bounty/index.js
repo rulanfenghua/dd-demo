@@ -50,18 +50,6 @@ Page({
 
   onItemClick({ index }) {
     console.log('list点击', index)
-
-    var title = this.data.items[index].behaviorTitle
-    var content = this.data.items[index].behaviorContent
-    var type = this.data.items[index].typeId
-    var max = this.data.items[index].zuiDuoIntegral
-    var min = this.data.items[index].zuiShaoIntegral
-    var id = this.data.items[index].behaviorId
-    var url = `./commit/index?title=${title}&content=${content}&type=${type}&max=${max}&min=${min}&id=${id}`
-
-    dd.navigateTo({
-      url: url
-    })
   },
 
   handleTabClick({ index }) {
