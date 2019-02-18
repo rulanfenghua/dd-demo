@@ -20,7 +20,8 @@ Page({
 
   onLoad() {
     dd.httpRequest({
-      url: app.globalData.domain + '/free/managementIntegral',
+      // url: app.globalData.domain + '/free/managementIntegral',
+      url: app.globalData.domain + '/leader/leaderManageIntegral',
       method: 'POST',
       dataType: 'json',
       success: (res) => {

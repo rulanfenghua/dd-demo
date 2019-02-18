@@ -80,8 +80,8 @@
 
 .count {
   position: absolute;
-  height: 17px;
-  width: 17px;
+  height: 16px;
+  width: 16px;
   background: red;
   color: #fff;
   line-height: 17px;

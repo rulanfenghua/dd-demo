@@ -213,3 +213,10 @@
     /* background: #ff862d; */
     background: #46adf4;
 }
+
+.tabs {
+  position: sticky;
+  top: 0;
+  background: #fff;
+  z-index: 199;
+}

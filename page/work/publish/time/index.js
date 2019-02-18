@@ -58,7 +58,7 @@ Page({
 
     // dd.showLoading({ content: '加载中...' })
     dd.httpRequest({
-      url: app.globalData.domain + '/leader/leaderAvailableIntegral',
+      url: app.globalData.domain + '/leader/leaderManageIntegral',
       method: 'POST',
       dataType: 'json',
       success: (res) => {
