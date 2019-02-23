@@ -31,6 +31,10 @@ Page({
         var has = true
         var list = res.data.data.userList
         var user = res.data.data.user
+        var lovesum = user.loveIntegral
+        if(lovesum == 0){
+          has = false
+        } 
         if (res.data.data.loveUser) {
           has = false
         }
