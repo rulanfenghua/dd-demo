@@ -9,16 +9,13 @@ Page({
     apps: [],
     user: [], // 申请人
     list: [], // 默认申诉人
-    ssuser:{},
+    ssuser:[],
 
     pointsArray: [],
     arrIndexFrom: 0,
     arrIndexApp: 0,
     arrIndexTo: 0,
     arrIndexPoints: 0,
-
-    appPelId: 0, // 申诉人id
-    appPelName: 0, // 申诉人名称
 
     filePaths: [],
     toFilePaths: [],
@@ -41,9 +38,9 @@ Page({
       dataType: 'json',
       success: (res) => {if ((res.data.code != 0 && !res.data.code ) || res.data.code == 1001) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }); return}
 
-        console.log('selectComplaintPel=======----', res)
+        console.log('selectComplaintPel----', res)
         this.setData({
-          ssuser: res.data.data.user
+          'ssuser[0]': res.data.data.user
 
         })
       },
@@ -155,11 +152,10 @@ Page({
     var points = that.data.pointsArray[values.detail.value.points]
     var typeId = that.data.options.type
     var from = that.data.user[values.detail.value.from].userId
-    var to = that.data.ssuser[values.detail.value.to].userId
 
-    
-    
+    var toto = that.data.ssuser[values.detail.value.to].userId // 申诉人
 
+    var to = []
     that.data.to.forEach((item) => {
       to.push(item.userId)
     })
@@ -193,7 +189,8 @@ Page({
         approvalId: approvalId,
         pic: that.data.toFilePaths,
         appReason: appReason,
-        appPelId: to
+        appPelId: toto,
+        to: to
       },
       success: (res) => {if ((res.data.code != 0 && !res.data.code ) || res.data.code == 1001) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }); return}
 

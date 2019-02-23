@@ -70,10 +70,10 @@
       </view>
     </picker>
     <view class="form-line" />
-    <picker onChange="changeTo" value="{{ssuser.userName}} " range="{{ssuser}}"  range-key="userName" name="to">
+    <picker onChange="changeTo" value="{{ssuser}} " range="{{ssuser}}"  range-key="userName" name="to">
       <view class="row">
         <view class="row-title">申诉人</view>
-        <view class="row-extra">当前选择：{{ssuser.userName}} </view>
+        <view class="row-extra">当前选择：{{ssuser[arrIndexTo].userName}} </view>
         <image class="row-arrow" src="/image/arrowright.png" mode="aspectFill" />
       </view>
     </picker>
