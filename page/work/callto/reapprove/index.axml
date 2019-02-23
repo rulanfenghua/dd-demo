@@ -43,6 +43,7 @@
       </view>
     </view> 
     <imgs onLoad="load" onFilePaths="filePaths" /> -->
+     <imgs onLoad="load" onFilePaths="filePaths" />
     <view class="form-line" />
     <picker onChange="changePoints" value="{{arrIndexPoints}}" range="{{pointsArray}}" name="points">
       <view class="row">
