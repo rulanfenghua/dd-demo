@@ -205,7 +205,6 @@ Page({
       dataType: 'json',
       success: (res) => {
         console.log('success----', res)
-
         if (res.data.code == 0 && !res.data.stringCode) {
           app.globalData.level = res.data.msg
           dd.setStorage({
