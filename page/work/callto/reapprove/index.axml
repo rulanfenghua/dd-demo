@@ -70,7 +70,7 @@
       </view>
     </picker>
     <view class="form-line" />
-    <picker onChange="changeTo" value="{{ssuser}} " range="{{ssuser}}"  range-key="userName" name="to">
+    <picker onChange="changeTo" value="{{arrIndexTo}} " range="{{ssuser}}"  range-key="userName" name="to">
       <view class="row">
         <view class="row-title">申诉人</view>
         <view class="row-extra">当前选择：{{ssuser[arrIndexTo].userName}} </view>
