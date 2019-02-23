@@ -35,15 +35,14 @@
     <view class="page-section-demo important">
       <textarea auto-height placeholder="输入申诉理由" name="reason" style="font-size: 14px" />
     </view> -->
-    <!-- <view class="form-line" />
+    <view class="form-line" />
     <view class="picture-btns">
       <view onTap="chooseImage">选择照片
         <text class="details" a:if="{{filePaths.length == 0}}">图片大小不能超过4M</text>
         <text class="details" a:else>您选择了{{filePaths.length}}张图片</text>
       </view>
     </view> 
-    <imgs onLoad="load" onFilePaths="filePaths" /> -->
-     <imgs onLoad="load" onFilePaths="filePaths" />
+    <imgs onLoad="load" onFilePaths="filePaths" />
     <view class="form-line" />
     <picker onChange="changePoints" value="{{arrIndexPoints}}" range="{{pointsArray}}" name="points">
       <view class="row">
