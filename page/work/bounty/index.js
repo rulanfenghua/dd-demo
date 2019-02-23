@@ -84,7 +84,7 @@ Page({
     var index = e.target.dataset.index
     dd.showLoading({content: '申请中...'})
     dd.httpRequest({
-      url: app.globalData.domain + '/task/updateUserAndTaskStatus'+ `/${this.data.items[index].rtId}/${this.data.items[index].status}`,
+      url: app.globalData.domain + '/task/updateUserAndTaskStatus'+ `/${this.data.items[index].rtId}/${this.data.items[index].userState}`,
       method: 'GET',
       dataType: 'json',
       success: (res) => {if ((res.data.code != 0 && !res.data.code ) || res.data.code == 1001) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }); return}

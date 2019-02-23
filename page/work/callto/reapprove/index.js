@@ -1,3 +1,4 @@
+//积分申诉 js
 var app = getApp()
 
 Page({
@@ -7,12 +8,17 @@ Page({
     
     apps: [],
     user: [], // 申请人
+    list: [], // 默认申诉人
+    ssuser:{},
 
     pointsArray: [],
     arrIndexFrom: 0,
     arrIndexApp: 0,
     arrIndexTo: 0,
     arrIndexPoints: 0,
+
+    appPelId: 0, // 申诉人id
+    appPelName: 0, // 申诉人名称
 
     filePaths: [],
     toFilePaths: [],
@@ -28,7 +34,28 @@ Page({
       options: options,
       pointsArray: [options.points]
     })
+    // 查询默认申诉人
+     dd.httpRequest({
+      url: app.globalData.domain + '/complaint/selectComplaintPel',
+      method: 'GET',
+      dataType: 'json',
+      success: (res) => {if ((res.data.code != 0 && !res.data.code ) || res.data.code == 1001) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }); return}
 
+        console.log('selectComplaintPel=======----', res)
+        this.setData({
+          ssuser: res.data.data.user
+
+        })
+      },
+      fail: (res) => {
+        console.log("httpRequestFailApps----", res)
+        var content = JSON.stringify(res); switch (res.error) {case 13: content = '连接超时'; break; case 12: content = '网络出错'; break; case 19: content = '访问拒绝'; } dd.alert({content: content, buttonText: '确定'});
+
+      },
+      complete: () => {
+      }
+    })
+   // 查询默认本部门审批人
     dd.httpRequest({
       url: app.globalData.domain + '/work/declareBehaviorDetail/approverPel',
       method: 'POST',
@@ -48,6 +75,8 @@ Page({
       complete: () => {
       }
     })
+
+   
 
     dd.httpRequest({
       url: app.globalData.domain + '/work/selectSysUser',
@@ -126,8 +155,11 @@ Page({
     var points = that.data.pointsArray[values.detail.value.points]
     var typeId = that.data.options.type
     var from = that.data.user[values.detail.value.from].userId
-    // var to = that.data.users[e.detail.value.to].userId
-    var to = []
+    var to = that.data.ssuser[values.detail.value.to].userId
+
+    
+    
+
     that.data.to.forEach((item) => {
       to.push(item.userId)
     })
@@ -136,23 +168,32 @@ Page({
     var approvalContent = that.data.options.content
     var approvalId = that.data.options.id
     var appReason = values.detail.value.reason
-
+   
     // console.log(that.data.toFilePaths)
     dd.httpRequest({
-      url: app.globalData.domain + '/work/addIntegralApprover',
+      // 添加一条积分申诉
+      // url: app.globalData.domain + '/work/addIntegralApprover',
+      // method: 'POST',
+      // dataType: 'json',
+      // data: {
+      //   addIntegral: points,
+      //   pic: that.data.toFilePaths,
+      //   typeId: typeId,
+      //   from: [from],
+      //   to: to,
+      //   apps: [apps],
+      //   approvalTitle: approvalTitle,
+      //   approvalContent: approvalContent,
+      //   approvalId: approvalId,
+      //   appReason: appReason
+      url: app.globalData.domain + '/complaint/addComplaint',
       method: 'POST',
       dataType: 'json',
       data: {
-        addIntegral: points,
-        pic: that.data.toFilePaths,
-        typeId: typeId,
-        from: [from],
-        to: to,
-        apps: [apps],
-        approvalTitle: approvalTitle,
-        approvalContent: approvalContent,
         approvalId: approvalId,
-        appReason: appReason
+        pic: that.data.toFilePaths,
+        appReason: appReason,
+        appPelId: to
       },
       success: (res) => {if ((res.data.code != 0 && !res.data.code ) || res.data.code == 1001) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }); return}
 
@@ -164,7 +205,7 @@ Page({
         dd.navigateBack()
       },
       fail: (res) => {
-        console.log("httpRequestFailApp----", res)
+        console.log("httpRequestFailApp----", res);
         var content = JSON.stringify(res); switch (res.error) {case 13: content = '连接超时'; break; case 12: content = '网络出错'; break; case 19: content = '访问拒绝'; } dd.alert({content: content, buttonText: '确定'});
 
       },

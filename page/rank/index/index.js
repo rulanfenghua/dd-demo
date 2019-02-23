@@ -14,7 +14,7 @@ Page({
       { title: '部门' },
       { title: '职位' },
       { title: '积分类型' },
-      { title: '时间' }
+      // { title: '时间' }
     ],
 
     times: 1,

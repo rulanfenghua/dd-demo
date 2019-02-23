@@ -32,7 +32,7 @@ Page({
       },
       success: (res) => {if ((res.data.code != 0 && !res.data.code ) || res.data.code == 1001) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }); return}
 
-        console.log('successWait----', res)
+        console.log('successWait----123456777777777777777777777777777', res)
         this.setData({
           items: res.data.data.list
         })
@@ -84,6 +84,7 @@ Page({
     var remark = this.data.items[index].remark
     var points = this.data.items[index].sqIntegral
     var type = this.data.items[index].type
+    //var appPelId = this.items[index].
     dd.navigateTo({ url: `./reapprove/index?approvalId=${approvalId}&title=${title}&content=${content}&remark=${remark}&points=${points}&type=${type}` })
   },
 
