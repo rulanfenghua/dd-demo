@@ -164,9 +164,10 @@ Page({
             dataType: 'json',
             success: (res) => {
               console.log('success----', res)
+              console.log(res.data.code == 0 && !res.data.stringCode)
               if (res.data.code == 0 && !res.data.stringCode) {
                 app.globalData.level = res.data.msg
-                dd.switchTab({
+                dd.redirectTo({
                   url: '/page/home/index/index'
                 })
               } else {
@@ -214,7 +215,7 @@ Page({
               password: e.detail.value.password
             },
             success() {
-              dd.switchTab({
+              dd.redirectTo({
                 url: '/page/home/index/index'
               })
             }
