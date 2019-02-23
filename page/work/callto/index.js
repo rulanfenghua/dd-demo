@@ -81,7 +81,7 @@ Page({
     var approvalId = this.data.items[index].approvalId
     var title = this.data.items[index].approvalTitle
     var content = this.data.items[index].approvalContent
-    var remark = this.data.items[index].remark
+    var remark = this.data.items[index].spRemark
     var points = this.data.items[index].sqIntegral
     var type = this.data.items[index].type
     //var appPelId = this.items[index].

@@ -162,7 +162,7 @@ Page({
     var apps = that.data.apps[values.detail.value.app].userId
     var approvalTitle = that.data.options.title
     var approvalContent = that.data.options.content
-    var approvalId = that.data.options.id
+    var approvalId = that.data.options.approvalId
     var appReason = values.detail.value.reason
    
     // console.log(that.data.toFilePaths)
