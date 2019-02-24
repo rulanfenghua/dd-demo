@@ -167,7 +167,7 @@ Page({
               console.log(res.data.code == 0 && !res.data.stringCode)
               if (res.data.code == 0 && !res.data.stringCode) {
                 app.globalData.level = res.data.msg
-                dd.redirectTo({
+                dd.switchTab({
                   url: '/page/home/index/index'
                 })
               } else {
@@ -215,7 +215,7 @@ Page({
               password: e.detail.value.password
             },
             success() {
-              dd.redirectTo({
+              dd.switchTab({
                 url: '/page/home/index/index'
               })
             }
