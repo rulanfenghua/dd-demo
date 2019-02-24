@@ -15,6 +15,7 @@ Component({
     failIndex: 0,
 
     failString: '', // 拒绝理由
+    appReason: '', // 申诉理由
 
     fail: false, // 拒绝理由弹出标识
   },
@@ -90,7 +91,12 @@ Component({
           }
           this.setData({
             data: res.data.data,
-            items: items
+            items: items,
+           // appReason : res.data.data.appReason
+          })
+          this.setData({
+            appReason: res.data.data.appReason
+            
           })
         },
         fail: (res) => {
@@ -107,7 +113,9 @@ Component({
       var approvalId = this.props.options.approvalId
       var status = this.data.passStatus
       var failString = encodeURI(encodeURI(this.data.failString))
-      var url = app.globalData.domain + '/approversPel/approversYesNo/' + approvalId + '/' + status + '?disapproveUndo=' + failString
+     var appReason = encodeURI(encodeURI(this.data.appReason))
+    // var appReason = this.data.appReason
+      var url = app.globalData.domain + '/approversPel/approversYesNo/' + approvalId + '/' + status + '?disapproveUndo=' + failString + '&appReason=' + appReason
       dd.showLoading({
         content: '审批中...'
       })
@@ -197,7 +205,9 @@ Component({
       console.log('formSubmit----', e.detail.value)
       this.setData({
         passStatus: 2,
-        failString: e.detail.value.title
+        failString: e.detail.value.title,
+        appReason: appReason
+
       })
       this.todo()
     },
