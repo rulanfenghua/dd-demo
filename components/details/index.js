@@ -206,7 +206,7 @@ Component({
       this.setData({
         passStatus: 2,
         failString: e.detail.value.title,
-        appReason: appReason
+        appReason: this.data.appReason
       })
       this.todo()
     },
