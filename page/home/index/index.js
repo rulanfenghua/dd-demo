@@ -19,7 +19,7 @@ Page({
         console.log('successHome----', res)
         this.setData({
           data: res.data.data,
-           first: res.data.data
+          first: res.data.data
         })
       },
       fail: (res) => {

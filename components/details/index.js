@@ -205,8 +205,7 @@ Component({
       console.log('formSubmit----', e.detail.value)
       this.setData({
         passStatus: 2,
-        failString: e.detail.value.title,
-        appReason: this.data.appReason
+        failString: e.detail.value.title
       })
       this.todo()
     },
