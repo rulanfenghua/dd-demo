@@ -18,7 +18,8 @@ Page({
 
         console.log('successHome----', res)
         this.setData({
-          data: res.data.data
+          data: res.data.data,
+           first: res.data.data
         })
       },
       fail: (res) => {
@@ -31,26 +32,26 @@ Page({
       }
     })
 
-    dd.httpRequest({
-      url: app.globalData.domain + '/home/indexFirst',
-      method: 'POST',
-      // headers: { 'Content-Type': 'application/json' },
-      dataType: 'json',
-      success: (res) => {if ((res.data.code != 0 && !res.data.code ) || res.data.code == 1001) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }); return}
+    // dd.httpRequest({
+    //   url: app.globalData.domain + '/home/indexFirst',
+    //   method: 'POST',
+    //   // headers: { 'Content-Type': 'application/json' },
+    //   dataType: 'json',
+    //   success: (res) => {if ((res.data.code != 0 && !res.data.code ) || res.data.code == 1001) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }); return}
 
-        console.log('successHomeFirst----', res)
-        this.setData({
-          first: res.data.data
-        })
-      },
-      fail: (res) => {
-        console.log('httpRequestFailHomeFirst----', res)
-        var content = JSON.stringify(res); switch (res.error) {case 13: content = '连接超时'; break; case 12: content = '网络出错'; break; case 19: content = '访问拒绝'; } dd.alert({content: content, buttonText: '确定'});
+    //     console.log('successHomeFirst----', res)
+    //     this.setData({
+    //       first: res.data.data
+    //     })
+    //   },
+    //   fail: (res) => {
+    //     console.log('httpRequestFailHomeFirst----', res)
+    //     var content = JSON.stringify(res); switch (res.error) {case 13: content = '连接超时'; break; case 12: content = '网络出错'; break; case 19: content = '访问拒绝'; } dd.alert({content: content, buttonText: '确定'});
 
-      },
-      complete: () => {
-      }
-    })
+    //   },
+    //   complete: () => {
+    //   }
+    // })
 
     this.listShow()
   },
