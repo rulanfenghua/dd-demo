@@ -18,6 +18,7 @@ Component({
     appReason: '', // 申诉理由
 
     fail: false, // 拒绝理由弹出标识
+    reasons: [] // 拒绝理由数组
   },
 
   didMount() {
@@ -26,6 +27,29 @@ Component({
         status: this.props.options.status
       })
     }
+
+    dd.httpRequest({
+      url: app.globalData.domain + '/complaint/groundsRefusal', // 请求拒绝理由数组
+      method: 'GET',
+      // headers: { 'Content-Type': 'application/json' },
+      dataType: 'json',
+      success: (res) => {if ((res.data.code != 0 && !res.data.code ) || res.data.code == 1001) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }); return}
+
+        console.log('successReason----', res)
+        this.setData({
+          reasons: res.data.data
+        })
+      },
+      fail: (res) => {
+        console.log('httpRequestFailReason----', res)
+        
+        var content = JSON.stringify(res); switch (res.error) {case 13: content = '连接超时'; break; case 12: content = '网络出错'; break; case 19: content = '访问拒绝'; } dd.alert({content: content, buttonText: '确定'});
+
+      },
+      complete: () => {
+      }
+    })
+
     this.listShow()
   },
 
@@ -182,19 +206,20 @@ Component({
     },
     todoStop() {
       var _this = this
+
+      var items = []
+      var reasons = this.data.reasons
+      reasons.forEach((item) => {
+        items.push(item.configName)
+      })
+
       dd.showActionSheet({
         title: '选择拒绝理由',
-        items: ['不填', '填写拒绝理由'],
+        items: items,
         cancelButtonText: '取消',
         success({ index }) {
-          switch (index) {
-            case 0: _this.setData({ failString: '' })
-            _this.setData({ passStatus: 2 })
-            _this.todo()
-            break;
-            case 1: _this.setData({ fail: true })
-            break;
-          }
+          _this.setData({ failString: items[index] })
+          _this.todo()
         }
       })
     },
