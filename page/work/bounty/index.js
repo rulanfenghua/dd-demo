@@ -34,8 +34,21 @@ Page({
       },
       success: (res) => {if ((res.data.code != 0 && !res.data.code ) || res.data.code == 1001) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }); return}
         console.log('successBounty----', res)
+
+        var items = res.data.data.list
+        items.forEach((item) => {
+          var state = '0'
+          item.taskAndUserList.forEach((task) => {
+            if (task.userId == app.globalData.id) {
+              state = task.state
+              break
+            }
+          })
+          item.userState = state
+        })
+        console.log(items)
         this.setData({
-          items: res.data.data.list
+          items: items
         })
       },
       fail: (res) => {

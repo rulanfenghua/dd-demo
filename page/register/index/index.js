@@ -166,7 +166,12 @@ Page({
               console.log('success----', res)
               console.log(res.data.code == 0 && !res.data.stringCode)
               if (res.data.code == 0 && !res.data.stringCode) {
-                app.globalData.level = res.data.msg
+                
+                var level = res.data.msg.split('=')[0]
+                var id = res.data.msg.split('=')[1]
+                app.globalData.level = level
+                app.globalData.id = id
+
                 // dd.switchTab({
                 dd.reLaunch({
                   url: '/page/home/index/index'
@@ -208,7 +213,12 @@ Page({
       success: (res) => {
         console.log('success----', res)
         if (res.data.code == 0 && !res.data.stringCode) {
-          app.globalData.level = res.data.msg
+          
+          var level = res.data.msg.split('=')[0]
+          var id = res.data.msg.split('=')[1]
+          app.globalData.level = level
+          app.globalData.id = id
+
           dd.setStorage({
             key: 'login',
             data: {
