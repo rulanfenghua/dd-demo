@@ -43,9 +43,9 @@
       <text class="item-right" style="padding-left: 35%;display: block">{{data.spRemark}}</text>
     </view>
     <!-- 申诉理由 -->
-    <view class="item">
+    <view class="item" a:if="{{data.appReason}}">
       <text class="item-left">申诉理由</text>
-      <text class="item-right" style="padding-left: 35%;display: block">{{data.appReason}}</text>
+      <text class="item-right" style="padding-left: 35%;display: block;color: blue">{{data.appReason}}</text>
     </view>
     <view class="item" a:if="{{status == 2}}">
       <text class="item-left">不过原因</text>
