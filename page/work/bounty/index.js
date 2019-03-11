@@ -41,12 +41,12 @@ Page({
           item.taskAndUserList.forEach((task) => {
             if (task.userId == app.globalData.id) {
               state = task.state
-              break
+              return
             }
           })
           item.userState = state
         })
-        console.log(items)
+        
         this.setData({
           items: items
         })
