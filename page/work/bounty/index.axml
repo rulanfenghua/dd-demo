@@ -22,7 +22,7 @@
           <view class="brief-title">{{item.content}}          
           </view>
           <view class="brief-bottom">
-            <text class="brief-bottom-left" a:if="{{item.peopleNum}}">限制人数：{{item.peopleNum}}
+            <text class="brief-bottom-left" a:if="{{item.peopleNum}}" style="display: block">限制人数：{{item.peopleNum}}
             </text>
             <text class="brief-bottom-left" a:if="{{item.endTime}}">截止时间：{{item.endTime}}
             </text>

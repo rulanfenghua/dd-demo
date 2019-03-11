@@ -36,16 +36,18 @@ Page({
         console.log('successBounty----', res)
 
         var items = res.data.data.list
-        items.forEach((item) => {
-          var state = '0'
-          item.taskAndUserList.forEach((task) => {
-            if (task.userId == app.globalData.id) {
-              state = task.state
-              return
-            }
+        if (item.taskAndUserList) {
+          items.forEach((item) => {
+            var state = '0'
+            item.taskAndUserList.forEach((task) => {
+              if (task.userId == app.globalData.id) {
+                state = task.state
+                return
+              }
+            })
+            item.userState = state
           })
-          item.userState = state
-        })
+        }
         
         this.setData({
           items: items
