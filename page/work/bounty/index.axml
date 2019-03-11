@@ -22,7 +22,9 @@
           <view class="brief-title">{{item.content}}          
           </view>
           <view class="brief-bottom">
-            <text class="brief-bottom-left">限制人数：{{item.peopleNum}}
+            <text class="brief-bottom-left" a:if="{{item.peopleNum}}">限制人数：{{item.peopleNum}}
+            </text>
+            <text class="brief-bottom-left" a:if="{{item.endTime}}">截止时间：{{item.endTime}}
             </text>
             <text class="brief-bottom-right">{{item.userState == '0' ? '发布中' : (item.userState == '1' ? '已领取' : (item.userState == '2' ? '审批中' : (item.userState == '3' ? '已完成' : '已拒绝')))}}
             </text>
