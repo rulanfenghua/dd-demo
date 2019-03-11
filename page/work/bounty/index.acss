@@ -145,6 +145,7 @@
 }
 
 .brief-bottom-left {
+  display: block;
   color: #888;
 }
 
