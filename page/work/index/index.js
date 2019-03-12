@@ -126,7 +126,7 @@ Page({
         console.log('successDesk----', res)
 
         var listMain = []
-        var lists = res.data.lists
+        var lists = res.data.data
         lists.forEach((item) => {
           item.icon = item.yyImg
           item.text = item.yyTitle
