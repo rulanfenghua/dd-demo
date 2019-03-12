@@ -97,6 +97,14 @@ Page({
     console.log(e.target.dataset.index)
 
     var index = e.target.dataset.index
+    if (!(this.data.status == 1 || this.data.items[index].peopleNum > 0)) {
+      dd.alert({
+        content: '名额已被抢完',
+        buttonText: '确定'
+      })
+      return
+    }
+
     dd.showLoading({content: '申请中...'})
     dd.httpRequest({
       url: app.globalData.domain + '/task/updateUserAndTaskStatus'+ `/${this.data.items[index].rtId}/${this.data.items[index].userState}`,

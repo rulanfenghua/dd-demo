@@ -37,7 +37,7 @@
           <view class="content-item people" a:if="{{item.taskAndUserList.length}}">
               <text class="text">他们已经接受了该任务：</text><text class="number" a:for="{{item.taskAndUserList}}">{{item.userName}}</text>
           </view>
-          <view class="content-item change" onTap="change" a:if="{{item.userState == 0 && item.peopleNum > 0}}" data-index="{{index}}">
+          <view class="content-item change" onTap="change" a:if="{{item.userState == 0}}" data-index="{{index}}">
               <text class="text">选择接受这项任务</text>
               <text class="right-arrow"></text>
           </view>
