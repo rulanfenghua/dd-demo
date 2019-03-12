@@ -172,8 +172,8 @@ Page({
                 app.globalData.level = level
                 app.globalData.id = id
 
-                // dd.switchTab({
-                dd.reLaunch({
+                dd.switchTab({
+                // dd.reLaunch({
                   url: '/page/home/index/index'
                 })
               } else {
@@ -226,8 +226,8 @@ Page({
               password: e.detail.value.password
             },
             success() {
-              // dd.switchTab({
-              dd.reLaunch({
+              dd.switchTab({
+              // dd.reLaunch({
                 url: '/page/home/index/index'
               })
             }
