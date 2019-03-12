@@ -219,6 +219,7 @@ Component({
         cancelButtonText: '取消',
         success({ index }) {
           _this.setData({ failString: items[index] })
+          _this.setData({ passStatus: 2 })
           _this.todo()
         }
       })
