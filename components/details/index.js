@@ -221,12 +221,13 @@ Component({
         items: items,
         cancelButtonText: '取消',
         success({ index }) {
-          if (index < _this.data.reasons.length) {
+          if (index < 0) {
+            return
+          } else if (index < _this.data.reasons.length) {
             _this.setData({ failString: items[index] })
             _this.setData({ passStatus: 2 })
             _this.todo()
-          }
-          else {
+          } else {
             _this.setData({ fail: true })
           }
         }
