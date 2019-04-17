@@ -191,18 +191,20 @@ Component({
     },
 
     todoPass() {
-      dd.confirm({
-        title: '提示',
-        content: '确认通过审批吗？',
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        success: (result) => {
-          if (result.confirm) {
-            this.setData({ passStatus: 1 })
-            this.todo()
-          }
-        }
-      })
+      // dd.confirm({
+      //   title: '提示',
+      //   content: '确认通过审批吗？',
+      //   confirmButtonText: '确定',
+      //   cancelButtonText: '取消',
+      //   success: (result) => {
+      //     if (result.confirm) {
+      //       this.setData({ passStatus: 1 })
+      //       this.todo()
+      //     }
+      //   }
+      // })
+      this.setData({ passStatus: 1 })
+      this.todo()
     },
     todoStop() {
       var _this = this
@@ -212,15 +214,22 @@ Component({
       reasons.forEach((item) => {
         items.push(item.configName)
       })
+      items.push('填写拒绝理由')
 
       dd.showActionSheet({
         title: '选择拒绝理由',
         items: items,
         cancelButtonText: '取消',
         success({ index }) {
-          _this.setData({ failString: items[index] })
-          _this.setData({ passStatus: 2 })
-          _this.todo()
+          if (index < 0) {
+            return
+          } else if (index < _this.data.reasons.length) {
+            _this.setData({ failString: items[index] })
+            _this.setData({ passStatus: 2 })
+            _this.todo()
+          } else {
+            _this.setData({ fail: true })
+          }
         }
       })
     },
