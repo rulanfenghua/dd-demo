@@ -15,6 +15,6 @@ App({
     corpId: '',
     level: '',
     id: '',
-    domain: 'http://192.168.0.5:8081'
+    domain: 'http://192.168.31.113:8081'
   }
 });

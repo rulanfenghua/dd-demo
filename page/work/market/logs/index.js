@@ -4,7 +4,8 @@ Page({
   data: {
     options: {},
     items: [],
-
+    // statusNum:"",
+    // statusNum:"",
     right: [{'type': 'delete', 'text': '撤销'}]
   },
   onLoad(options) {
@@ -34,8 +35,14 @@ Page({
 
         console.log('successLogsList----', res)
         this.setData({
-          items: res.data.data.list
+          items: res.data.data.list,
+          // statusNum : res.data.data.list.status,
+          // if(statusNum == 0){
+
+          // }
         })
+
+
       },
       fail: (res) => {
         console.log("httpRequestFailLogsList----", res)

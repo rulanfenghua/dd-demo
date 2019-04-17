@@ -11,7 +11,7 @@
           </view>
           <view class="brief-bottom">
             <text class="brief-bottom-left">{{item.dhCreateTime}}</text>
-            <text class="brief-bottom-right">已兑换</text>
+            <text class="brief-bottom-right">{{items.status==0?"审核中":items.status==1?"审核通过":"审核不通过"}}</text>
           </view>
         </view>
         <view slot="extra" class="extra">
