@@ -29,7 +29,11 @@
         wrap="{{true}}"
         disabled="{{item.checked}}"
       >
-        <text class="title">{{item.behaviorTitle}}</text>
+       <text class="title">{{item.behaviorCategory}}</text>
+       <view>
+          <view class="title"> {{item.behaviorTitle}}</view>
+       </view>
+        <!-- <text class="title">{{item.behaviorTitle}}</text> -->
         <view class="brief">
           <view class="brief-content">{{item.behaviorContent}}</view>
           <view class="brief-bottom">
